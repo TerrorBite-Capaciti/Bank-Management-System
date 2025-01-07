@@ -20,7 +20,7 @@ public class Account {
     private long id;
 
     @Column(name = "account_id", nullable = false)
-    private String accountId;
+    private long accountId;
 
     @Column(name = "account_type", nullable = false)
     private String accountType;
@@ -48,11 +48,11 @@ public class Account {
         this.id = id;
     }
 
-    public String getAccountId() {
+    public long getAccountId() {
         return accountId;
     }
 
-    public void setAccountId(String accountId) {
+    public void setAccountId(long accountId) {
         this.accountId = accountId;
     }
 
