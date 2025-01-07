@@ -11,6 +11,4 @@ public interface CustomerService {
     Customer createNewCustomer(Customer customer);
 
     Customer updateCustomerDetails(long id, Customer customer);
-
-    List<Account> getAllAccounts(long id);
 }
