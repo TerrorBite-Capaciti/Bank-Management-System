@@ -1,10 +1,10 @@
 package com.capaciti.terrorbite.bank_management_application.service.impl;
 
-public class CustomerServiceImpl {
 import com.capaciti.terrorbite.bank_management_application.model.Customer;
 import com.capaciti.terrorbite.bank_management_application.repository.CustomerRepository;
 import com.capaciti.terrorbite.bank_management_application.service.CustomerService;
 
+import org.jetbrains.annotations.NotNull;
 import org.springframework.stereotype.Service;
 import org.springframework.beans.factory.annotation.Autowired;
 
