@@ -9,5 +9,9 @@ public interface AccountService {
 
     List<Account> getAllAccounts(long id);
 
+    Account getAccountById(long id);
 
+    Account createAccount(Account account);
+
+    Account updateAccount(Account account);
 }
