@@ -1,0 +1,166 @@
+/* LandingPage.css */
+
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: linear-gradient(to bottom right, #0f2027, #203a43, #2c5364);
+  color: #ffffff;
+}
+
+.landing-page {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+  text-align: center;
+}
+
+.logo-container {
+  margin-bottom: 20px;
+}
+
+.logo {
+  width: 150px;
+}
+
+.landing-page-header h1 {
+  font-size: 2.5rem;
+  margin-bottom: 10px;
+  color: #ff3131;
+}
+
+.slogan p {
+  font-size: 1.2rem;
+  margin: 0;
+  letter-spacing: 1px;
+}
+
+.main-content {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 40px 0;
+  gap: 20px;
+}
+
+.register-section,
+.sign-in-section {
+  flex: 1;
+  text-align: center;
+}
+
+.btn {
+  padding: 10px 20px;
+  background: #ff3131;
+  border: none;
+  border-radius: 5px;
+  color: #ffffff;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: transform 0.2s, background 0.2s;
+}
+
+.btn:hover {
+  background: #ff6161;
+  transform: scale(1.05);
+}
+
+.divider {
+  width: 1px;
+  background: #ffffff;
+  height: 100px;
+}
+
+.card-container {
+  margin: 40px 0;
+  position: relative;
+}
+
+.card {
+  width: 350px;
+  height: 200px;
+  perspective: 1000px;
+  margin-top: 20px;
+  position: absolute;
+}
+
+.card-front,
+.card-back {
+  backface-visibility: hidden;
+  transform-style: preserve-3d;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border-radius: 10px;
+  background: #2c5364;
+  box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.5);
+  color: #ffffff;
+  padding: 20px;
+  transition: transform 0.6s ease-in-out;
+}
+
+.card-front {
+  position: absolute;
+}
+
+.card-back {
+  transform: rotateY(180deg);
+  position: absolute;
+}
+
+.card-container .card.front {
+  transform: rotateY(0deg);
+}
+
+.card-container .card.back {
+  transform: rotateY(180deg);
+}
+
+.black-stripe {
+  width: 80%;
+  height: 20px;
+  background: #000000;
+  margin-bottom: 20px;
+}
+
+.cvv,
+.expiry,
+.long-numbers {
+  font-size: 0.9rem;
+}
+
+.card-holder {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  font-size: 0.9rem;
+  margin-top: 10px;
+}
+
+.chip {
+  width: 40px;
+  height: 30px;
+  background: gold;
+  border-radius: 5px;
+  margin-bottom: 10px;
+}
+
+.toggle-btn {
+  margin-top: 20px;
+  padding: 10px 15px;
+  background: #ffffff;
+  border: none;
+  border-radius: 5px;
+  font-size: 1rem;
+  color: #ff3131;
+  cursor: pointer;
+  transition: transform 0.2s, background 0.2s;
+}
+
+.toggle-btn:hover {
+  background: #f2f2f2;
+  transform: scale(1.05);
+}
