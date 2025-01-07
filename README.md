@@ -5,16 +5,16 @@ A robust application to manage bank accounts with features like deposit, withdra
 
 📖 Table of Contents
 
- 📚 Overview
- 🌟 Key Features
- ⚙️ How It Works
- 🛠️ Tech Stack
- 📂 Folder Structure
- 🚀 Getting Started
- 👨‍💻 Contributing
- 📝 Planned Enhancements
- 🛡️License
- 💬 Feedback and Suggestions
+- 📚 Overview
+- 🌟 Key Features
+- ⚙️ How It Works
+- 🛠️ Tech Stack
+- 📂 Folder Structure
+- 🚀 Getting Started
+- 👨‍💻 Contributing
+- 📝 Planned Enhancements
+- 🛡️License
+- 💬 Feedback and Suggestions
 
 ---
 
@@ -88,6 +88,60 @@ Exception Handling
 - Basic knowledge of OOP
 
 Installation
- 1.Clone the repository:
 
+  1.Clone the repository:
+  - git clone https://github.com/your-username/bank-management-system.git  
+cd bank-management-system  
+
+  2.Run the application:
+  - python src/main.py  
+
+---
+
+👨‍💻 Contributing
+
+We welcome contributions!
+
+ 1.Fork the repository.
+
+ 2.Create a feature branch:
+   git checkout -b feature/your-feature-name  
+
+ 3.Commit your changes:
+   git commit -m "Add feature/your-feature-name"  
+
+ 4.Push the branch:
+  git push origin feature/your-feature-name  
+Open a Pull Request.
+
+---
+
+📝 Planned Enhancements
+
+Short-Term Goals:
+ - Add an interactive GUI using Tkinter or PyQt.
+ - Include more account types (e.g., fixed deposit).
+
+Long-Term Goals:
+
+ - Integration with a database for persistent storage.
+ - Multi-user support with login functionality.
+
+---
+
+🛡️ License
+
+This project is licensed under the MIT License.
+
+---
+
+💬 Feedback and Suggestions
+
+Your feedback is valuable!
+ - Open an issue on the repository.
+ - Contact us at support@bytebank.com.
+
+---
+
+Crafted with ❤️ by BYTE-BANK.
 
