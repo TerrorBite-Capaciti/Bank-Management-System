@@ -9,13 +9,15 @@ public interface TransactionService {
 
     List<Transaction> getAllTransactions(Account account);
 
+    @Deprecated(since = "0.0.1", forRemoval = false)
     Transaction getTransactionById(long id);
 
     Transaction addTransaction(Transaction transaction);
 
+    @Deprecated(since = "0.0.1", forRemoval = false)
     boolean existsById(long id);
 
-    boolean existsByAccount(Account account);
+    Transaction existsByAccount(Account account);
 
     boolean existsByAccountAndId(Account account, long id);
 }
