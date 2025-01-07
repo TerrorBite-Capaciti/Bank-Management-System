@@ -1,0 +1,232 @@
+/* General Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  body {
+    font-family: 'Roboto', sans-serif;
+    background-color: #050000;  /* Black background */
+    color: #fff;  /* White text */
+    overflow-x: hidden;
+  }
+  
+  .landing-page {
+    text-align: center;
+    padding: 5% 10%;
+    position: relative;
+  }
+  
+  /* Title and Subtitle */
+  .title {
+    font-size: 3rem;
+    color: #fff;
+    font-family: 'Orbitron', sans-serif;
+    letter-spacing: 1px;
+    margin-bottom: 20px;
+    text-transform: uppercase;
+    text-shadow: 0 0 20px rgba(255, 0, 0, 0.5);
+    animation: glow 1.5s ease-in-out infinite alternate;
+  }
+  
+  .subtitle {
+    font-size: 1.25rem;
+    color: #c4c4c4;
+    margin-bottom: 40px;
+    font-family: 'Merriweather', serif;
+  }
+  
+  /* Buttons */
+  .buttons-container {
+    margin-bottom: 40px;
+  }
+  
+  .btn {
+    padding: 15px 30px;
+    border-radius: 30px;
+    text-decoration: none;
+    font-size: 1.1rem;
+    font-weight: bold;
+    margin: 10px;
+    display: inline-block;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+  }
+  
+  .login-btn {
+    background-color: #AAABAB;  /* Light grey */
+    color: #050000;  /* Black text */
+  }
+  
+  .create-btn {
+    background-color: #c4c4c4;  /* Lighter grey */
+    color: #050000;  /* Black text */
+  }
+  
+  .btn:hover {
+    transform: translateY(-5px);
+    box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.1);
+  }
+  
+  .btn:active {
+    transform: translateY(2px);
+  }
+  
+  /* Features Section */
+  .features {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    margin-top: 60px;
+  }
+  
+  .feature {
+    width: 30%;
+    margin-bottom: 40px;
+    color: #fff;
+    text-align: center;
+    background-color: rgba(0, 0, 0, 0.6);
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  
+  .feature-img {
+    width: 100%;
+    height: auto;
+    border-radius: 10px;
+    transition: transform 0.3s ease;
+  }
+  
+  .feature h3 {
+    margin-top: 20px;
+    font-size: 1.5rem;
+    font-family: 'Orbitron', sans-serif;
+    color: #AAABAB;  /* Light grey text */
+  }
+  
+  .feature p {
+    font-size: 1rem;
+    color: #c4c4c4;  /* Lighter grey */
+  }
+  
+  .feature:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 0 30px rgba(0, 0, 0, 0.4);
+  }
+  
+  .feature:hover .feature-img {
+    transform: scale(1.05);
+  }
+  
+  /* Trust Section */
+  .trust-indicators {
+    margin-top: 60px;
+    padding: 40px;
+    background-color: #AAABAB;  /* Light grey */
+    border-radius: 10px;
+  }
+  
+  .trust-indicators h3 {
+    font-size: 2rem;
+    margin-bottom: 20px;
+    color: #050000;  /* Black text */
+  }
+  
+  .trust-badges {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+  }
+  
+  .badge {
+    padding: 10px 20px;
+    background-color: #050000;  /* Black background */
+    color: #fff;  /* White text */
+    border-radius: 20px;
+    font-size: 1rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+  }
+  
+  .badge:hover {
+    transform: translateY(-5px);
+  }
+  
+  /* Holographic Card Section */
+  .holographic-card {
+    margin-top: 40px;
+    padding: 20px;
+    background: linear-gradient(135deg, #050000, #AAABAB);
+    border-radius: 20px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.4);
+    color: #fff;
+    text-align: center;
+  }
+  
+  .holographic-card p {
+    font-size: 1.25rem;
+    font-family: 'Merriweather', serif;
+  }
+  
+  .holographic-img {
+    margin-top: 20px;
+    width: 80%;
+    height: auto;
+    border-radius: 15px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
+    transition: transform 0.3s ease;
+  }
+  
+  .holographic-img:hover {
+    transform: scale(1.1);
+  }
+  
+  /* Footer Section */
+  .footer-info {
+    margin-top: 100px;
+    font-size: 1.1rem;
+    color: #c4c4c4;
+    padding: 40px;
+  }
+  
+  .footer-info p {
+    font-family: 'Merriweather', serif;
+    color: #AAABAB;  /* Light grey */
+    font-size: 1.2rem;
+    letter-spacing: 1px;
+  }
+  
+  .footer-info p:hover {
+    color: #AAABAB;
+    cursor: pointer;
+  }
+  
+  /* Particle Background */
+  .particle-background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: url('https://www.transparenttextures.com/patterns/black-linen.png');
+    opacity: 0.05;
+    pointer-events: none;
+    z-index: -1;
+  }
+  
+  /* Animations */
+  @keyframes glow {
+    0% {
+      text-shadow: 0 0 20px rgba(255, 0, 0, 0.5), 0 0 30px rgba(255, 0, 0, 0.7);
+    }
+    100% {
+      text-shadow: 0 0 50px rgba(255, 0, 0, 0.9), 0 0 100px rgba(255, 0, 0, 0.9);
+    }
+  }
+  
