@@ -38,6 +38,15 @@ public class AccountServiceImpl implements AccountService {
 
     @Override
     public Account updateAccount(Account account) {
-        return null;
+        Account existingAccount = accountRepository.findById(account.getId()).orElseThrow( () -> new RuntimeException() );
+
+        existingAccount.setBalance(account.getBalance());
+        existingAccount.setTransactions(account.getTransactions());
+
+        //  save
+        accountRepository.save(existingAccount);
+
+        //  close
+        return existingAccount;
     }
 }
