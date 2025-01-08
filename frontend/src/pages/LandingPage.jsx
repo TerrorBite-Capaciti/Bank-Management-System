@@ -8,14 +8,22 @@ import news1 from '../assets/images/news1.jpg';
 import news2 from '../assets/images/news2.png';
 import news3 from '../assets/images/news3.jpg';
 import janeImage from '../assets/images/jane.jpg';
-import johnImage from '../assets/images/john1.webp';
+import josh1Image from '../assets/images/josh1.jpg';
+import johnImage from '../assets/images/john.jpg';
+import zamaImage from '../assets/images/Zama.jpg';
 
 const LandingPage = () => {
   return (
     <div className="landing-page">
       <header className="intro">
+       {/* Logo Section */}
+       <div className="logo-container">
+        <img src="/frontend/src/assets/images/Byte Bank Logo.png" alt="Byte Bank Logo" className="logo" />
+      </div>
+
         <h1 className="title">Welcome to ByteBank</h1>
         <p className="subtitle">Your trusted partner for secure, seamless, and smart banking.</p>
+
         <div className="buttons-container">
           <Link to="/login" className="btn login-btn">Login</Link>
           <Link to="/create-account" className="btn create-btn">Create Account</Link>
@@ -78,14 +86,24 @@ const LandingPage = () => {
         <h2>What Our Customers Say</h2>
         <div className="testimonial-cards">
           <div className="testimonial-card">
+            <img src={josh1Image} alt="Josh1" />
+            <p>"BankByte has revolutionized how we manage our financial operations. The platform's seamless integration with our existing systems saved us time and reduced errors. "</p>
+            <span>- Josh Beckham, Chartered Accountant CA(SA)</span>
+          </div>
+          <div className="testimonial-card">
             <img src={janeImage} alt="Jane" />
-            <p>"ByteBank revolutionized the way I handle my finances. Highly recommended!"</p>
-            <span>- Jane Doe, Entrepreneur</span>
+            <p>As a small business owner, security and reliability are critical. BankByte’s advanced encryption and fraud detection systems give me peace of mind knowing our data and funds are protected.</p>
+            <span>- Jane Elsphath, Entrepreneur</span>
           </div>
           <div className="testimonial-card">
             <img src={johnImage} alt="John" />
-            <p>"The security features give me peace of mind every time I bank."</p>
-            <span>- John Smith, Software Engineer</span>
+            <p>"ByteBank revolutionized the way I handle my finances. Our team was amazed by how intuitive and user-friendly BankByte’s platform is. Training our staff was a breeze, and within days, we were using its advanced reporting and analytics tools to make better financial decisions. "</p>
+            <span>- John Wellington, Entrepreneur</span>
+          </div>
+          <div className="testimonial-card">
+            <img src={zamaImage} alt="Zama" />
+            <p>"Within three months, our transaction processing efficiency increased by 40%, and our client satisfaction levels soared. BankByte is a must-have for any growing business!"</p>
+            <span>- Zama Ntshangase, Acquisition Manager</span>
           </div>
         </div>
       </section>
