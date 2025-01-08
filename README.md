@@ -1,7 +1,3 @@
-# 🏦 Bank Management System
-A robust application to manage bank accounts with features like deposit, withdrawal, and money transfer, leveraging object-oriented programming concepts.
-
-
 
 📖 Table of Contents
 
@@ -45,17 +41,6 @@ Exception Handling
 
 ---
 
-⚙️ How It Works
-
-  Select account type (Savings or Current).
-  Perform actions such as:
-  - Deposit funds.
-  - Withdraw funds.
-  - Transfer funds between accounts.
-
-  Error Handling
-  - Overdraft Prevention: Attempts to withdraw more than the balance result in an appropriate error message.
-  - Invalid Transactions: Prevent invalid input (e.g., negative amounts)
 
 ---
 
@@ -68,16 +53,6 @@ Exception Handling
 
 📂 Folder Structure
 
-/bank_management_system  
-    ├── /src  
-    │   ├── account.py            # Base class for accounts  
-    │   ├── savings_account.py    # Savings account implementation  
-    │   ├── current_account.py    # Current account implementation  
-    │   ├── transaction_manager.py # Handles deposits, withdrawals, and transfers  
-    │   └── main.py               # Entry point of the application  
-    ├── /tests  
-    │   └── test_transactions.py  # Unit tests for transaction handling  
-    └── README.md                 # Documentation  
 
 ---
 
@@ -116,16 +91,7 @@ Open a Pull Request.
 
 ---
 
-📝 Planned Enhancements
 
-Short-Term Goals:
- - Add an interactive GUI using Tkinter or PyQt.
- - Include more account types (e.g., fixed deposit).
-
-Long-Term Goals:
-
- - Integration with a database for persistent storage.
- - Multi-user support with login functionality.
 
 ---
 
