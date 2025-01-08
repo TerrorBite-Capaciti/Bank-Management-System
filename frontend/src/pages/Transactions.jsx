@@ -1,40 +1,33 @@
 import React, { useState, useEffect } from 'react';
 
 const Transactions = () => {
-  // Simulating a list of transactions (this would be fetched from an API later)
-  const [transactions, setTransactions] = useState([
-    { id: 1, type: 'Deposit', amount: 1000, date: '2025-01-01' },
-    { id: 2, type: 'Withdraw', amount: 500, date: '2025-01-02' },
-    { id: 3, type: 'Transfer', amount: 2000, date: '2025-01-03' },
-  ]);
+  const [transactions, setTransactions] = useState([]);
 
-  // Simulating an API call to fetch transactions
   useEffect(() => {
-    // Here you would make an API call to fetch real transactions.
-    // setTransactions(responseFromAPI);
+    // Simulate API call to fetch transactions
+    const fetchedTransactions = [
+      { id: 1, amount: 200, date: '2025-01-08', description: 'Deposit' },
+      { id: 2, amount: -50, date: '2025-01-07', description: 'Withdrawal' },
+    ];
+    setTransactions(fetchedTransactions);
   }, []);
 
   return (
     <div className="transactions">
       <h2>Transaction History</h2>
-      <table>
-        <thead>
-          <tr>
-            <th>Date</th>
-            <th>Type</th>
-            <th>Amount</th>
-          </tr>
-        </thead>
-        <tbody>
+      {transactions.length > 0 ? (
+        <ul>
           {transactions.map((transaction) => (
-            <tr key={transaction.id}>
-              <td>{transaction.date}</td>
-              <td>{transaction.type}</td>
-              <td>${transaction.amount}</td>
-            </tr>
+            <li key={transaction.id}>
+              <span>{transaction.date}</span>
+              <span>{transaction.description}</span>
+              <span>{transaction.amount > 0 ? '+' : ''}${transaction.amount}</span>
+            </li>
           ))}
-        </tbody>
-      </table>
+        </ul>
+      ) : (
+        <div>No transactions found.</div>
+      )}
     </div>
   );
 };

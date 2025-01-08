@@ -11,6 +11,7 @@ import janeImage from '../assets/images/jane.jpg';
 import josh1Image from '../assets/images/josh1.jpg';
 import johnImage from '../assets/images/john.jpg';
 import zamaImage from '../assets/images/Zama.jpg';
+import logoImage from '../assets/images/Byte Bank Logo.png';
 
 const LandingPage = () => {
   return (
@@ -18,7 +19,7 @@ const LandingPage = () => {
       <header className="intro">
        {/* Logo Section */}
        <div className="logo-container">
-        <img src="/frontend/src/assets/images/Byte Bank Logo.png" alt="Byte Bank Logo" className="logo" />
+       <img src={logoImage} alt="Logo" />
       </div>
 
         <h1 className="title">Welcome to ByteBank</h1>
