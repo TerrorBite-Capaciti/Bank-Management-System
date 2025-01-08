@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import '../styles/LandingPage.css';
-import graphImage from '../assets/images/coin2.jpg';
+import graphImage from '../assets/images/graph1.jpg';
 import coinsImage from '../assets/images/images.jpg';
 import notesImage from '../assets/images/piechart.jpg';
 import news1 from '../assets/images/news1.jpg';
@@ -15,14 +15,37 @@ const LandingPage = () => {
     <div className="landing-page">
       <header className="intro">
         <h1 className="title">Welcome to ByteBank</h1>
-        <p className="subtitle">Where your security meets innovation. Banking, reimagined.</p>
+        <p className="subtitle">Your trusted partner for secure, seamless, and smart banking.</p>
         <div className="buttons-container">
           <Link to="/login" className="btn login-btn">Login</Link>
           <Link to="/create-account" className="btn create-btn">Create Account</Link>
         </div>
       </header>
 
+      <section className="about-us">
+        <h2>Why Choose ByteBank?</h2>
+        <p>
+          At ByteBank, we blend cutting-edge technology with a customer-centric approach to deliver an unparalleled banking experience. 
+          Whether you're managing personal savings or running a business, our platform is designed to cater to all your financial needs with speed, security, and simplicity.
+        </p>
+        <div className="about-us-stats">
+          <div className="stat">
+            <h3>99.9%</h3>
+            <p>System Uptime</p>
+          </div>
+          <div className="stat">
+            <h3>24/7</h3>
+            <p>Customer Support</p>
+          </div>
+          <div className="stat">
+            <h3>10M+</h3>
+            <p>Active Users</p>
+          </div>
+        </div>
+      </section>
+
       <section className="features">
+        <h2>Our Features</h2>
         <div className="feature">
           <img src={graphImage} alt="Graph" className="feature-img" />
           <h3>High-Level Security</h3>
@@ -38,6 +61,17 @@ const LandingPage = () => {
           <h3>AI-Powered Insights</h3>
           <p>Get personalized financial guidance with the power of artificial intelligence.</p>
         </div>
+      </section>
+
+      <section className="products">
+        <h2>Explore Our Products</h2>
+        <ul>
+          <li>Personal Savings Accounts</li>
+          <li>Business Banking Solutions</li>
+          <li>Credit and Debit Cards</li>
+          <li>Investment Portfolios</li>
+          <li>Insurance and Loan Services</li>
+        </ul>
       </section>
 
       <section className="testimonials">
@@ -75,11 +109,15 @@ const LandingPage = () => {
           <summary>Are there any hidden fees?</summary>
           <p>No, ByteBank prides itself on complete transparency. No hidden fees, ever.</p>
         </details>
+        <details>
+          <summary>Can I open an account online?</summary>
+          <p>Yes, opening an account is quick and easy. Get started in just a few clicks!</p>
+        </details>
       </section>
 
       <footer className="cta-footer">
-        <h2>Ready to Experience ByteBank?</h2>
-        <p>Join thousands of satisfied customers today!</p>
+        <h2>Experience ByteBank Today</h2>
+        <p>Join millions of users and enjoy seamless, secure, and innovative banking.</p>
         <Link to="/create-account" className="btn create-btn">Get Started</Link>
       </footer>
     </div>
