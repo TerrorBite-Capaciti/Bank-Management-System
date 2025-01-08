@@ -11,7 +11,7 @@ import janeImage from '../assets/images/jane.jpg';
 import josh1Image from '../assets/images/josh1.jpg';
 import johnImage from '../assets/images/john.jpg';
 import zamaImage from '../assets/images/Zama.jpg';
-import logoImage from '../assets/images/Byte Bank Logo.png';
+import logoImage from '../assets/images/Byte.jpg';
 
 const LandingPage = () => {
   return (

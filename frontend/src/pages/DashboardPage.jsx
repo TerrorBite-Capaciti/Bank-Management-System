@@ -1,5 +1,5 @@
 import React from 'react';
-import { FaCreditCard, FaExchangeAlt, FaMoneyBillAlt, FaCamera, FaUserCircle, FaSignOutAlt } from 'react-icons/fa';
+import { FaUserCircle, FaSignOutAlt, FaUniversity, FaCrown } from 'react-icons/fa';
 import styles from '../styles/DashboardPage.module.css'; // Import as a CSS module
 
 const DashboardPage = () => {
@@ -28,51 +28,46 @@ const DashboardPage = () => {
         <aside className={styles.sidebar}>
           <ul>
             <li>
-              <a href="#transfer">
-                <FaCreditCard size={20} /> Transfer
-              </a>
+              <a href="#transfer">Transfer</a>
             </li>
             <li>
-              <a href="#withdraw">
-                <FaMoneyBillAlt size={20} /> Withdraw
-              </a>
+              <a href="#withdraw">Withdraw</a>
             </li>
             <li>
-              <a href="#transactions">
-                <FaExchangeAlt size={20} /> Transactions
-              </a>
+              <a href="#transactions">Transactions</a>
             </li>
             <li>
-              <a href="#scan-to-pay">
-                <FaCamera size={20} /> Scan to Pay
-              </a>
+              <a href="#scan-to-pay">Scan to Pay</a>
             </li>
           </ul>
         </aside>
 
         {/* Main Dashboard */}
         <main className={styles.dashboardMain}>
-          <h1>Dashboard</h1>
-          <div className={styles.dashboardGrid}>
-            <div className={styles.dashboardItem} id="transfer">
-              <FaCreditCard size={40} />
-              <h3>Transfer</h3>
-              <p>Send money to anyone, anywhere, instantly.</p>
+          <h1>Welcome to ByteBank</h1>
+
+          {/* Account Cards */}
+          <div className={styles.accountCards}>
+            {/* Savings Account Card */}
+            <div className={`${styles.accountCard} ${styles.savingsCard}`}>
+              <div className={styles.cardLogo}>
+                <FaUniversity size={24} />
+                <span>ByteBank</span>
+              </div>
+              <h2>Savings Account</h2>
+              <p>Account No: 1234 5678 9012</p>
+              <p className={styles.accountBalance}>$5,250.75</p>
             </div>
-            <div className={styles.dashboardItem} id="withdraw">
-              <FaMoneyBillAlt size={40} />
-              <h3>Withdraw</h3>
-              <p>Withdraw funds directly to your bank account.</p>
-            </div>
-            <div className={styles.dashboardItem} id="transactions">
-              <FaExchangeAlt size={40} />
-              <h3>Transactions</h3>
-              <p>View your recent transaction history.</p>
-            </div>
-            <div className={styles.dashboardItem} id="scan-to-pay">
-              <FaCamera size={40} />
-              <h3>Scan to Pay</h3>
-              <p>Use QR codes for quick and easy payments.</p>
+
+            {/* Premium Account Card */}
+            <div className={`${styles.accountCard} ${styles.premiumCard}`}>
+              <div className={styles.cardLogo}>
+                <FaCrown size={24} />
+                <span>ByteBank Premium</span>
+              </div>
+              <h2>Premium Account</h2>
+              <p>Account No: 9876 5432 1098</p>
+              <p className={styles.accountBalance}>$12,340.50</p>
             </div>
           </div>
         </main>
