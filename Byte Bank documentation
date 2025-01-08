@@ -1,0 +1,213 @@
+Bank Management System Documentation
+
+Overview
+
+The Bank Management System is a full-stack application designed to manage various banking operations efficiently. It features a React-based frontend and a Spring Boot Java backend, providing a seamless user experience for customers.
+
+Features
+
+Customer Management:
+
+Create, update, delete, and view customer details.
+
+View customer transaction history.
+
+Account Management:
+
+Open new accounts (savings, current, fixed deposit, etc.).
+
+Close accounts.
+
+View account balances and details.
+
+Transaction Management:
+
+Process deposits, withdrawals, and transfers.
+
+Generate transaction receipts.
+
+Dashboard/Home Page:
+
+After login, users with a Byte Bank account can view a personalized dashboard.
+
+The dashboard displays a card with account details such as card number, balance, and recent transactions.
+
+Project Architecture
+
+Frontend (React)
+
+The frontend is built using React and communicates with the backend via REST APIs.
+
+Key Features:
+
+Modern, responsive design.
+
+Components structured for reusability.
+
+State management using Context API or Redux.
+
+API integration for dynamic data rendering.
+
+Backend (Spring Boot Java)
+
+The backend provides the core business logic and handles data persistence.
+
+Key Features:
+
+RESTful APIs for communication with the frontend.
+
+Spring Security for authentication and authorization.
+
+Integration with a relational database (e.g., MySQL, PostgreSQL).
+
+Exception handling for robust operations.
+
+Database
+
+Tables: Customers, Accounts, Transactions, Users (Employees), Roles.
+
+Relational schema with primary and foreign keys.
+
+Setup and Installation
+
+Prerequisites
+
+Frontend
+
+Node.js (v16+)
+
+npm or yarn
+
+Backend
+
+Java 11 or later
+
+Maven
+
+MySQL/PostgreSQL database
+
+Steps to Set Up
+
+1. Clone the Repository
+
+git clone <repository-url>
+cd bank-management-system
+
+2. Setting Up the Backend
+
+Navigate to the backend directory:
+
+cd backend
+
+Install dependencies:
+
+mvn clean install
+
+Configure the database in application.properties:
+
+spring.datasource.url=jdbc:mysql://localhost:3306/bank_db
+spring.datasource.username=root
+spring.datasource.password=yourpassword
+
+Run the application:
+
+mvn spring-boot:run
+
+3. Setting Up the Frontend
+
+Navigate to the frontend directory:
+
+cd frontend
+
+Install dependencies:
+
+npm install
+
+Start the React development server:
+
+npm start
+
+API Endpoints
+
+Customer APIs
+
+GET /api/customers - Get all customers.
+
+GET /api/customers/{id} - Get customer by ID.
+
+POST /api/customers - Create a new customer.
+
+PUT /api/customers/{id} - Update customer details.
+
+DELETE /api/customers/{id} - Delete customer.
+
+Account APIs
+
+GET /api/accounts - Get all accounts.
+
+POST /api/accounts - Create a new account.
+
+PUT /api/accounts/{id} - Update account details.
+
+DELETE /api/accounts/{id} - Delete account.
+
+Transaction APIs
+
+POST /api/transactions/deposit - Deposit money into an account.
+
+POST /api/transactions/withdraw - Withdraw money from an account.
+
+POST /api/transactions/transfer - Transfer money between accounts.
+
+Authentication APIs
+
+POST /api/auth/login - User login.
+
+POST /api/auth/register - User registration.
+
+Testing
+
+Frontend Testing
+
+Use Jest and React Testing Library to test components and API integrations.
+
+Backend Testing
+
+Use JUnit for unit testing.
+
+Mock APIs using Mockito.
+
+Test database queries using an H2 in-memory database.
+
+Future Enhancements
+
+Mobile App Integration: Develop a mobile app for better accessibility.
+
+Advanced Analytics: Implement dashboards for users with detailed charts and reports.
+
+Integration with External APIs: Add features like credit score checks or real-time currency conversion.
+
+Enhanced Security: Two-factor authentication and biometric login options.
+
+Troubleshooting
+
+Frontend Issues:
+
+Ensure Node.js is installed.
+
+Check the console for errors and fix them accordingly.
+
+Backend Issues:
+
+Verify database credentials in application.properties.
+
+Check backend logs for error messages.
+
+API Communication Issues:
+
+Confirm the backend is running on the correct port.
+
+Ensure CORS is configured properly in the backend.
+
+Feel free to reach out if you have any questions or need further assistance!
+
