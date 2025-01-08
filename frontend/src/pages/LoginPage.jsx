@@ -30,7 +30,7 @@ const LoginPage = () => {
       <div className="login-container">
         {/* Left Section: Login Form */}
         <div className="left-section">
-          <h1>ByteBank</h1> {/* Replaceable with a logo */}
+          <h1>ByteBank</h1> {/* I think we should replace this with a logo */}
           <p className="subheading">Your Trusted Financial Partner</p>
 
           <form onSubmit={handleLogin}>
@@ -105,7 +105,7 @@ const LoginPage = () => {
             </div>
             <div className="dashboard-item">
               <FaExchangeAlt size={30} />
-              <p>Transactions</p>
+              <p>Deposit</p>
             </div>
             <div className="dashboard-item">
               <FaCamera size={30} />
