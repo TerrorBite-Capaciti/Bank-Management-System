@@ -68,3 +68,11 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/d
 ### `npm run build` fails to minify
 
 This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+
+## JavaCV Setup Instructions
+To run this project, you need to download the JavaCV libraries and the Haar Cascade XML file manually.
+
+1. Download the JavaCV JAR files from the [JavaCV GitHub](https://github.com/bytedeco/javacv) or [Maven Repository](https://mvnrepository.com/artifact/org.bytedeco/javacv).
+   - Place them in the `lib/` folder of the project.
+2. Download the Haar Cascade file `haarcascade_frontalface_alt.xml` from the [OpenCV GitHub repository](https://raw.githubusercontent.com/opencv/opencv/master/data/haarcascades/haarcascade_frontalface_alt.xml).
+   - Place the XML file in the `data/` folder of the project.
