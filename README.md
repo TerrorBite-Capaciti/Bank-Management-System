@@ -1,22 +1,25 @@
+# 🏦 Bank Management System  
+A robust application to manage bank accounts with features like deposit, withdrawal, and money transfer, leveraging object-oriented programming concepts. 
 
-📖 Table of Contents
 
+## 📖Table of Contents
 - 📚 Overview
-- 🌟 Key Features
-- ⚙️ How It Works
-- 🛠️ Tech Stack
-- 📂 Folder Structure
-- 🚀 Getting Started
-- 👨‍💻 Contributing
-- 📝 Planned Enhancements
-- 🛡️License
+- 🌟 Key features 
+- ⚙️ How It Works 
+- 🛠️ Folder Structure 
+- 🚀 Gettung Started 
+- 🧑‍💻 Contributing
+- 📝 Planned Enhancement
+- 🛡️ License 
 - 💬 Feedback and Suggestions
 
 ---
 
 ## 📚 Overview
+The Bank Management System is a Java and React-based application that helps manage bank accounts effectively. Built with a strong foundation in object-oriented programming (OOP), it offers functionalities like deposits, withdrawals, and money transfers, while ensuring robustness through exception handling for scenarios such as overdrafts and invalid transactions. 
 
-The Bank Management System is a console-based application that helps manage bank accounts effectively. Built with a strong foundation in object-oriented programming (OOP), it offers functionalities like deposits, withdrawals, and money transfers, while ensuring robustness through exception handling for scenarios such as overdrafts and invalid transactions.
+
+
 
 ---
 
