@@ -28,6 +28,7 @@ const LandingPage = () => {
         <div className="buttons-container">
           <Link to="/login" className="btn login-btn">Login</Link>
           <Link to="/create-account" className="btn create-btn">Create Account</Link>
+          <Link to="/dashboard" className="btn dashboard-btn"> Dashboard</Link>
         </div>
       </header>
 
