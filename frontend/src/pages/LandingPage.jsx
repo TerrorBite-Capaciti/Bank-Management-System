@@ -4,63 +4,84 @@ import '../styles/LandingPage.css';
 import graphImage from '../assets/images/coin2.jpg';
 import coinsImage from '../assets/images/images.jpg';
 import notesImage from '../assets/images/piechart.jpg';
+import news1 from '../assets/images/news1.jpg';
+import news2 from '../assets/images/news2.png';
+import news3 from '../assets/images/news3.jpg';
+import janeImage from '../assets/images/jane.jpg';
+import johnImage from '../assets/images/john1.webp';
 
 const LandingPage = () => {
   return (
     <div className="landing-page">
-      <div className="intro">
-        <h1 className="title glowing-text">Welcome to ByteBank</h1>
-        <p className="subtitle">
-          <span className="holographic-effect">Where your security meets innovation.</span> 
-          Banking, reimagined.
-        </p>
-      </div>
+      <header className="intro">
+        <h1 className="title">Welcome to ByteBank</h1>
+        <p className="subtitle">Where your security meets innovation. Banking, reimagined.</p>
+        <div className="buttons-container">
+          <Link to="/login" className="btn login-btn">Login</Link>
+          <Link to="/create-account" className="btn create-btn">Create Account</Link>
+        </div>
+      </header>
 
-      <div className="buttons-container">
-        <Link to="/login" className="btn login-btn">Login</Link>
-        <Link to="/create-account" className="btn create-btn">Create Account</Link>
-      </div>
-
-      <div className="features">
+      <section className="features">
         <div className="feature">
-          <img src={graphImage} alt="Graph" className="feature-img holographic" />
+          <img src={graphImage} alt="Graph" className="feature-img" />
           <h3>High-Level Security</h3>
           <p>Cutting-edge encryption and biometric authentication to safeguard your finances.</p>
         </div>
         <div className="feature">
-          <img src={coinsImage} alt="Coins" className="feature-img holographic" />
+          <img src={coinsImage} alt="Coins" className="feature-img" />
           <h3>Instant Transactions</h3>
           <p>Real-time, hassle-free money transfers, withdrawals, and deposits.</p>
         </div>
         <div className="feature">
-          <img src={notesImage} alt="Notes" className="feature-img holographic" />
+          <img src={notesImage} alt="Notes" className="feature-img" />
           <h3>AI-Powered Insights</h3>
           <p>Get personalized financial guidance with the power of artificial intelligence.</p>
         </div>
-      </div>
+      </section>
 
-      {/* Real-Time Trust Indicators */}
-      <div className="trust-indicators">
-        <h3>Secure, Trusted, Award-Winning</h3>
-        <div className="trust-badges">
-          <span className="badge">SSL Secured</span>
-          <span className="badge">Award-Winning</span>
-          <span className="badge">Live Trust Score: 98.7%</span>
+      <section className="testimonials">
+        <h2>What Our Customers Say</h2>
+        <div className="testimonial-cards">
+          <div className="testimonial-card">
+            <img src={janeImage} alt="Jane" />
+            <p>"ByteBank revolutionized the way I handle my finances. Highly recommended!"</p>
+            <span>- Jane Doe, Entrepreneur</span>
+          </div>
+          <div className="testimonial-card">
+            <img src={johnImage} alt="John" />
+            <p>"The security features give me peace of mind every time I bank."</p>
+            <span>- John Smith, Software Engineer</span>
+          </div>
         </div>
-      </div>
+      </section>
 
-      {/* Holographic Bank Card */}
-      <div className="holographic-card">
-        <p>Experience the future of banking with ByteBank</p>
-        <img src="https://via.placeholder.com/300" alt="Holographic Bank Card" className="holographic-img" />
-      </div>
+      <section className="news">
+        <h2>As Featured In</h2>
+        <div className="news-logos">
+          <img src={news1} alt="News Logo 1" />
+          <img src={news2} alt="News Logo 2" />
+          <img src={news3} alt="News Logo 3" />
+        </div>
+      </section>
 
-      <div className="footer-info">
-        <p>Secure, smart, and sleek – the future of banking is here.</p>
-      </div>
+      <section className="faq">
+        <h2>Frequently Asked Questions</h2>
+        <details>
+          <summary>How secure is ByteBank?</summary>
+          <p>We use the latest encryption technologies and biometric authentication to keep your finances safe.</p>
+        </details>
+        <details>
+          <summary>Are there any hidden fees?</summary>
+          <p>No, ByteBank prides itself on complete transparency. No hidden fees, ever.</p>
+        </details>
+      </section>
 
-      {/* Particle Background */}
-      <div className="particle-background"></div>
+      <footer className="cta-footer">
+        <h2>Ready to Experience ByteBank?</h2>
+        <p>Join thousands of satisfied customers today!</p>
+        <Link to="/create-account" className="btn create-btn">Get Started</Link>
+      </footer>
     </div>
   );
 };
