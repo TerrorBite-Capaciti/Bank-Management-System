@@ -25,5 +25,21 @@ input{
     border: 1px solid #ccc;
     border-radius: 4px;
     font-size: 16px;
+
+}
+
+input:focus {
+    outline: none;
+    border-color: #d50000;
+}
+
+button { 
+    padding:10px;
+    background-color: #d50000;
+    color:white
+    border: none;
+    border-radius: 4px;
+    font-size: 16px;
+    cursor: pointer;
     
 }
