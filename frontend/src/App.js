@@ -9,6 +9,10 @@ import DashboardPage from './pages/DashboardPage';
 import Home from './pages/Home';
 import AccountDetails from './pages/AccountDetails';
 import Transactions from './pages/Transactions';
+import TransferPage from './pages/TransferPage';
+import WithdrawPage from './pages/WithdrawPage';
+import DepositPage from './pages/DepositPage';
+import ScanToPayPage from './pages/ScanToPayPage';
 
 // Importing components
 import Footer from './components/Footer';
@@ -31,6 +35,10 @@ function App() {
             <Route path="/home" element={<Home />} />
             <Route path="/account-details" element={<AccountDetails />} />
             <Route path="/transactions" element={<Transactions />} />
+            <Route path="/transfer" element={<TransferPage />} />
+            <Route path="/withdraw" element={<WithdrawPage />} />
+            <Route path="/deposit" element={<DepositPage />} />
+            <Route path="/scan-to-pay" element={<ScanToPayPage />} />
           </Routes>
         </div>
         

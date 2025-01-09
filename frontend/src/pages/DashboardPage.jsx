@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { FaUserCircle, FaSignOutAlt, FaUniversity, FaCrown } from 'react-icons/fa';
 import styles from '../styles/DashboardPage.module.css'; // Import as a CSS module
 
@@ -28,16 +29,16 @@ const DashboardPage = () => {
         <aside className={styles.sidebar}>
           <ul>
             <li>
-              <a href="#transfer">Transfer</a>
+              <Link to="/transfer">Transfer</Link>
             </li>
             <li>
-              <a href="#withdraw">Withdraw</a>
+              <Link to="/withdraw">Withdraw</Link>
             </li>
             <li>
-              <a href="#transactions">Transactions</a>
+              <Link to="/transactions">Transactions</Link>
             </li>
             <li>
-              <a href="#scan-to-pay">Scan to Pay</a>
+              <Link to="/scan-to-pay">Scan to Pay</Link>
             </li>
           </ul>
         </aside>
