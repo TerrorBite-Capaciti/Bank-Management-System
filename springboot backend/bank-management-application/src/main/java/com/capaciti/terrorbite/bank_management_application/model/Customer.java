@@ -5,12 +5,14 @@ import jakarta.persistence.Column;
 import jakarta.persistence.OneToMany;
 import lombok.Data;
 
+import java.io.Serializable;
 import java.util.List;
 
 @Entity
 @Data
 @Table(name = "customer")
-public class Customer {
+@SecondaryTable(name = "accounts", pkJoinColumns = @PrimaryKeyJoinColumn(name = "customer_id"))
+public class Customer implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -29,6 +31,7 @@ public class Customer {
     private String email;
 
     @OneToMany(mappedBy = "customer", cascade = CascadeType.ALL, orphanRemoval = true)
+    @Embedded
     private List<Account> accounts;
 
     //  Getters and Setters for service to use

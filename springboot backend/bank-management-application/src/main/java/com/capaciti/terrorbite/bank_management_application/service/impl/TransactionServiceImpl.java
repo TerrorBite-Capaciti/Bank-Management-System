@@ -19,6 +19,11 @@ public class TransactionServiceImpl implements TransactionService {
 
     @Override
     public List<Transaction> getAllTransactions(Account account) {
+//        if (account.getTransactions() != null) {
+//            return transactionRepository.findAll();
+//        } else {
+//            throw new RuntimeException();
+//        }
         if (account.getTransactions() != null) {
             return transactionRepository.findAll();
         } else {

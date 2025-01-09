@@ -8,15 +8,18 @@ import java.util.List;
 
 @Entity
 @Data
-@Table(name = "account")
+@Table(name = "accounts")
+//@Embeddable
+@SecondaryTable(name = "transactions", pkJoinColumns = @PrimaryKeyJoinColumn(name = "account_id"))
 public class Account {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
-
     @Column(name = "account_id", nullable = false)
     private long accountId;
+
+//    @Column(name = "account_id", nullable = false)
+//    private long accountId;
 
     @Column(name = "account_type", nullable = false)
     private String accountType;
@@ -28,20 +31,22 @@ public class Account {
     private Date openedDate;
 
     @ManyToOne
-    @Column(name = "customer_id", nullable = false)
+    @JoinColumn(name = "customer_id")
     private Customer customer;
 
     @OneToMany(mappedBy = "account", cascade = CascadeType.ALL, orphanRemoval = true)
+//    private List<Transaction> transactions;
+    @Embedded
     private List<Transaction> transactions;
 
     //  Getters and Setters for service to use
 
     public long getId() {
-        return id;
+        return accountId;
     }
 
     public void setId(long id) {
-        this.id = id;
+        this.accountId = id;
     }
 
     public long getAccountId() {

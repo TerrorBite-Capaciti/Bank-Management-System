@@ -9,6 +9,7 @@ import java.util.List;
 @Entity
 @Data
 @Table(name = "transactions")
+//@Embeddable
 public class Transaction {
 
     @Id
@@ -26,6 +27,7 @@ public class Transaction {
 
     @ManyToOne
     @JoinColumn(name = "account_id", nullable = false)
+    @Embedded
     private Account account;
 
     //  Getters and Setters for service to use
