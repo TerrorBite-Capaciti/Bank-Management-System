@@ -7,6 +7,17 @@ import static org.bytedeco.opencv.global.opencv_core.*;
 import static org.bytedeco.opencv.global.opencv_imgproc.*;
 import static org.bytedeco.opencv.global.opencv_objdetect.*;
 
+//Facial recognition  imports
+import org.bytedeco.opencv.opencv_face.LBPHFaceRecognizer;
+import org.bytedeco.opencv.opencv_core.Mat;
+import org.bytedeco.opencv.opencv_core.Rect;
+import org.bytedeco.opencv.opencv_imgcodecs.Imgcodecs;
+import org.bytedeco.opencv.opencv_imgproc.Imgproc;
+import org.bytedeco.opencv.global.opencv_face;
+import org.bytedeco.opencv.global.opencv_imgcodecs;
+import org.bytedeco.opencv.global.opencv_imgproc;
+
+
 public class FaceRecognition {
 
     public static void main(String[] args) {
