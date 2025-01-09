@@ -4,12 +4,14 @@ import com.capaciti.terrorbite.bank_management_application.model.Account;
 import com.capaciti.terrorbite.bank_management_application.model.Transaction;
 import com.capaciti.terrorbite.bank_management_application.repository.TransactionRepository;
 import com.capaciti.terrorbite.bank_management_application.service.TransactionService;
+import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.List;
 
 @Service
+@Component
 public class TransactionServiceImpl implements TransactionService {
 
     @Autowired

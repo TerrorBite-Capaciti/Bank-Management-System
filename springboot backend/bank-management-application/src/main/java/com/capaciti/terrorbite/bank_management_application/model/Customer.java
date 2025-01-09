@@ -1,16 +1,14 @@
 package com.capaciti.terrorbite.bank_management_application.model;
 
 import jakarta.persistence.*;
+import jakarta.persistence.Column;
+import jakarta.persistence.OneToMany;
 import lombok.Data;
-import lombok.NoArgsConstructor;
-import lombok.AllArgsConstructor;
 
 import java.util.List;
 
 @Entity
 @Data
-@NoArgsConstructor
-@AllArgsConstructor
 @Table(name = "customer")
 public class Customer {
 

@@ -5,6 +5,7 @@ import com.capaciti.terrorbite.bank_management_application.repository.CustomerRe
 import com.capaciti.terrorbite.bank_management_application.service.CustomerService;
 
 import org.jetbrains.annotations.NotNull;
+import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -12,6 +13,7 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
+@Component
 public class CustomerServiceImpl implements CustomerService {
 
     @Autowired

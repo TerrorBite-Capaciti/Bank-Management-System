@@ -2,16 +2,12 @@ package com.capaciti.terrorbite.bank_management_application.model;
 
 import jakarta.persistence.*;
 import lombok.Data;
-import lombok.NoArgsConstructor;
-import lombok.AllArgsConstructor;
 
 import java.util.Date;
 import java.util.List;
 
 @Entity
 @Data
-@NoArgsConstructor
-@AllArgsConstructor
 @Table(name = "transactions")
 public class Transaction {
 

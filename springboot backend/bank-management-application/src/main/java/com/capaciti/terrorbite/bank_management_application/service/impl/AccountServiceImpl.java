@@ -6,12 +6,14 @@ import com.capaciti.terrorbite.bank_management_application.service.AccountServic
 
 import org.jetbrains.annotations.NotNull;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
 
 @Service
+@Component
 public class AccountServiceImpl implements AccountService {
 
     @Autowired
