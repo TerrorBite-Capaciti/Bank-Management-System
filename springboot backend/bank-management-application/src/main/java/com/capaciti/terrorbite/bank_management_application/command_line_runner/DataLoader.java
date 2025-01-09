@@ -1,6 +1,7 @@
 package com.capaciti.terrorbite.bank_management_application.command_line_runner;
 import com.capaciti.terrorbite.bank_management_application.model.Account;
 import com.capaciti.terrorbite.bank_management_application.model.Customer;
+import com.capaciti.terrorbite.bank_management_application.repository.AccountRepository;
 import com.capaciti.terrorbite.bank_management_application.repository.CustomerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
@@ -18,27 +19,33 @@ import java.util.List;
 public class DataLoader implements CommandLineRunner {
 
     private final CustomerRepository customerRepository;
+    private final AccountRepository accountRepository;
+
     @Autowired
-    public DataLoader(CustomerRepository customerRepository) {
+    public DataLoader(CustomerRepository customerRepository, AccountRepository accountRepository) {
         this.customerRepository = customerRepository;
+        this.accountRepository = accountRepository;
     }
 
     @Override
     public void run(String... args) {
 
+        Customer customer = new Customer();
+        Account savingsAccount = new Account();
+
+
+
         try {
-            Customer customer = new Customer();
             customer.setFullName("Doctor Phoebe");
             customer.setAddress("123 Main St");
             customer.setPhoneNumber("123-456-7890");
             customer.setEmail("doctorphoebe@capaciti.org.za");
 
-            Account savingsAccount = new Account();
             savingsAccount.setAccountType("Savings");
             savingsAccount.setOpenedDate(new Date("2021-01-01"));
             savingsAccount.setBalance("1000.00");
-
             customerRepository.save(customer);
+            accountRepository.save(savingsAccount);
         } catch (Exception e) {
             System.out.println("Prefill error: " + e.getMessage());
         }

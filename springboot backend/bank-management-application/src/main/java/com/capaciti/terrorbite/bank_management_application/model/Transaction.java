@@ -16,13 +16,13 @@ public class Transaction {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
-    @Column(name = "transaction_type", nullable = false)
+//    @Column(name = "transaction_type", nullable = false)
     private String transactionType;
 
-    @Column(name = "amount", nullable = false)
+//    @Column(name = "amount", nullable = false)
     private String amount;
 
-    @Column(name = "date", nullable = false)
+//    @Column(name = "date", nullable = false)
     private Date transactionDate;
 
     @ManyToOne

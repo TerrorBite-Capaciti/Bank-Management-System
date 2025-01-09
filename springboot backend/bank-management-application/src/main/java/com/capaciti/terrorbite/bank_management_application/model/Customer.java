@@ -10,7 +10,7 @@ import java.util.List;
 
 @Entity
 @Data
-@Table(name = "customer")
+//@Table(name = "customers")
 @SecondaryTable(name = "accounts", pkJoinColumns = @PrimaryKeyJoinColumn(name = "customer_id"))
 public class Customer implements Serializable {
 
@@ -18,19 +18,19 @@ public class Customer implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
-    @Column(name = "full_name", nullable = false)
+//    @Column(name = "full_name")
     private String fullName;
 
-    @Column(name = "address", nullable = false)
+//    @Column(name = "address")
     private String address;
 
-    @Column(name = "phone_number", nullable = false)
+//    @Column(name = "phone_number")
     private String phoneNumber;
 
-    @Column(name = "email", nullable = false)
+//    @Column(name = "email")
     private String email;
 
-    @OneToMany(mappedBy = "customer", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "customer", cascade = CascadeType.ALL)
     @Embedded
     private List<Account> accounts;
 

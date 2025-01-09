@@ -15,19 +15,19 @@ public class Account {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "account_id", nullable = false)
+//    @Column(name = "account_id", nullable = false)
     private long accountId;
 
 //    @Column(name = "account_id", nullable = false)
 //    private long accountId;
 
-    @Column(name = "account_type", nullable = false)
+//    @Column(name = "account_type", nullable = false)
     private String accountType;
 
-    @Column(name = "balance", nullable = false)
+//    @Column(name = "balance", nullable = false)
     private String balance;
 
-    @Column(name = "opened_date", nullable = false)
+//    @Column(name = "opened_date", nullable = false)
     private Date openedDate;
 
     @ManyToOne
