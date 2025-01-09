@@ -1,0 +1,45 @@
+.transfer-container {
+    max-width: 400px;
+    margin: 20px auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    background-color: rgb(243, 235, 235) ;
+    box-shadow: 0 4px 8px rgba(0,0,0,0,1);
+}
+h2 {
+    text-align: center;
+    color: #d50000;
+    margin-bottom: 20px;
+}
+
+label {
+    margin-bottom: 8px;
+    font-weight: bold;
+    color:black;
+}
+
+input{
+    padding:10px; 
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 16px;
+
+}
+
+input:focus {
+    outline: none;
+    border-color: #d50000;
+}
+
+button { 
+    padding:10px;
+    background-color: #d50000;
+    color:white
+    border: none;
+    border-radius: 4px;
+    font-size: 16px;
+    cursor: pointer;
+    
+}
