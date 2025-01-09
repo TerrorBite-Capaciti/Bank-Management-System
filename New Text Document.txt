@@ -1,11 +1,10 @@
 import org.bytedeco.opencv.opencv_core.RectVector;
 import org.bytedeco.opencv.opencv_core.Scalar; 
 
-//handle image directory and lists
+// handling image directories and lists
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
-
 
 import org.bytedeco.javacv.*;
 import org.bytedeco.opencv.opencv_core.*;
@@ -25,6 +24,8 @@ import org.bytedeco.opencv.opencv_imgproc.Imgproc;
 import org.bytedeco.opencv.global.opencv_face;
 import org.bytedeco.opencv.global.opencv_imgcodecs;
 import org.bytedeco.opencv.global.opencv_imgproc;
+
+
 
 
 public class FaceRecognition {
@@ -65,7 +66,7 @@ public class FaceRecognition {
 
 
                 // Detect and annotate faces, recognise faces
-                detectFaces(mat, faceCascade, faceRecognizer);
+                detectAndRecognizeFaces(mat, faceCascade, faceRecognizer);
 
 
                 // Show the processed frame
@@ -94,6 +95,7 @@ public class FaceRecognition {
 
         // Draw rectangles around detected faces
         for (int i = 0; i < faces.size(); i++) {
+            Rect face = faces.get(i);
             opencv_core.Scalar green = new opencv_core.Scalar(0, 255, 0, 0);
             opencv_imgproc.rectangle(mat, face, green) // Green rectangle
         }
@@ -158,4 +160,4 @@ public class FaceRecognition {
         recognizer.save("face_recognizer_model.xml"); // Save the trained model
     }
     
-}
+
