@@ -12,3 +12,18 @@ h2 {
     color: #d50000;
     margin-bottom: 20px;
 }
+
+label {
+    margin-bottom: 8px;
+    font-weight: bold;
+    color:black;
+}
+
+input{
+    padding:10px; 
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 16px;
+    
+}
