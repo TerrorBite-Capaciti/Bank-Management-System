@@ -11,6 +11,8 @@ public class CustomerWithAccountDataTransferObject {
     private String phoneNumber;
     private String email;
 
+    private AccountDataTransferObject accountDto;
+
     public static class AccountDataTransferObject {
         private AccountType accountType;
         private double balance;
