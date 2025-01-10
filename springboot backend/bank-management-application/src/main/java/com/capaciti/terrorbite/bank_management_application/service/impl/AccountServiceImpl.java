@@ -35,9 +35,10 @@ public class AccountServiceImpl implements AccountService {
     }
 
     @Override
-    public Account createAccount(Customer customer, Account account) {
-
+    public Account createAccount(Customer customer) {
         customerRepository.findById(customer.getId()).orElseThrow( () -> new RuntimeException("Customer not found"));
+
+        Account account = new Account();
 
         account.setCustomer(customer);
         account.setAccountNumber(generateAccountNumber());
