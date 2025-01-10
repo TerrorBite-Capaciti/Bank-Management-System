@@ -97,7 +97,7 @@ cd bank-management-system
   3.Set the Frontend:
   - cd frontend
   - npm install 
-  = npm start
+  - npm start
 
   4.Access the application at http://localhost:3000. 
 
