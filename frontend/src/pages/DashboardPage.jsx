@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { FaUserCircle, FaSignOutAlt, FaUniversity, FaCrown } from 'react-icons/fa';
+import { FaUserCircle, FaSignOutAlt } from 'react-icons/fa';
 import AccountOverviewChart from '../components/AccountOverviewChart'; // Import the chart
 import styles from '../styles/DashboardPage.module.css'; // Import the styles
 
@@ -58,25 +58,52 @@ const DashboardPage = () => {
             </div>
           </div>
 
-          {/* Account Cards */}
-          <div className={styles.accountCards}>
-            <div className={`${styles.accountCard} ${styles.savingsCard}`}>
-              <div className={styles.cardLogo}>
-                <FaUniversity size={24} />
-                <span>ByteBank</span>
+          {/* Cards Section */}
+          <div className={styles.cardsContainer}>
+            <div className={styles.card}>
+              <div className={`${styles.face} ${styles.front}`}>
+                <h1 className={styles.debit}>Savings Account</h1>
+                <h1 className={styles.bank}>ByteBank</h1>
+                <img src="https://i.postimg.cc/P5cFc3yj/Chip.jpg" className={styles.Chip} alt="Chip" />
+                <h1 className={styles.number}>1234 5678 9876 5432</h1>
+                <h2 className={styles.Valid}>
+                  <span>Valid<br />Thru</span>
+                  <span>05/25</span>
+                </h2>
+                <h2 className={styles.cardholder}>John Doe</h2>
               </div>
-              <h2>Savings Account</h2>
-              <p>Account No: 1234 5678 9012</p>
-              <p className={styles.accountBalance}>R5,250.75</p>
+              <div className={`${styles.face} ${styles.back}`}>
+                <div className={styles.blackbar}></div>
+                <div className={styles.ccvtext}>
+                  <h2>Authorized Signature - Not valid unless signed</h2>
+                  <div className={styles.whitebar}></div>
+                  <div className={styles.ccv}>432</div>
+                </div>
+                <p className={styles.text}>Lorem ipsum dolor sit amet consectetur adipisicing elit. Numquam quisquam quas, facere voluptatum.</p>
+              </div>
             </div>
-            <div className={`${styles.accountCard} ${styles.premiumCard}`}>
-              <div className={styles.cardLogo}>
-                <FaCrown size={24} />
-                <span>ByteBank Premium</span>
+
+            <div className={styles.card}>
+              <div className={`${styles.face} ${styles.front}`}>
+                <h1 className={styles.debit}>Premium Account</h1>
+                <h1 className={styles.bank}>ByteBank</h1>
+                <img src="https://i.postimg.cc/P5cFc3yj/Chip.jpg" className={styles.Chip} alt="Chip" />
+                <h1 className={styles.number}>2345 6789 1234 8765</h1>
+                <h2 className={styles.Valid}>
+                  <span>Valid<br />Thru</span>
+                  <span>06/26</span>
+                </h2>
+                <h2 className={styles.cardholder}>Jane Smith</h2>
               </div>
-              <h2>Premium Account</h2>
-              <p>Account No: 9876 5432 1098</p>
-              <p className={styles.accountBalance}>R12,340.50</p>
+              <div className={`${styles.face} ${styles.back}`}>
+                <div className={styles.blackbar}></div>
+                <div className={styles.ccvtext}>
+                  <h2>Authorized Signature - Not valid unless signed</h2>
+                  <div className={styles.whitebar}></div>
+                  <div className={styles.ccv}>123</div>
+                </div>
+                <p className={styles.text}>Lorem ipsum dolor sit amet consectetur adipisicing elit. Numquam quisquam quas, facere voluptatum.</p>
+              </div>
             </div>
           </div>
 
