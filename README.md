@@ -45,12 +45,27 @@ Exception Handling
 ---
 
 
+⚙️ How It Works
+1. Select account type(Savings or Premium)
+2. Perform action such as:
+ - Deposit funds
+ - Withdraw funds
+ - Transfer funds between accounts
+
+Error Handling 
+ - Overdraft Prevention: Attempts to withdraw more than the balance result in an appropriate error message.
+ - Invalid Transactions: Prevent invalid input (e.g., negative amounts). 
+
+
 ---
 
-🛠️ Tech Stack
 
+🛠️ Tech Stack
   - Language: Python
-  - Paradigm: Object-Oriented Programming (OOP)
+  - Frontend: React
+  - Backend: Java (Spring Boot)
+  - Paradigm: Object-Oriented Programming (OOP) 
+  
 
 ---
 
@@ -61,9 +76,12 @@ Exception Handling
 
 🚀 Getting Started
 
-- Prerequisites
-- Python 3.8+
-- Basic knowledge of OOP
+Prerequisites:
+ - JDK 11+
+ - Node.js 16+
+ - MySQL Database
+ - Basic knowledge of OOP
+ - Basic knowledge of Java and React 
 
 Installation
 
@@ -71,8 +89,17 @@ Installation
   - git clone https://github.com/your-username/bank-management-system.git  
 cd bank-management-system  
 
-  2.Run the application:
-  - python src/main.py  
+  2.Set the Backend
+  - cd src/main/java 
+  - mvn clean install 
+  - java -jar target/bank-management-system.jar
+
+  3.Set the Frontend:
+  - cd frontend
+  - npm install 
+  = npm start
+
+  4.Access the application at http://localhost:3000. 
 
 ---
 
@@ -81,19 +108,30 @@ cd bank-management-system
 We welcome contributions!
 
  1.Fork the repository.
-
+ 
  2.Create a feature branch:
    git checkout -b feature/your-feature-name  
 
  3.Commit your changes:
-   git commit -m "Add feature/your-feature-name"  
+  git commit -m "Add feature/your-feature-name" 
 
  4.Push the branch:
   git push origin feature/your-feature-name  
-Open a Pull Request.
+  
+ 5.Open a Pull Request.
 
 ---
 
+📝 Planned Enhancements
+
+Short-Term Goal:
+ - Add comprehensive unit and integration tests. 
+ - Implement an interactive dashboard for account statistics.
+
+Long-Term Goals: 
+
+ - Integration with cloud-based storage for scalability.
+ - Multi-user support with role-based access. 
 
 
 ---
