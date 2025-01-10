@@ -19,9 +19,13 @@ public class AccountServiceImpl implements AccountService {
     private final AccountRepository accountRepository;
     private final CustomerRepository customerRepository;
 
-    public AccountServiceImpl(AccountRepository accountRepository, CustomerRepository customerRepository) {
+    @Autowired
+    private final AccountServiceImpl accountService;
+
+    public AccountServiceImpl(AccountRepository accountRepository, CustomerRepository customerRepository, AccountServiceImpl accountService) {
         this.accountRepository = accountRepository;
         this.customerRepository = customerRepository;
+        this.accountService = accountService;
     }
 
     @Override
@@ -46,7 +50,7 @@ public class AccountServiceImpl implements AccountService {
         return accountRepository.save(account);
     }
 
-    private String generateAccountNumber() {
+    public String generateAccountNumber() {
         return String.valueOf((long) (Math.random() * Math.pow(10, 13)));
     }
 

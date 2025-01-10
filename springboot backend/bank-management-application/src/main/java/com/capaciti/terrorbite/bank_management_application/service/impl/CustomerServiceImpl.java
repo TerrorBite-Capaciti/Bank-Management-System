@@ -1,7 +1,10 @@
 package com.capaciti.terrorbite.bank_management_application.service.impl;
 
+import com.capaciti.terrorbite.bank_management_application.data_transfer_object.CustomerWithAccountDataTransferObject;
+import com.capaciti.terrorbite.bank_management_application.model.Account;
 import com.capaciti.terrorbite.bank_management_application.model.Customer;
 import com.capaciti.terrorbite.bank_management_application.repository.CustomerRepository;
+import com.capaciti.terrorbite.bank_management_application.service.AccountService;
 import com.capaciti.terrorbite.bank_management_application.service.CustomerService;
 
 import org.springframework.stereotype.Service;
@@ -17,8 +20,16 @@ public class CustomerServiceImpl implements CustomerService {
     @Autowired
     private final CustomerRepository customerRepository;
 
-    public CustomerServiceImpl(CustomerRepository customerRepository) {
+    @Autowired
+    private final AccountServiceImpl accountService;
+
+    @Autowired
+    private final CustomerServiceImpl customerService;
+
+    public CustomerServiceImpl(CustomerRepository customerRepository, AccountServiceImpl accountService, CustomerServiceImpl customerService) {
         this.customerRepository = customerRepository;
+        this.accountService = accountService;
+        this.customerService = customerService;
     }
 
     @Override
@@ -27,11 +38,26 @@ public class CustomerServiceImpl implements CustomerService {
     }
 
     @Override
-    public Customer createNewCustomer(Customer customer) {
+    public Customer createNewCustomer(CustomerWithAccountDataTransferObject newCustomerDto) {
 
-//        Ensure no associated accounts are present during creation
-        if (customer.getAccounts() != null) {
-            customer.setAccounts(null);
+        Customer customer = new Customer();
+        customer.setFullName(newCustomerDto.getFullName());
+        customer.setAddress(newCustomerDto.getAddress());
+        customer.setPhoneNumber(newCustomerDto.getPhoneNumber());
+        customer.setEmail(newCustomerDto.getEmail());
+
+        Customer savedCustomer = customerService.createNewCustomer(newCustomerDto);
+
+        if (newCustomerDto.getAccountDto() != null) {
+            Account account = new Account();
+
+            account.setCustomer(savedCustomer);
+            account.setAccountType(newCustomerDto.getAccountDto().getAccountType());
+            account.setBalance(newCustomerDto.getAccountDto().getBalance());
+            account.setAccountNumber(accountService.generateAccountNumber());
+
+            Account savedAccount = accountService.createAccount(customer);
+            System.out.printf("Account: %s has been created...", account.getAccountType());
         }
 
         return customerRepository.save(customer);

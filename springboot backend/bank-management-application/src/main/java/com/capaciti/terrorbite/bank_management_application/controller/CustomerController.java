@@ -1,5 +1,6 @@
 package com.capaciti.terrorbite.bank_management_application.controller;
 
+import com.capaciti.terrorbite.bank_management_application.data_transfer_object.CustomerWithAccountDataTransferObject;
 import com.capaciti.terrorbite.bank_management_application.model.Account;
 import com.capaciti.terrorbite.bank_management_application.model.Customer;
 import com.capaciti.terrorbite.bank_management_application.service.impl.AccountServiceImpl;
@@ -35,20 +36,15 @@ public class CustomerController {
         return new ResponseEntity<Customer>(customerService.getCustomerById(customerId), HttpStatus.OK);
     }
 
+    @Transactional
     @PostMapping("/createCustomer")
-    public ResponseEntity<Map> createCustomer(@RequestBody Customer newCustomer, Account newAccount) {
+    public ResponseEntity<Customer> createCustomer(@RequestBody CustomerWithAccountDataTransferObject newCustomerDto) {
         try {
-            Customer savedCustomer = customerService.createNewCustomer(newCustomer);
+            Customer createdCustomer = customerService.createNewCustomer(newCustomerDto);
             System.out.println();
             System.out.println("Customer created...");
 
-            Account savedAccount = accountService.createAccount(newCustomer);
-            System.out.printf("Account: %s has been created...", newAccount.getAccountType());
-
-            var customerResponse = ResponseEntity.status(HttpStatus.CREATED).body(savedCustomer);
-            var accountResponse = ResponseEntity.status(HttpStatus.CREATED).body(savedAccount);
-
-            return new ResponseEntity<>(successfulCreation(customerResponse, accountResponse), HttpStatus.CREATED);
+            return ResponseEntity.status(HttpStatus.CREATED).body(createdCustomer);
 
         } catch (Exception e) {
             throw new RuntimeException("Error creating customer" + e);
