@@ -4,10 +4,12 @@ import com.capaciti.terrorbite.bank_management_application.model.Account;
 import com.capaciti.terrorbite.bank_management_application.model.Customer;
 import com.capaciti.terrorbite.bank_management_application.service.impl.AccountServiceImpl;
 import com.capaciti.terrorbite.bank_management_application.service.impl.CustomerServiceImpl;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -46,8 +48,8 @@ public class CustomerController {
             var customerResponse = ResponseEntity.status(HttpStatus.CREATED).body(savedCustomer);
             var accountResponse = ResponseEntity.status(HttpStatus.CREATED).body(savedAccount);
 
-            return new ResponseEntity<Map>(successfulCreation(customerResponse, accountResponse), HttpStatus.CREATED);
-//            return ResponseEntity.status(HttpStatus.CREATED).body(customerResponse + accountResponse);
+            return new ResponseEntity<>(successfulCreation(customerResponse, accountResponse), HttpStatus.CREATED);
+
         } catch (Exception e) {
             throw new RuntimeException("Error creating customer" + e);
         }
