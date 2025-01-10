@@ -9,18 +9,18 @@ const ScanToPayPage = () => {
     if (data) {
       setIsProcessing(true); // Start processing animation
       setScanResult(data.text);
-    }
 
-    //stimulate payment processing
-    setTimeout(() => {
-      alert(`Payment successful! ${data.text}`); // Show payment success message
-      setIsProcessing(false); // Stop processing animation
-      setScanResult('');//reset scan result
-    }, 2000);
+      //stimulate payment processing
+      setTimeout(() => {
+        alert(`Payment successful! ${data.text}`); // Show payment success message
+        setIsProcessing(false); // Stop processing animation
+        setScanResult('');//reset scan result
+      }, 2000);
+    }
   };
 
   const handleError = (err) => {
-    console.error(err);
+    console.error('QR Scanner Error:',err);
     alert('Failed to access the camera.');
   };
 
@@ -40,6 +40,7 @@ const ScanToPayPage = () => {
         onError={handleError}
         onScan={handleScan}
       />
+   
       {scanResult && <p>Scan Result: {scanResult}</p>}
     </div>
   );
