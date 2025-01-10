@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import '../styles/WithdrawPage.css'
 
 const WithdrawPage = () => {
   const [accountType, setAccountType] = useState('');
