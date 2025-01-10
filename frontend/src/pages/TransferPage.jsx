@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import '/TransferPage.css';
+import '..';
+
 const Transfer = () => {
   const [fromAccount, setFromAccount] = useState('');
   const [toAccount, setToAccount] = useState('');

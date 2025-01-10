@@ -14,14 +14,14 @@ const WithdrawPage = () => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    console.log(`Account Type: ${accountType}, Amount: ${amount}`);
+    console.log(`Account Type: ${accountType}, Amount: ${amount}`); 
     // Add withdrawal logic here
   };
 
   return (
     <div>
       <h1>Withdraw Page</h1>
-      <p>Here you can withdraw funds from your account.</p>
+      <p>Withdraw funds from your account.</p><br></br>
       <form onSubmit={handleSubmit}>
         <label>Account Type:</label>
         <select value={accountType} onChange={handleAccountTypeChange}>
