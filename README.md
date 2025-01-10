@@ -61,9 +61,9 @@ Error Handling
 
 
 🛠️ Tech Stack
-  - Language: Python
   - Frontend: React
   - Backend: Java (Spring Boot)
+  - Database: MySQL
   - Paradigm: Object-Oriented Programming (OOP) 
   
 
