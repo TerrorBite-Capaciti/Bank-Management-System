@@ -1,6 +1,7 @@
 package com.capaciti.terrorbite.bank_management_application.service;
 
 import com.capaciti.terrorbite.bank_management_application.model.Account;
+import com.capaciti.terrorbite.bank_management_application.model.Customer;
 import com.capaciti.terrorbite.bank_management_application.model.Transaction;
 
 import java.util.List;
@@ -11,7 +12,7 @@ public interface AccountService {
 
     Account getAccountById(long id);
 
-    Account createAccount(Account account);
+    Account createAccount(Customer customer, Account account);
 
     Account updateAccount(Account account);
 }

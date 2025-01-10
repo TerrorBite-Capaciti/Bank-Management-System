@@ -3,19 +3,21 @@ package com.capaciti.terrorbite.bank_management_application.controller;
 import com.capaciti.terrorbite.bank_management_application.model.Customer;
 import com.capaciti.terrorbite.bank_management_application.service.CustomerService;
 
+import com.capaciti.terrorbite.bank_management_application.service.impl.CustomerServiceImpl;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
-
 @RestController
-@RequestMapping("/api/customer")
+@RequestMapping("/api/customers")
 public class CustomerController {
 
-    @Autowired
-    private CustomerService customerService;
+//    @Autowired
+    private final CustomerServiceImpl customerService;
+
+    public CustomerController(CustomerServiceImpl customerService) {
+        this.customerService = customerService;
+    }
 
     @GetMapping("{id}")
     // e.g., http://localhost:PORT/api/customers/1
@@ -25,6 +27,10 @@ public class CustomerController {
 
     @PostMapping("/createCustomer")
     public ResponseEntity<Customer> createCustomer(@RequestBody Customer newCustomer) {
-        return new ResponseEntity<Customer>(customerService.createNewCustomer(newCustomer), HttpStatus.CREATED);
+        Customer savedCustomer = customerService.createNewCustomer(newCustomer);
+        System.out.println();
+        System.out.println("Customer created...");
+        return ResponseEntity.status(HttpStatus.CREATED).body(newCustomer);
+//        return new ResponseEntity<Customer>(customerService.createNewCustomer(newCustomer), HttpStatus.CREATED);
     }
 }

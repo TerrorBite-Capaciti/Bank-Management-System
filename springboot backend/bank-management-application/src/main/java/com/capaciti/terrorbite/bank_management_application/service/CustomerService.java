@@ -1,6 +1,5 @@
 package com.capaciti.terrorbite.bank_management_application.service;
 
-import com.capaciti.terrorbite.bank_management_application.model.Account;
 import com.capaciti.terrorbite.bank_management_application.model.Customer;
 import java.util.List;
 

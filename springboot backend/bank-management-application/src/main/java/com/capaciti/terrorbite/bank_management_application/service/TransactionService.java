@@ -12,7 +12,7 @@ public interface TransactionService {
     @Deprecated(since = "0.0.1", forRemoval = false)
     Transaction getTransactionById(long id);
 
-    Transaction addTransaction(Transaction transaction);
+    Transaction createTransaction(Long accountId, Transaction transaction);
 
     @Deprecated(since = "0.0.1", forRemoval = false)
     boolean existsById(long id);

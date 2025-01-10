@@ -3,41 +3,41 @@ package com.capaciti.terrorbite.bank_management_application.model;
 import jakarta.persistence.*;
 import lombok.Data;
 
+import java.time.LocalDateTime;
 import java.util.Date;
-import java.util.List;
 
 @Entity
 @Data
-@Table(name = "transactions")
+//@Table(name = "transactions")
 //@Embeddable
 public class Transaction {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+    private Long transactionId;
 
 //    @Column(name = "transaction_type", nullable = false)
     private String transactionType;
 
 //    @Column(name = "amount", nullable = false)
-    private String amount;
+    private double amount;
 
 //    @Column(name = "date", nullable = false)
-    private Date transactionDate;
+    private LocalDateTime transactionDate;
 
     @ManyToOne
     @JoinColumn(name = "account_id", nullable = false)
-    @Embedded
+//    @Embedded
     private Account account;
 
     //  Getters and Setters for service to use
 
-    public long getId() {
-        return id;
+    public Long getTransactionId() {
+        return transactionId;
     }
 
-    public void setId(long id) {
-        this.id = id;
+    public void setTransactionId(long transactionId) {
+        this.transactionId = transactionId;
     }
 
     public String getTransactionType() {
@@ -48,19 +48,19 @@ public class Transaction {
         this.transactionType = transactionType;
     }
 
-    public String getAmount() {
+    public double getAmount() {
         return amount;
     }
 
-    public void setAmount(String amount) {
+    public void setAmount(double amount) {
         this.amount = amount;
     }
 
-    public Date getTransactionDate() {
+    public LocalDateTime getTransactionDate() {
         return transactionDate;
     }
 
-    public void setTransactionDate(Date transactionDate) {
+    public void setTransactionDate(LocalDateTime transactionDate) {
         this.transactionDate = transactionDate;
     }
 

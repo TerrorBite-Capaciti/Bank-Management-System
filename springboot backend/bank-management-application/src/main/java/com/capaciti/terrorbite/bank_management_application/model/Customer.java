@@ -1,22 +1,19 @@
 package com.capaciti.terrorbite.bank_management_application.model;
 
 import jakarta.persistence.*;
-import jakarta.persistence.Column;
-import jakarta.persistence.OneToMany;
 import lombok.Data;
 
-import java.io.Serializable;
 import java.util.List;
 
 @Entity
 @Data
 //@Table(name = "customers")
-@SecondaryTable(name = "accounts", pkJoinColumns = @PrimaryKeyJoinColumn(name = "customer_id"))
-public class Customer implements Serializable {
+//@SecondaryTable(name = "accounts", pkJoinColumns = @PrimaryKeyJoinColumn(name = "customer_id"))
+public class Customer {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+    private Long id;
 
 //    @Column(name = "full_name")
     private String fullName;
@@ -31,15 +28,15 @@ public class Customer implements Serializable {
     private String email;
 
     @OneToMany(mappedBy = "customer", cascade = CascadeType.ALL)
-    @Embedded
+//    @Embedded
     private List<Account> accounts;
 
     //  Getters and Setters for service to use
-    public long getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(Long id) {
         this.id = id;
     }
 

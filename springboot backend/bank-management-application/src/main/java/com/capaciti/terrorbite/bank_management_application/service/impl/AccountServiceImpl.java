@@ -1,23 +1,28 @@
 package com.capaciti.terrorbite.bank_management_application.service.impl;
 
 import com.capaciti.terrorbite.bank_management_application.model.Account;
+import com.capaciti.terrorbite.bank_management_application.model.Customer;
 import com.capaciti.terrorbite.bank_management_application.repository.AccountRepository;
+import com.capaciti.terrorbite.bank_management_application.repository.CustomerRepository;
 import com.capaciti.terrorbite.bank_management_application.service.AccountService;
 
-import org.jetbrains.annotations.NotNull;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.util.List;
-import java.util.Optional;
 
 @Service
-@Component
 public class AccountServiceImpl implements AccountService {
 
-    @Autowired
-    private AccountRepository accountRepository;
+//    @Autowired
+    private final AccountRepository accountRepository;
+    private final CustomerRepository customerRepository;
+
+    public AccountServiceImpl(AccountRepository accountRepository, CustomerRepository customerRepository) {
+        this.accountRepository = accountRepository;
+        this.customerRepository = customerRepository;
+    }
 
     @Override
     public List<Account> getAllAccounts(long id) {
@@ -30,12 +35,18 @@ public class AccountServiceImpl implements AccountService {
     }
 
     @Override
-    public Account createAccount(@NotNull Account account) {
-        if (!accountRepository.existsById(account.getId())) {
-            return accountRepository.save(account);
-        } else {
-            throw new RuntimeException();
-        }
+    public Account createAccount(Customer customer, Account account) {
+
+        customerRepository.findById(customer.getId()).orElseThrow( () -> new RuntimeException("Customer not found"));
+
+        account.setCustomer(customer);
+        account.setAccountNumber(generateAccountNumber());
+        account.setOpenedDate(LocalDate.now());
+        return accountRepository.save(account);
+    }
+
+    private String generateAccountNumber() {
+        return String.valueOf((long) (Math.random() * Math.pow(10, 13)));
     }
 
     @Override

@@ -9,6 +9,8 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
+import java.time.LocalDate;
+import java.time.ZoneId;
 import java.util.Date;
 import java.util.List;
 
@@ -33,7 +35,11 @@ public class DataLoader implements CommandLineRunner {
         Customer customer = new Customer();
         Account savingsAccount = new Account();
 
-
+        Date date = new Date();
+        LocalDate localDate = date.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+        int year  = localDate.getYear();
+        int month = localDate.getMonthValue();
+        int day   = localDate.getDayOfMonth();
 
         try {
             customer.setFullName("Doctor Phoebe");
@@ -42,8 +48,8 @@ public class DataLoader implements CommandLineRunner {
             customer.setEmail("doctorphoebe@capaciti.org.za");
 
             savingsAccount.setAccountType("Savings");
-            savingsAccount.setOpenedDate(new Date("2021-01-01"));
-            savingsAccount.setBalance("1000.00");
+            savingsAccount.setOpenedDate(LocalDate.of(year, month, day));
+            savingsAccount.setBalance(1000.00);
             customerRepository.save(customer);
             accountRepository.save(savingsAccount);
         } catch (Exception e) {

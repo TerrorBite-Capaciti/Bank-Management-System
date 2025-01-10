@@ -4,8 +4,6 @@ import com.capaciti.terrorbite.bank_management_application.model.Customer;
 import com.capaciti.terrorbite.bank_management_application.repository.CustomerRepository;
 import com.capaciti.terrorbite.bank_management_application.service.CustomerService;
 
-import org.jetbrains.annotations.NotNull;
-import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -13,11 +11,15 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
-@Component
+//@Component
 public class CustomerServiceImpl implements CustomerService {
 
     @Autowired
-    private CustomerRepository customerRepository;
+    private final CustomerRepository customerRepository;
+
+    public CustomerServiceImpl(CustomerRepository customerRepository) {
+        this.customerRepository = customerRepository;
+    }
 
     @Override
     public Customer getCustomerById(Long id) {
@@ -25,12 +27,19 @@ public class CustomerServiceImpl implements CustomerService {
     }
 
     @Override
-    public Customer createNewCustomer(@NotNull Customer customer) {
-        if (!customerRepository.existsById(customer.getId())) {
-            return customerRepository.save(customer);
-        } else {
-            throw new RuntimeException();
+    public Customer createNewCustomer(Customer customer) {
+
+//        Ensure no associated accounts are present during creation
+        if (customer.getAccounts() != null) {
+            customer.setAccounts(null);
         }
+
+        return customerRepository.save(customer);
+//        if (!customerRepository.existsById(customer.getId())) {
+//            return customerRepository.save(customer);
+//        } else {
+//            throw new RuntimeException();
+//        }
     }
 
     @Override
