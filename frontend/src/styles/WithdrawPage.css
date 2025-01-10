@@ -16,13 +16,13 @@
   
   .description {
     font-size: 16px;
-    color: #666;
+    color: #666666;
     margin-bottom: 20px;
   }
   
   .form-container {
     padding: 20px;
-    background-color: #3ec41d;
+    background-color: #7a7777;
     border: 1px solid #ddd;
     border-radius: 10px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
@@ -56,14 +56,14 @@
     font-size: 16px;
     font-weight: bold;
     color: #fff;
-    background-color: #4CAF50;
+    background-color: #d33131;
     border: none;
     border-radius: 5px;
     cursor: pointer;
   }
   
   .button:hover {
-    background-color: #3e8e41;
+    background-color: #862a2a;
   }
   
   .message {
@@ -72,7 +72,7 @@
   }
   
   .success {
-    color: #5d2ecc;
+    color: #2ecc55;
   }
   
   .error {
