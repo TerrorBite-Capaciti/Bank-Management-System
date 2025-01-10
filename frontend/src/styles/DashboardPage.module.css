@@ -127,11 +127,14 @@
     box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5);
     border-radius: 15px;
     background: rgba(255, 255, 255, 0.05);
+    -webkit-backdrop-filter: blur(10px);
     backdrop-filter: blur(10px);
     transform-style: preserve-3d;
     transition: 1s;
     backface-visibility: hidden;
 }
+
+/*Card features/styling */
 
 /* Front Content */
 .front {
@@ -187,6 +190,27 @@
     letter-spacing: 2px;
 }
 
+/* MasterCard-like Circles */
+.cardCircles {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    display: flex;
+    gap: 10px;
+  }
+  
+  .circle {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: red;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+  }
+  
+  .circle.second {
+    background-color: yellow;
+  }
+  
 /* Back face */
 .back {
     background-color: #1c1c25;
