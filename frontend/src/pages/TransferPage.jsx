@@ -7,6 +7,9 @@ const Transfer = () => {
   const [amount, setAmount] = useState('');
   const [error, setError] = useState('');
   const [success, setSuccess] = useState('');
+  const accounts = ['12345','67890','11223','44556'];
+
+
 
   const handleTransfer = async (e) => {
     e.preventDefault();
