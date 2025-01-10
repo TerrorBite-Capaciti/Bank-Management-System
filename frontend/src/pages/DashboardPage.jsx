@@ -29,6 +29,8 @@ const DashboardPage = () => {
         {/* Sidebar */}
         <aside className={styles.sidebar}>
           <ul>
+          <li><Link to="/deposit">Deposit</Link>
+          </li>
             <li>
               <Link to="/transfer">Transfer</Link>
             </li>
@@ -72,6 +74,10 @@ const DashboardPage = () => {
                 </h2>
                 <h2 className={styles.cardholder}>John Doe</h2>
               </div>
+              <div className={styles.cardCircles}>
+      <div className={`${styles.circle}`}></div>
+      <div className={`${styles.circle} ${styles.second}`}></div>
+    </div>
               <div className={`${styles.face} ${styles.back}`}>
                 <div className={styles.blackbar}></div>
                 <div className={styles.ccvtext}>
@@ -95,6 +101,10 @@ const DashboardPage = () => {
                 </h2>
                 <h2 className={styles.cardholder}>Jane Smith</h2>
               </div>
+              <div className={styles.cardCircles}>
+      <div className={`${styles.circle}`}></div>
+      <div className={`${styles.circle} ${styles.second}`}></div>
+    </div>
               <div className={`${styles.face} ${styles.back}`}>
                 <div className={styles.blackbar}></div>
                 <div className={styles.ccvtext}>
