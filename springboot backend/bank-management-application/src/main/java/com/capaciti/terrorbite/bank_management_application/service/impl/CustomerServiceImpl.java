@@ -35,11 +35,6 @@ public class CustomerServiceImpl implements CustomerService {
         }
 
         return customerRepository.save(customer);
-//        if (!customerRepository.existsById(customer.getId())) {
-//            return customerRepository.save(customer);
-//        } else {
-//            throw new RuntimeException();
-//        }
     }
 
     @Override
