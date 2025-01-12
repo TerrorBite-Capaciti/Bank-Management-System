@@ -1,11 +1,10 @@
 import org.bytedeco.opencv.opencv_core.RectVector;
-import org.bytedeco.opencv.opencv_core.Scalar; 
+import org.bytedeco.opencv.opencv_core.Scalar;
 
-//handle image directory and lists
+// Handle image directory and lists
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
-
 
 import org.bytedeco.javacv.*;
 import org.bytedeco.opencv.opencv_core.*;
@@ -16,16 +15,10 @@ import static org.bytedeco.opencv.global.opencv_core.*;
 import static org.bytedeco.opencv.global.opencv_imgproc.*;
 import static org.bytedeco.opencv.global.opencv_objdetect.*;
 
-//Facial recognition  imports
+// Facial recognition imports
 import org.bytedeco.opencv.opencv_face.LBPHFaceRecognizer;
-import org.bytedeco.opencv.opencv_core.Mat;
-import org.bytedeco.opencv.opencv_core.Rect;
-import org.bytedeco.opencv.opencv_imgcodecs.Imgcodecs;
-import org.bytedeco.opencv.opencv_imgproc.Imgproc;
 import org.bytedeco.opencv.global.opencv_face;
 import org.bytedeco.opencv.global.opencv_imgcodecs;
-import org.bytedeco.opencv.global.opencv_imgproc;
-
 
 public class FaceRecognition {
 
@@ -51,7 +44,6 @@ public class FaceRecognition {
         LBPHFaceRecognizer faceRecognizer = LBPHFaceRecognizer.create();
         faceRecognizer.read("face_recognizer_model.xml"); // Load the pre-trained model
 
-
         try {
             grabber.start(); // Start capturing video
 
@@ -63,10 +55,8 @@ public class FaceRecognition {
                 // Convert the frame to Mat
                 Mat mat = converter.convert(frame);
 
-
-                // Detect and annotate faces, recognise faces
-                detectFaces(mat, faceCascade, faceRecognizer);
-
+                // Detect and recognize faces
+                detectAndRecognizeFaces(mat, faceCascade, faceRecognizer);
 
                 // Show the processed frame
                 canvas.showImage(converter.convert(mat));
@@ -79,60 +69,67 @@ public class FaceRecognition {
         }
     }
 
-    // Method to detect and recognise faces in a frame
+    // Method to detect and recognize faces in a frame
     public static void detectAndRecognizeFaces(Mat mat, CascadeClassifier faceCascade, LBPHFaceRecognizer recognizer) {
         // Convert to grayscale for better detection
         Mat gray = new Mat();
-        opencv_imgproc.cvtColor(mat, gray, opencv_imgproc.COLOR_BGR2GRAY);
+        cvtColor(mat, gray, COLOR_BGR2GRAY);
 
         // Equalize histogram for better results
-        opencv_imgproc.equalizeHist(gray, gray);
+        equalizeHist(gray, gray);
 
         // Detect faces
         RectVector faces = new RectVector();
         faceCascade.detectMultiScale(gray, faces);
 
-        // Draw rectangles around detected faces
+        // Draw rectangles around detected faces and recognize them
         for (int i = 0; i < faces.size(); i++) {
-            opencv_core.Scalar green = new opencv_core.Scalar(0, 255, 0, 0);
-            opencv_imgproc.rectangle(mat, face, green) // Green rectangle
-        }
+            Rect face = faces.get(i);
 
+            // Draw green rectangle
+            Scalar green = new Scalar(0, 255, 0, 0);
+            rectangle(mat, face, green);
 
             // Crop the face region for recognition
-            Mat faceROI = gray.apply(face);
+            Mat faceROI = new Mat(gray, face);
 
-            // Recognise the face (predict the label and confidence)
+            // Recognize the face (predict the label and confidence)
             int[] label = new int[1];
             double[] confidence = new double[1];
             recognizer.predict(faceROI, label, confidence);
 
-            // If the confidence is below a certain threshold,  print the label
+            // Display recognition results
             if (confidence[0] < 100) {
-                System.out.println("Recognized face as: " + label[0]);
-                opencv_core.putText(mat, "Person " + label[0], new opencv_core.Point(face.x(), face.y() - 10),
-                        opencv_core.FONT_HERSHEY_SIMPLEX, 1, new Scalar(0, 255, 0, 0), 2, opencv_core.LINE_AA, false);
+                String text = "Person " + label[0];
+                putText(mat, text, new Point(face.x(), face.y() - 10),
+                        FONT_HERSHEY_SIMPLEX, 1, green, 2, LINE_AA, false);
+                System.out.println("Recognized face as: " + text);
             } else {
+                String text = "Unknown";
+                Scalar red = new Scalar(0, 0, 255, 0);
+                putText(mat, text, new Point(face.x(), face.y() - 10),
+                        FONT_HERSHEY_SIMPLEX, 1, red, 2, LINE_AA, false);
                 System.out.println("Unknown face");
-                opencv_core.Scalar red = new opencv_core.Scalar(0, 0, 255, 0);
-                opencv_core.putText(mat, "Unknown", new opencv_core.Point(face.x(), face.y() - 10),
-                        opencv_core.FONT_HERSHEY_SIMPLEX, 1, red, 2, opencv_core.LINE_AA, false);
             }
         }
     }
 
     // Method to train the face recognizer using images in a directory
     public static void trainRecognizer(String imageDirectory) {
-        // instance of the LBPHFaceRecognizer
+        // Create an instance of the LBPHFaceRecognizer
         LBPHFaceRecognizer recognizer = LBPHFaceRecognizer.create();
 
         // Lists to hold the training images and labels
         List<Mat> images = new ArrayList<>();
         List<Integer> labels = new ArrayList<>();
 
-        
         File folder = new File(imageDirectory);
         File[] listOfFiles = folder.listFiles();
+
+        if (listOfFiles == null) {
+            System.out.println("No files found in directory: " + imageDirectory);
+            return;
+        }
 
         int label = 0;
 
@@ -157,5 +154,4 @@ public class FaceRecognition {
         recognizer.train(images, labelsArray);
         recognizer.save("face_recognizer_model.xml"); // Save the trained model
     }
-    
 }

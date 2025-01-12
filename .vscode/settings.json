@@ -147,5 +147,6 @@
         "c:\\Users\\Capaciti\\Desktop\\Bank-Management-System-1\\lib\\javacv-platform-1.5.11-bin\\ffmpeg-windows-x86_64.jar",
         "c:\\Users\\Capaciti\\Desktop\\Bank-Management-System-1\\lib\\javacv-platform-1.5.11-bin\\flycapture-linux-arm64.jar",
         "c:\\Users\\Capaciti\\Desktop\\Bank-Management-System-1\\lib\\javacv-platform-1.5.11-bin\\libdc1394-linux-armhf.jar"
-    ]
+    ],
+    "java.configuration.updateBuildConfiguration": "interactive"
 }
