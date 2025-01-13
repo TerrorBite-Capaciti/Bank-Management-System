@@ -81,6 +81,7 @@ const DashboardPage = () => {
                   </span>
                   <span>05/25</span>
                 </h2>
+                <br></br>
                 <h2 className={styles.cardholder}>John Doe</h2>
               </div>
               <div className={styles.cardCircles}>
@@ -102,8 +103,8 @@ const DashboardPage = () => {
             </div>
 
             <div className={styles.card}>
-              <div className={`${styles.face} ${styles.front}`}>
-                <h1 className={styles.debit}>Premium Account</h1>
+              <div className={`${styles.face} ${styles.fronts}`}>
+                <h1 className={styles.credit}>Premium Account</h1>
                 <h1 className={styles.bank}>ByteBank</h1>
                 <img
                   src="https://i.postimg.cc/P5cFc3yj/Chip.jpg"
