@@ -14,19 +14,13 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
-//@Component
 public class CustomerServiceImpl implements CustomerService {
 
-    @Autowired
     private final CustomerRepository customerRepository;
-
-    @Autowired
     private final AccountServiceImpl accountService;
 
     @Autowired
-    private final CustomerServiceImpl customerService;
-
-    public CustomerServiceImpl(CustomerRepository customerRepository, AccountServiceImpl accountService, CustomerServiceImpl customerService) {
+    public CustomerServiceImpl(AccountServiceImpl accountService, CustomerRepository customerRepository) {
         this.customerRepository = customerRepository;
         this.accountService = accountService;
         this.customerService = customerService;
