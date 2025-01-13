@@ -19,11 +19,8 @@ import java.util.Map;
 @RequestMapping("/api/customers")
 public class CustomerController {
 
-    @Autowired
-    private final CustomerServiceImpl customerService;
+    private final CustomerService customerService;
 
-    @Autowired
-    private final AccountServiceImpl accountService;
 
     public CustomerController(CustomerServiceImpl customerService, AccountServiceImpl accountService) {
         this.customerService = customerService;
@@ -36,7 +33,6 @@ public class CustomerController {
         return new ResponseEntity<Customer>(customerService.getCustomerById(customerId), HttpStatus.OK);
     }
 
-    @Transactional
     @PostMapping("/createCustomer")
     public ResponseEntity<Customer> createCustomer(@RequestBody CustomerWithAccountDataTransferObject newCustomerDto) {
         try {
