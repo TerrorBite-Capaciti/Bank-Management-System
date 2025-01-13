@@ -16,4 +16,6 @@ public interface AccountService {
     Account createAccount(Customer customer);
 
     Account updateAccount(Account account);
+
+    String generateAccountNumber();
 }
