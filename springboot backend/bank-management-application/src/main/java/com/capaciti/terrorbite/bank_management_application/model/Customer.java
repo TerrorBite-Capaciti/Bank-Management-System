@@ -15,20 +15,15 @@ public class Customer {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-//    @Column(name = "full_name")
     private String fullName;
 
-//    @Column(name = "address")
     private String address;
 
-//    @Column(name = "phone_number")
     private String phoneNumber;
 
-//    @Column(name = "email")
     private String email;
 
     @OneToMany(mappedBy = "customer", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-//    @Embedded
     private List<Account> accounts;
 
     //  Getters and Setters for service to use
