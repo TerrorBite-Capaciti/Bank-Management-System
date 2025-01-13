@@ -28,13 +28,13 @@ const WithdrawPage = () => {
 
     if (accountType === 'savings') {
       if (amount <= savingsBalance) {
-        setMessage(`Withdrawal successful. New savings balance: $${savingsBalance - amount}`);
+        setMessage(`Withdrawal successful. New savings balance: R${savingsBalance - amount}`);
       } else {
         setMessage('Insufficient savings balance.');
       }
     } else if (accountType === 'checking') {
       if (amount <= checkingBalance) {
-        setMessage(`Withdrawal successful. New checking balance: $${checkingBalance - amount}`);
+        setMessage(`Withdrawal successful. New checking balance: R${checkingBalance - amount}`);
       } else {
         setMessage('Insufficient checking balance.');
       }
