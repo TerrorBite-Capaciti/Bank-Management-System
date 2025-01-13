@@ -3,6 +3,7 @@ package com.capaciti.terrorbite.bank_management_application.model;
 import jakarta.persistence.*;
 import lombok.Data;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -14,14 +15,11 @@ public class Customer {
     private Long id;
 
     private String fullName;
-
     private String address;
-
     private String phoneNumber;
-
     private String email;
 
-    @OneToMany(mappedBy = "customer", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "customer", cascade = CascadeType.ALL, fetch = FetchType.EAGER, orphanRemoval = true)
     private List<Account> accounts;
 
     //  Getters and Setters for service to use
