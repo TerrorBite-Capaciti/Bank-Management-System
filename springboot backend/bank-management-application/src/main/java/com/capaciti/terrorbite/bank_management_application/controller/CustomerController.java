@@ -1,19 +1,12 @@
 package com.capaciti.terrorbite.bank_management_application.controller;
 
 import com.capaciti.terrorbite.bank_management_application.data_transfer_object.CustomerWithAccountDataTransferObject;
-import com.capaciti.terrorbite.bank_management_application.model.Account;
 import com.capaciti.terrorbite.bank_management_application.model.Customer;
-import com.capaciti.terrorbite.bank_management_application.service.CustomerService;
 import com.capaciti.terrorbite.bank_management_application.service.impl.CustomerServiceImpl;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.transaction.annotation.Transactional;
-
-import java.util.HashMap;
-import java.util.Map;
 
 @RestController
 @RequestMapping("/api/customers")
