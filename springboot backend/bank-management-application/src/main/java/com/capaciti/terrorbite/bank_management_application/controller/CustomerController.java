@@ -34,15 +34,15 @@ public class CustomerController {
 
     @PostMapping("/createCustomer")
     public ResponseEntity<Customer> createCustomer(@RequestBody CustomerWithAccountDataTransferObject newCustomerDto) {
+
         try {
             Customer createdCustomer = customerService.createNewCustomer(newCustomerDto);
             System.out.println();
             System.out.println("Customer created...");
 
             return ResponseEntity.status(HttpStatus.CREATED).body(createdCustomer);
-
         } catch (Exception e) {
-            throw new RuntimeException("Error creating customer" + e);
+            throw new RuntimeException("Error creating customer: " + e);
         }
     }
 
