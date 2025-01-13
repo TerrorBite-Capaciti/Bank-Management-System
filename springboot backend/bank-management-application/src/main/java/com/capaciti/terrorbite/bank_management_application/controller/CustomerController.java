@@ -33,9 +33,7 @@ public class CustomerController {
 
     @PostMapping("/createCustomer")
     public ResponseEntity<?> createCustomer(@RequestBody CustomerWithAccountDataTransferObject newCustomerDto) {
-
         try {
-
             System.out.println("Received chunk from DTO: " + newCustomerDto);
 
             Customer createdCustomer = customerService.createNewCustomer(newCustomerDto);
@@ -44,13 +42,5 @@ public class CustomerController {
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Error creating customer: " + e.getMessage());
         }
-    }
-
-    private Map successfulCreation(ResponseEntity<Customer> createdCustomer, ResponseEntity<Account> createdAccount) {
-        Map result = new HashMap();
-        result.put("Created Customer", createdCustomer);
-        result.put("Account Details", createdAccount);
-        return result;
-
     }
 }
