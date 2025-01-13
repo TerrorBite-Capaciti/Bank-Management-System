@@ -7,8 +7,6 @@ import java.util.List;
 
 @Entity
 @Data
-//@Table(name = "customers")
-//@SecondaryTable(name = "accounts", pkJoinColumns = @PrimaryKeyJoinColumn(name = "customer_id"))
 public class Customer {
 
     @Id
