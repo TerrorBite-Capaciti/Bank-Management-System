@@ -10,6 +10,9 @@ import com.capaciti.terrorbite.bank_management_application.service.CustomerServi
 import org.springframework.stereotype.Service;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -40,19 +43,34 @@ public class CustomerServiceImpl implements CustomerService {
 
         Customer savedCustomer = customerRepository.save(customer);
 
+        // Create and save the account if provided
         if (newCustomerDto.getAccountDto() != null) {
             Account account = new Account();
             account.setCustomer(savedCustomer);
             account.setAccountType(newCustomerDto.getAccountDto().getAccountType());
             account.setBalance(newCustomerDto.getAccountDto().getBalance());
             account.setAccountNumber(accountService.generateAccountNumber());
+            account.setOpenedDate(LocalDate.now());
 
-            Account savedAccount = accountService.createAccount(customer);
-            System.out.printf("Account: %s has been created...", account.getAccountType());
+            Account savedAccount = accountService.createAccount(account);
+
+            System.out.println();
+            System.out.println("Adding savedAccount data");
+
+            savedCustomer.getAccounts().add(savedAccount);
+            System.out.printf("\n\n Account %s has been created", account.getAccountType());
+
+            if (savedCustomer.getAccounts() == null) {
+                savedCustomer.setAccounts(new ArrayList<>());
+                System.out.println("ArrayList created");
+            }
+            savedCustomer.getAccounts().add(account);
+            System.out.println("Adding to savedCustomer.getAccounts()");
         }
 
         return savedCustomer;
     }
+
 
     @Override
     public Customer updateCustomerDetails(long id, Customer customer) {

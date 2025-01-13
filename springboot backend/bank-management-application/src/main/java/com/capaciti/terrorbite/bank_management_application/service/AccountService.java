@@ -13,7 +13,7 @@ public interface AccountService {
     Account getAccountById(long id);
 
 //    Account createAccount(Customer customer, Account account);
-    Account createAccount(Customer customer);
+    Account createAccount(Account account);
 
     Account updateAccount(Account account);
 

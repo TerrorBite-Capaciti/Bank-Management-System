@@ -19,10 +19,9 @@ import java.util.Map;
 @RequestMapping("/api/customers")
 public class CustomerController {
 
-    private final CustomerService customerService;
+    private final CustomerServiceImpl customerService;
 
-
-    public CustomerController(CustomerService customerService) {
+    public CustomerController(CustomerServiceImpl customerService) {
         this.customerService = customerService;
     }
 
@@ -33,16 +32,17 @@ public class CustomerController {
     }
 
     @PostMapping("/createCustomer")
-    public ResponseEntity<Customer> createCustomer(@RequestBody CustomerWithAccountDataTransferObject newCustomerDto) {
+    public ResponseEntity<?> createCustomer(@RequestBody CustomerWithAccountDataTransferObject newCustomerDto) {
 
         try {
+
+            System.out.println("Received chunk from DTO: " + newCustomerDto);
+
             Customer createdCustomer = customerService.createNewCustomer(newCustomerDto);
-            System.out.println();
-            System.out.println("Customer created...");
 
             return ResponseEntity.status(HttpStatus.CREATED).body(createdCustomer);
         } catch (Exception e) {
-            throw new RuntimeException("Error creating customer: " + e);
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Error creating customer: " + e.getMessage());
         }
     }
 

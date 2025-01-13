@@ -1,6 +1,7 @@
 package com.capaciti.terrorbite.bank_management_application.data_transfer_object;
 
 import com.capaciti.terrorbite.bank_management_application.account_enum.AccountType;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Data;
 //import lombok.Getter;
 //import lombok.Setter;
@@ -13,6 +14,7 @@ public class CustomerWithAccountDataTransferObject {
     private String phoneNumber;
     private String email;
 
+    @JsonProperty("account")
     private AccountDataTransferObject accountDto;
 
 
@@ -33,19 +35,33 @@ public class CustomerWithAccountDataTransferObject {
     }
 
     public AccountDataTransferObject getAccountDto() {
+        System.out.println(accountDto);
         return accountDto;
     }
 
+    public void setAccountDto(AccountDataTransferObject accountDto) {
+        this.accountDto = accountDto;
+    }
+
+    @Data
     public static class AccountDataTransferObject {
-        private AccountType accountType;
+        private String accountType;
         private double balance;
 
         public String getAccountType() {
-            return accountType.toString();
+            return accountType;
+        }
+
+        public void setAccountType(String accountType) {
+            this.accountType = accountType;
         }
 
         public double getBalance() {
             return balance;
+        }
+
+        public void setBalance(double balance) {
+            this.balance = balance;
         }
     }
 }

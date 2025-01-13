@@ -27,7 +27,7 @@ public class Customer {
 //    @Column(name = "email")
     private String email;
 
-    @OneToMany(mappedBy = "customer", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "customer", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
 //    @Embedded
     private List<Account> accounts;
 
