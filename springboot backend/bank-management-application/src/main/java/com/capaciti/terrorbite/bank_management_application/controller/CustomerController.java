@@ -22,9 +22,8 @@ public class CustomerController {
     private final CustomerService customerService;
 
 
-    public CustomerController(CustomerServiceImpl customerService, AccountServiceImpl accountService) {
+    public CustomerController(CustomerService customerService) {
         this.customerService = customerService;
-        this.accountService = accountService;
     }
 
     @GetMapping("{id}")
