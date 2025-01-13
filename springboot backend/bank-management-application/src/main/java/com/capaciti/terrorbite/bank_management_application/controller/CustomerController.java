@@ -25,11 +25,11 @@ public class CustomerController {
         this.customerService = customerService;
     }
 
-    @GetMapping("{id}")
-    // e.g., http://localhost:PORT/api/customers/1
-    public ResponseEntity<Customer> getCustomerById(@PathVariable("id") Long customerId) {
-        return new ResponseEntity<Customer>(customerService.getCustomerById(customerId), HttpStatus.OK);
-    }
+//    @GetMapping("{id}")
+//    // e.g., http://localhost:PORT/api/customers/1
+//    public ResponseEntity<Customer> getCustomerById(@PathVariable("id") Long customerId) {
+//        return new ResponseEntity<Customer>(customerService.getCustomerById(customerId), HttpStatus.OK);
+//    }
 
     @PostMapping("/createCustomer")
     public ResponseEntity<?> createCustomer(@RequestBody CustomerWithAccountDataTransferObject newCustomerDto) {

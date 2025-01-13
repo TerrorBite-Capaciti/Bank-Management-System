@@ -4,17 +4,12 @@ import com.capaciti.terrorbite.bank_management_application.data_transfer_object.
 import com.capaciti.terrorbite.bank_management_application.model.Account;
 import com.capaciti.terrorbite.bank_management_application.model.Customer;
 import com.capaciti.terrorbite.bank_management_application.repository.CustomerRepository;
-import com.capaciti.terrorbite.bank_management_application.service.AccountService;
 import com.capaciti.terrorbite.bank_management_application.service.CustomerService;
-
-import org.springframework.stereotype.Service;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
 
 @Service
 public class CustomerServiceImpl implements CustomerService {
@@ -41,9 +36,18 @@ public class CustomerServiceImpl implements CustomerService {
         customer.setPhoneNumber(newCustomerDto.getPhoneNumber());
         customer.setEmail(newCustomerDto.getEmail());
 
+        System.out.printf("\n\nCustomer before save: %s", customer);
+
         Customer savedCustomer = customerRepository.save(customer);
 
-        // Create and save the account if provided
+        //  if accounts list is null
+        System.out.printf("Saved customer: %s", savedCustomer);
+
+        if (savedCustomer.getAccounts() == null) {
+            System.out.println("Account list is null after saving");
+            savedCustomer.setAccounts(new ArrayList<>());   // init if null
+        }
+
         if (newCustomerDto.getAccountDto() != null) {
             Account account = new Account();
             account.setCustomer(savedCustomer);

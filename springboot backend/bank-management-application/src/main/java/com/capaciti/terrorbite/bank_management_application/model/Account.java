@@ -1,50 +1,39 @@
 package com.capaciti.terrorbite.bank_management_application.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Data;
-import org.springframework.cglib.core.Local;
 
 import java.time.LocalDate;
-import java.util.Date;
 import java.util.List;
 
 @Entity
 @Data
-//@Table(name = "accounts")
-//@Embeddable
-//@SecondaryTable(name = "transactions", pkJoinColumns = @PrimaryKeyJoinColumn(name = "account_id"))
 public class Account {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-//    @Column(name = "account_id", nullable = false)
     private Long accountId;
 
-//    @Column(name = "account_id", nullable = false)
-//    private long accountId;
     @Column(unique = true, nullable = false)
     private String accountNumber;
 
-//    @Column(name = "account_type", nullable = false)
     private String accountType;
 
-//    @Column(name = "balance", nullable = false)
     private double balance;
 
-//    @Column(name = "opened_date", nullable = false)
     private LocalDate openedDate;
 
     @ManyToOne
     @JoinColumn(name = "customer_id")
+    @JsonBackReference
     private Customer customer;
 
     @OneToMany(mappedBy = "account", cascade = CascadeType.ALL, orphanRemoval = true)
-//    private List<Transaction> transactions;
-//    @Embedded
     private List<Transaction> transactions;
 
     //  Getters and Setters for service to use
-
     public Long getId() {
         return accountId;
     }

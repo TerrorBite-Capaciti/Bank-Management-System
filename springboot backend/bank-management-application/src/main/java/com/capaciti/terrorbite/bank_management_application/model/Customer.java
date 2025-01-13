@@ -1,5 +1,6 @@
 package com.capaciti.terrorbite.bank_management_application.model;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.Data;
 
@@ -20,7 +21,8 @@ public class Customer {
     private String email;
 
     @OneToMany(mappedBy = "customer", cascade = CascadeType.ALL, fetch = FetchType.EAGER, orphanRemoval = true)
-    private List<Account> accounts;
+    @JsonManagedReference
+    private List<Account> accounts = new ArrayList<>();
 
     //  Getters and Setters for service to use
     public Long getId() {
