@@ -32,19 +32,16 @@ public class CustomerServiceImpl implements CustomerService {
 
     @Override
     public Customer createNewCustomer(CustomerWithAccountDataTransferObject newCustomerDto) {
-
         Customer customer = new Customer();
         customer.setFullName(newCustomerDto.getFullName());
-//        customer.setFullName(newCustomerDto.getFullName());
         customer.setAddress(newCustomerDto.getAddress());
         customer.setPhoneNumber(newCustomerDto.getPhoneNumber());
         customer.setEmail(newCustomerDto.getEmail());
 
-        Customer savedCustomer = customerService.createNewCustomer(newCustomerDto);
+        Customer savedCustomer = customerRepository.save(customer);
 
         if (newCustomerDto.getAccountDto() != null) {
             Account account = new Account();
-
             account.setCustomer(savedCustomer);
             account.setAccountType(newCustomerDto.getAccountDto().getAccountType());
             account.setBalance(newCustomerDto.getAccountDto().getBalance());
@@ -54,7 +51,7 @@ public class CustomerServiceImpl implements CustomerService {
             System.out.printf("Account: %s has been created...", account.getAccountType());
         }
 
-        return customerRepository.save(customer);
+        return savedCustomer;
     }
 
     @Override
