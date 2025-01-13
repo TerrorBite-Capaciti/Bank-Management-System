@@ -23,12 +23,9 @@ public class AccountServiceImpl implements AccountService {
 //    private final AccountService accountService;
 
     @Autowired
-    private final AccountServiceImpl accountService;
-
-    public AccountServiceImpl(AccountRepository accountRepository, CustomerRepository customerRepository, AccountServiceImpl accountService) {
+    public AccountServiceImpl(AccountRepository accountRepository, CustomerRepository customerRepository) {
         this.accountRepository = accountRepository;
         this.customerRepository = customerRepository;
-        this.accountService = accountService;
     }
 
     @Override
