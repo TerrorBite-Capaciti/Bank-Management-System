@@ -1,10 +1,7 @@
 package com.capaciti.terrorbite.bank_management_application.data_transfer_object;
 
-import com.capaciti.terrorbite.bank_management_application.account_enum.AccountType;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Data;
-//import lombok.Getter;
-//import lombok.Setter;
 
 @Data
 public class CustomerWithAccountDataTransferObject {

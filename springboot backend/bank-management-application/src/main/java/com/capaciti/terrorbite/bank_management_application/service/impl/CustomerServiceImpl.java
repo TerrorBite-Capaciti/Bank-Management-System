@@ -35,9 +35,6 @@ public class CustomerServiceImpl implements CustomerService {
         customer.setAddress(newCustomerDto.getAddress());
         customer.setPhoneNumber(newCustomerDto.getPhoneNumber());
         customer.setEmail(newCustomerDto.getEmail());
-
-        System.out.printf("\n\nCustomer before save: %s", customer);
-
         Customer savedCustomer = customerRepository.save(customer);
 
         //  if accounts list is null
@@ -58,18 +55,12 @@ public class CustomerServiceImpl implements CustomerService {
 
             Account savedAccount = accountService.createAccount(account);
 
-            System.out.println();
-            System.out.println("Adding savedAccount data");
-
             savedCustomer.getAccounts().add(savedAccount);
-            System.out.printf("\n\n Account %s has been created", account.getAccountType());
 
             if (savedCustomer.getAccounts() == null) {
                 savedCustomer.setAccounts(new ArrayList<>());
-                System.out.println("ArrayList created");
             }
             savedCustomer.getAccounts().add(account);
-            System.out.println("Adding to savedCustomer.getAccounts()");
         }
 
         return savedCustomer;
