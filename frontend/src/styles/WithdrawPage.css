@@ -56,7 +56,7 @@
     font-size: 16px;
     font-weight: bold;
     color: #fff;
-    background-color: #d33131;
+    background-color: #d50000;
     border: none;
     border-radius: 5px;
     cursor: pointer;
@@ -76,6 +76,6 @@
   }
   
   .error {
-    color: #e74c3c;
+    color: #d50000;
   }
   

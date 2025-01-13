@@ -147,8 +147,21 @@
     border-radius: 15px;
     box-shadow: 0 15px 35px rgba(0, 0, 0, 0.7);
 }
+.fronts{
+    background-color: rgba(156, 10, 10, 0.788);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 30px;
+    color: #fff;
+    border-radius: 15px;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.7);
+}
 
-.debit,
+.debit,.credit,.bank {
+    font-size: 1.1rem;
+    color: #fff;
+}
 .bank {
     font-size: 1.1rem;
     color: #fff;
@@ -196,19 +209,21 @@
     top: 20px;
     right: 20px;
     display: flex;
-    gap: 10px;
+    /*gap: 10px;*/
   }
   
   .circle {
     width: 40px;
     height: 40px;
     border-radius: 50%;
-    background-color: red;
+    background-color: rgba(255, 0, 0, 0.8); /* Red with some transparency */
     box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+    position: relative;
   }
   
   .circle.second {
-    background-color: yellow;
+    background-color: rgba(255, 165, 0, 0.8);
+    margin-left: -20px;
   }
   
 /* Back face */
