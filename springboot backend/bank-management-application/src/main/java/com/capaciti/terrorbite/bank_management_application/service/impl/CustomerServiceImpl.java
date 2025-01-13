@@ -23,7 +23,6 @@ public class CustomerServiceImpl implements CustomerService {
     public CustomerServiceImpl(AccountServiceImpl accountService, CustomerRepository customerRepository) {
         this.customerRepository = customerRepository;
         this.accountService = accountService;
-        this.customerService = customerService;
     }
 
     @Override
