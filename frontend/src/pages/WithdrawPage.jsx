@@ -22,9 +22,11 @@ const WithdrawPage = () => {
       return;
     }
 
-    // Add withdrawal logic here
+    // withdrawal logic here
     const savingsBalance = 1000;
     const checkingBalance = 500;
+
+    // error handling massage
 
     if (accountType === 'savings') {
       if (amount <= savingsBalance) {

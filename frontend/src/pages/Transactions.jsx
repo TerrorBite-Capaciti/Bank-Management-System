@@ -11,6 +11,7 @@ const Transactions = () => {
     ];
     setTransactions(fetchedTransactions);
   }, []);
+  
 
   return (
     <div className="transactions">
