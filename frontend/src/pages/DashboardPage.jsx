@@ -66,12 +66,15 @@ const DashboardPage = () => {
             <div className={styles.card}>
               <div className={`${styles.face} ${styles.front}`}>
                 <h1 className={styles.debit}>Savings Account</h1>
+                <br></br>
                 <h1 className={styles.bank}>ByteBank</h1>
+                <br></br>
                 <img
                   src="https://i.postimg.cc/P5cFc3yj/Chip.jpg"
                   className={styles.Chip}
                   alt="Chip"
                 />
+                <br></br>
                 <h1 className={styles.number}>1234 5678 9876 5432</h1>
                 <h2 className={styles.Valid}>
                   <span>
@@ -82,7 +85,7 @@ const DashboardPage = () => {
                   <span>05/25</span>
                 </h2>
                 <br></br>
-                <h2 className={styles.cardholder}>John Doe</h2>
+                <h2 className={styles.cardholder}>MISS LL JELE-MASEMOLA</h2>
               </div>
               <div className={styles.cardCircles}>
                 <div className={`${styles.circle}`}></div>
@@ -105,12 +108,14 @@ const DashboardPage = () => {
             <div className={styles.card}>
               <div className={`${styles.face} ${styles.fronts}`}>
                 <h1 className={styles.credit}>Premium Account</h1>
+                <br></br>
                 <h1 className={styles.bank}>ByteBank</h1>
                 <img
                   src="https://i.postimg.cc/P5cFc3yj/Chip.jpg"
                   className={styles.Chip}
                   alt="Chip"
                 />
+                <br></br>
                 <h1 className={styles.number}>2345 6789 1234 8765</h1>
                 <h2 className={styles.Valid}>
                   <span>
@@ -120,7 +125,8 @@ const DashboardPage = () => {
                   </span>
                   <span>06/26</span>
                 </h2>
-                <h2 className={styles.cardholder}>Jane Smith</h2>
+                <br></br>
+                <h2 className={styles.cardholder}>MR ST SHABANGU</h2>
               </div>
               <div className={styles.cardCircles}>
                 <div className={`${styles.circle}`}></div>
