@@ -373,3 +373,8 @@
         flex-direction: column;
     }
 }
+
+.logoImage {
+    width: 200px; 
+    height: auto;
+  }

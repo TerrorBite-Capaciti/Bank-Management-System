@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { FaUserCircle, FaSignOutAlt } from "react-icons/fa";
 import AccountOverviewChart from "../components/AccountOverviewChart"; // Import the chart
 import styles from "../styles/DashboardPage.module.css"; // Import the styles
+import logoImage from '../assets/images/black_logo.png'
 
 const DashboardPage = () => {
   const handleLogout = () => {
@@ -14,13 +15,17 @@ const DashboardPage = () => {
     <div className={styles.dashboardPage}>
       {/* Header */}
       <header className={styles.dashboardHeader}>
-        <div className={styles.headerLogo}>ByteBank</div>
+        <div className={styles.headerLogo}>
+          {/* Replace "ByteBank" with the logo */}
+          <img src={logoImage} alt="ByteBank Logo" className={styles.logoImage} />
+        </div>
         <div className={styles.headerUser}>
           <FaUserCircle size={24} />
           <span>Welcome, User!</span>
           <button onClick={handleLogout} className={styles.logoutBtn}>
             <FaSignOutAlt size={20} /> Logout
           </button>
+
         </div>
       </header>
 
