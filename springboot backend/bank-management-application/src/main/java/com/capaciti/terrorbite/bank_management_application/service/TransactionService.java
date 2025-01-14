@@ -14,9 +14,6 @@ public interface TransactionService {
 
     Transaction createTransaction(Long accountId, Transaction transaction);
 
-    @Deprecated(since = "0.0.1", forRemoval = false)
-    boolean existsById(long id);
-
     Transaction deposit(Long accountId, Double amount);
 
     Transaction withdraw(Long accountId, Double amount);

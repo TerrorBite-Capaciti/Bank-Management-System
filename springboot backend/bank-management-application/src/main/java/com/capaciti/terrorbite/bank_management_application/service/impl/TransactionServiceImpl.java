@@ -66,11 +66,6 @@ public class TransactionServiceImpl implements TransactionService {
     }
 
     @Override
-    public boolean existsById(long id) {
-        return transactionRepository.existsById(id);
-    }
-
-    @Override
     public Transaction existsByAccount(Account account) {
         return null;
     }
