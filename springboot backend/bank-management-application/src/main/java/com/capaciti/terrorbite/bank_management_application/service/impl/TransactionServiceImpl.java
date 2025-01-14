@@ -1,5 +1,6 @@
 package com.capaciti.terrorbite.bank_management_application.service.impl;
 
+import com.capaciti.terrorbite.bank_management_application.custom_exception.TransactionsException;
 import com.capaciti.terrorbite.bank_management_application.model.Account;
 import com.capaciti.terrorbite.bank_management_application.model.Transaction;
 import com.capaciti.terrorbite.bank_management_application.repository.AccountRepository;
@@ -10,6 +11,7 @@ import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Objects;
 
 @Service
 public class TransactionServiceImpl implements TransactionService {
@@ -47,6 +49,18 @@ public class TransactionServiceImpl implements TransactionService {
         Account account = accountRepository.findById(accountId).orElseThrow( () -> new RuntimeException("Account not found"));
 
         transaction.setAccount(account);
+
+        if (Objects.equals(transaction.getTransactionType(), "Deposit".toLowerCase())) {
+            account.setBalance(account.getBalance() + transaction.getAmount());
+
+        } else if (Objects.equals(transaction.getTransactionType(), "Withdraw".toLowerCase())) {
+            if (account.getBalance() < transaction.getAmount()) {
+                throw new TransactionsException("Account balance is less than transaction amount");
+            }
+        } else if (Objects.equals(transaction.getTransactionType(), "Transfer".toLowerCase())) {
+            // TODO
+        }
+
         transaction.setTransactionDate(LocalDateTime.now());
         return transactionRepository.save(transaction);
     }
