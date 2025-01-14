@@ -1,33 +1,51 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
+import { getAccounts } from '../services/api'; // Replace with the correct function
+import '../styles/Transactions.css';
 
 const Transactions = () => {
   const [transactions, setTransactions] = useState([]);
+  const [error, setError] = useState('');
 
   useEffect(() => {
-    // Simulate API call to fetch transactions
-    const fetchedTransactions = [
-      { id: 1, amount: 200, date: '2025-01-08', description: 'Deposit' },
-      { id: 2, amount: -50, date: '2025-01-07', description: 'Withdrawal' },
-    ];
-    setTransactions(fetchedTransactions);
+    const fetchTransactions = async () => {
+      try {
+        const { data } = await getAccounts(); // Ensure this is the correct API function
+        setTransactions(data.transactions || []); // Adjust to the actual response structure
+      } catch (err) {
+        setError('Failed to fetch transactions.');
+        console.error(err);
+      }
+    };
+
+    fetchTransactions();
   }, []);
-  
 
   return (
-    <div className="transactions">
-      <h2>Transaction History</h2>
-      {transactions.length > 0 ? (
-        <ul>
-          {transactions.map((transaction) => (
-            <li key={transaction.id}>
-              <span>{transaction.date}</span>
-              <span>{transaction.description}</span>
-              <span>{transaction.amount > 0 ? '+' : ''}${transaction.amount}</span>
-            </li>
-          ))}
-        </ul>
+    <div className="transactions-page">
+      <h1>Transaction History</h1>
+      {error ? (
+        <div className="error">{error}</div>
       ) : (
-        <div>No transactions found.</div>
+        <table>
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Date</th>
+              <th>Amount</th>
+              <th>Description</th>
+            </tr>
+          </thead>
+          <tbody>
+            {transactions.map((txn) => (
+              <tr key={txn.id}>
+                <td>{txn.id}</td>
+                <td>{txn.date}</td>
+                <td>{txn.amount}</td>
+                <td>{txn.description}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
       )}
     </div>
   );
