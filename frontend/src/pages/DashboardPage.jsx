@@ -99,8 +99,12 @@ const DashboardPage = () => {
                   <div className={styles.ccv}>432</div>
                 </div>
                 <p className={styles.text}>
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                  Numquam quisquam quas, facere voluptatum.
+                  Branch Code
+                    : 123456<br></br>
+                  24hr Client Care Centre: South Africa 0800 000 000
+                   International +27 11 123 4567
+                  <br></br>
+                  This card is the property of ByteBank and must be returned
                 </p>
               </div>
             </div>
@@ -140,8 +144,12 @@ const DashboardPage = () => {
                   <div className={styles.ccv}>123</div>
                 </div>
                 <p className={styles.text}>
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                  Numquam quisquam quas, facere voluptatum.
+                Branch Code
+                    : 123456<br></br>
+                  24hr Client Care Centre: South Africa 0800 000 000
+                   International +27 11 123 4567
+                  <br></br>
+                  This card is the property of ByteBank and must be returned
                 </p>
               </div>
             </div>
