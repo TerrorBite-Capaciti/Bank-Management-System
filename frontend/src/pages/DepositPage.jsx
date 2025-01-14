@@ -3,19 +3,39 @@ import styles from '../styles/DepositPage.module.css';
 
 const DepositPage = () => {
   const [depositAmount, setDepositAmount] = useState('');
+  const [selectedAccount, setSelectedAccount] = useState('Savings'); // Default account
+  const [savingsBalance, setSavingsBalance] = useState(0); // Balance for Savings account
+  const [premiumBalance, setPremiumBalance] = useState(0); // Balance for Premium account
   const [successMessage, setSuccessMessage] = useState('');
   const [errorMessage, setErrorMessage] = useState('');
+
+  
 
   const handleDepositChange = (e) => {
     setDepositAmount(e.target.value);
   };
+
+// Handle account selection
+const handleAccountChange = (e) => {
+  setSelectedAccount(e.target.value);
+};
+
 
   const handleDepositSubmit = (e) => {
     e.preventDefault();
 
     // Simple validation: Check if the deposit is a valid number and is greater than zero
     if (depositAmount && !isNaN(depositAmount) && Number(depositAmount) > 0) {
-      setSuccessMessage(`Successfully deposited R${depositAmount}`);
+      const amount = Number(depositAmount);
+
+      // Update the balance for the selected account
+      if (selectedAccount === 'Savings') {
+        setSavingsBalance((prevBalance) => prevBalance + amount);
+      } else if (selectedAccount === 'Premium') {
+        setPremiumBalance((prevBalance) => prevBalance + amount);
+      }
+
+      setSuccessMessage(`Successfully deposited R${amount} into ${selectedAccount} account.`);
       setErrorMessage('');
       setDepositAmount('');
     } else {
@@ -29,6 +49,16 @@ const DepositPage = () => {
       <h1>Deposit Funds</h1>
 
       <form onSubmit={handleDepositSubmit} className={styles.depositForm}>
+       {/* Dropdown to select account */}
+      <select
+          value={selectedAccount}
+          onChange={handleAccountChange}
+          className={styles.accountDropdown}
+        >
+          <option value="Savings">Savings</option>
+          <option value="Premium">Premium</option>
+        </select>
+
         <input
           type="number"
           value={depositAmount}
@@ -44,6 +74,11 @@ const DepositPage = () => {
 
       {successMessage && <p className={styles.successMessage}>{successMessage}</p>}
       {errorMessage && <p className={styles.errorMessage}>{errorMessage}</p>}
+      {/* Display account balances */}
+      <div className={styles.balances}>
+        <p>Savings Balance: R{savingsBalance}</p>
+        <p>Premium Balance: R{premiumBalance}</p>
+    </div>
     </div>
   );
 };
