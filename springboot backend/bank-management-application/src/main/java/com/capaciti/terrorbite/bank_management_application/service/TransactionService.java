@@ -17,7 +17,9 @@ public interface TransactionService {
     @Deprecated(since = "0.0.1", forRemoval = false)
     boolean existsById(long id);
 
-    Transaction existsByAccount(Account account);
+    Transaction deposit(Long accountId, Double amount);
 
-    boolean existsByAccountAndId(Account account, long id);
+    Transaction withdraw(Long accountId, Double amount);
+
+    Transaction transfer(Long fromAccountId, Long targetAccountId, Double amount);
 }
