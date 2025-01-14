@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import '../styles/WithdrawPage.css'
+import '../styles/WithdrawPage.css';
 
 const WithdrawPage = () => {
   const [accountType, setAccountType] = useState('');
@@ -22,11 +22,8 @@ const WithdrawPage = () => {
       return;
     }
 
-    // withdrawal logic here
     const savingsBalance = 1000;
-    const checkingBalance = 500;
-
-    // error handling massage
+    const premiumBalance = 500;
 
     if (accountType === 'savings') {
       if (amount <= savingsBalance) {
@@ -34,11 +31,11 @@ const WithdrawPage = () => {
       } else {
         setMessage('Insufficient savings balance.');
       }
-    } else if (accountType === 'checking') {
-      if (amount <= checkingBalance) {
-        setMessage(`Withdrawal successful. New checking balance: R${checkingBalance - amount}`);
+    } else if (accountType === 'premium') {
+      if (amount <= premiumBalance) {
+        setMessage(`Withdrawal successful. New premium balance: R${premiumBalance - amount}`);
       } else {
-        setMessage('Insufficient checking balance.');
+        setMessage('Insufficient premium balance.');
       }
     }
   };
@@ -58,7 +55,7 @@ const WithdrawPage = () => {
             >
               <option value="">Select Account Type</option>
               <option value="savings">Savings Account</option>
-              <option value="checking">Premium Account</option>
+              <option value="premium">Premium Account</option>
             </select>
           </div>
           <div className="form-group">
@@ -74,10 +71,7 @@ const WithdrawPage = () => {
             Withdraw
           </button>
           {message && (
-            <p
-              className={`message ${message.includes('successful') ? 'success' : 'error'
-                }`}
-            >
+            <p className={`message ${message.includes('successful') ? 'success' : 'error'}`}>
               {message}
             </p>
           )}

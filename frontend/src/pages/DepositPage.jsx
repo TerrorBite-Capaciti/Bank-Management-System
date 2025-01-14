@@ -9,26 +9,20 @@ const DepositPage = () => {
   const [successMessage, setSuccessMessage] = useState('');
   const [errorMessage, setErrorMessage] = useState('');
 
-  
-
   const handleDepositChange = (e) => {
     setDepositAmount(e.target.value);
   };
 
-// Handle account selection
-const handleAccountChange = (e) => {
-  setSelectedAccount(e.target.value);
-};
-
+  const handleAccountChange = (e) => {
+    setSelectedAccount(e.target.value);
+  };
 
   const handleDepositSubmit = (e) => {
     e.preventDefault();
 
-    // Simple validation: Check if the deposit is a valid number and is greater than zero
     if (depositAmount && !isNaN(depositAmount) && Number(depositAmount) > 0) {
       const amount = Number(depositAmount);
 
-      // Update the balance for the selected account
       if (selectedAccount === 'Savings') {
         setSavingsBalance((prevBalance) => prevBalance + amount);
       } else if (selectedAccount === 'Premium') {
@@ -49,8 +43,7 @@ const handleAccountChange = (e) => {
       <h1>Deposit Funds</h1>
 
       <form onSubmit={handleDepositSubmit} className={styles.depositForm}>
-       {/* Dropdown to select account */}
-      <select
+        <select
           value={selectedAccount}
           onChange={handleAccountChange}
           className={styles.accountDropdown}
@@ -74,11 +67,11 @@ const handleAccountChange = (e) => {
 
       {successMessage && <p className={styles.successMessage}>{successMessage}</p>}
       {errorMessage && <p className={styles.errorMessage}>{errorMessage}</p>}
-      {/* Display account balances */}
+
       <div className={styles.balances}>
         <p>Savings Balance: R{savingsBalance}</p>
         <p>Premium Balance: R{premiumBalance}</p>
-    </div>
+      </div>
     </div>
   );
 };
