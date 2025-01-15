@@ -29,19 +29,19 @@ public class TransactionController {
         return new ResponseEntity<Transaction>(transactionService.getTransactionById(accountId), HttpStatus.OK);
     }
 
-    @PostMapping("/deposit/{accountId}")
-    public ResponseEntity<?> depositTransaction(@PathVariable("id") long customerId, long accountId, @RequestParam Double amount) {
+    @PostMapping("{customerId}/deposit/{accountId}")
+    public ResponseEntity<?> depositTransaction(@PathVariable("customerId") Long customerId, @PathVariable("accountId") long accountId, @RequestBody Transaction transaction) {
 
         if (customerService.getCustomerById(customerId) == null) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("This customer does not exist");
         } else if (accountService.getAccountById(accountId) == null) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Account: " + accountId + " does not exist");
-        } else if (amount < 0) {
+        } else if (transaction.getAmount() < 0) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Amount cannot be R0 or negative");
         }
 
         try {
-            Transaction depositTransaction = transactionService.deposit(accountId, amount);
+            transactionService.deposit(accountId, transaction.getAmount());
             return ResponseEntity.status(HttpStatus.CREATED).body("Transaction successfully created");
 
         } catch (Exception e) {
