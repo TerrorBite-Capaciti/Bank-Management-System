@@ -124,6 +124,12 @@ const DashboardPage = () => {
                   className={styles.Chip}
                   alt="Chip"
                 />
+                <img 
+                src={nfcImage} 
+                alt="contactless icon"
+                 className={styles.nfcImg} />
+                <br></br>
+                <h1 className={styles.bank}>ByteBank</h1>
                 <br></br>
                 <h1 className={styles.number}>2345 6789 1234 8765</h1>
                 <h2 className={styles.Valid}>
