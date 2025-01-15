@@ -7,8 +7,10 @@ import com.capaciti.terrorbite.bank_management_application.repository.AccountRep
 import com.capaciti.terrorbite.bank_management_application.repository.TransactionRepository;
 import com.capaciti.terrorbite.bank_management_application.service.TransactionService;
 
+import jakarta.transaction.Transactional;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Objects;
@@ -66,12 +68,31 @@ public class TransactionServiceImpl implements TransactionService {
     }
 
     @Override
-    public Transaction existsByAccount(Account account) {
+    @Transactional
+    public Transaction deposit(Long accountId, Double amount) {
+        Account account = accountRepository.findById(accountId).orElseThrow( () -> new RuntimeException("Account: " + accountId + " not found"));
+
+        account.setBalance(account.getBalance() + amount);
+        accountRepository.save(account);
+
+        Transaction newTransaction = new Transaction();
+        newTransaction.setTransactionType("Deposit");
+        newTransaction.setAmount(amount);
+        newTransaction.setTransactionDate(LocalDateTime.now());
+        newTransaction.setAccount(account);
+
+        return transactionRepository.save(newTransaction);
+    }
+
+    @Override
+    public Transaction withdraw(Long accountId, Double amount) {
         return null;
     }
 
     @Override
-    public boolean existsByAccountAndId(Account account, long id) {
-        return false;
+    public Transaction transfer(Long fromAccountId, Long targetAccountId, Double amount) {
+        return null;
     }
+
+
 }
