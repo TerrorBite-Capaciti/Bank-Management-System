@@ -3,6 +3,7 @@ package com.capaciti.terrorbite.bank_management_application.model;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.Data;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -15,7 +16,13 @@ public class Customer {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @NotNull
     private String fullName;
+
+    @NotNull
+    private String password;
+    private String matchingPassword;
+
     private String address;
     private String phoneNumber;
     private String email;
@@ -39,6 +46,22 @@ public class Customer {
 
     public void setFullName(String fullName) {
         this.fullName = fullName;
+    }
+
+    public @NotNull String getPassword() {
+        return password;
+    }
+
+    public void setPassword(@NotNull String password) {
+        this.password = password;
+    }
+
+    public String getMatchingPassword() {
+        return matchingPassword;
+    }
+
+    public void setMatchingPassword(String matchingPassword) {
+        this.matchingPassword = matchingPassword;
     }
 
     public String getAddress() {
