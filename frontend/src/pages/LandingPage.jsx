@@ -11,7 +11,7 @@ import janeImage from '../assets/images/jane.jpg';
 import josh1Image from '../assets/images/josh1.jpg';
 import johnImage from '../assets/images/john.jpg';
 import zamaImage from '../assets/images/Zama.jpg';
-import logoImage from '../assets/images/bank.png';
+import logoImage from '../assets/images/dash_logo.png';
 
 const LandingPage = () => {
   return (
