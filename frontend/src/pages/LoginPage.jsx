@@ -15,7 +15,7 @@ import '../styles/LoginPage.css';
 
 const LoginPage = () => {
   const { setUser } = useContext(AuthContext);
-  const [username, setUsername] = useState('');
+  const [fullname, setFullname] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
   const [showPassword, setShowPassword] = useState(false);
@@ -26,14 +26,14 @@ const LoginPage = () => {
     e.preventDefault();
     setIsLoading(true);
 
-    if (!username || !password) {
-      setError('Please enter both username and password');
+    if (!fullname|| !password) {
+      setError('Please enter both fullname and password');
       setIsLoading(false);
       return;
     }
 
     try {
-      const response = await login({ username, password });
+      const response = await login({ fullname, password });
       setUser(response.data.user);
       localStorage.setItem('token', response.data.token);
       alert('Logged in successfully!');
@@ -56,9 +56,9 @@ const LoginPage = () => {
             <div>
               <input
                 type="text"
-                placeholder="Username"
-                value={username}
-                onChange={(e) => setUsername(e.target.value)}
+                placeholder="Fullname"
+                value={fullname}
+                onChange={(e) => setFullname(e.target.value)}
                 className="input-field"
                 required
               />
