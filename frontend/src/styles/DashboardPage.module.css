@@ -189,7 +189,7 @@
 
 .cardholder {
     position: absolute;
-    bottom: 10px;
+    bottom: 7px;
     left: 40px;
     color: #fff;
     font-weight: 300;
@@ -296,8 +296,8 @@
 }
 
 .nfcImg{
-    width:30px;
-    height: 30px;
+    width:40px;
+    height: 40px;
     position: absolute;
    top: 60px;
     left: 100px;

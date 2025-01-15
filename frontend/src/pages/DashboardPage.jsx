@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { FaUserCircle, FaSignOutAlt } from "react-icons/fa";
 import AccountOverviewChart from "../components/AccountOverviewChart"; // Import the chart
 import styles from "../styles/DashboardPage.module.css"; // Import the styles
-import nfcImage from '../assets/images/nfc.png';
+import nfcImage from '../assets/images/contactless (1).png';
 
 
 const DashboardPage = () => {
@@ -76,6 +76,10 @@ const DashboardPage = () => {
                   className={styles.Chip}
                   alt="Chip"
                 />
+                 <img 
+                src={nfcImage} 
+                alt="contactless icon"
+                 className={styles.nfcImg} />
                 <br></br>
                 <h1 className={styles.number}>1234 5678 9876 5432</h1>
                 <h2 className={styles.Valid}>
@@ -125,8 +129,6 @@ const DashboardPage = () => {
                 src={nfcImage} 
                 alt="contactless icon"
                  className={styles.nfcImg} />
-                <br></br>
-                <h1 className={styles.bank}>ByteBank</h1>
                 <br></br>
                 <h1 className={styles.number}>2345 6789 1234 8765</h1>
                 <h2 className={styles.Valid}>
