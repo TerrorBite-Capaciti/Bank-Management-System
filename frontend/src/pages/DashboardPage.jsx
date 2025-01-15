@@ -4,6 +4,7 @@ import { FaUserCircle, FaSignOutAlt } from "react-icons/fa";
 import AccountOverviewChart from "../components/AccountOverviewChart"; // Import the chart
 import styles from "../styles/DashboardPage.module.css"; // Import the styles
 import nfcImage from '../assets/images/contactless (1).png';
+import Bytelogo from "../assets/images/byte's_logo.png";
 
 
 const DashboardPage = () => {
@@ -16,7 +17,10 @@ const DashboardPage = () => {
     <div className={styles.dashboardPage}>
       {/* Header */}
       <header className={styles.dashboardHeader}>
-        <div className={styles.headerLogo}>ByteBank</div>
+        <div className={styles.headerLogo}> <img 
+                src={Bytelogo} 
+                alt="byte icon"
+                 className={styles.Bytelogo} /></div>
         <div className={styles.headerUser}>
           <FaUserCircle size={24} />
           <span>Welcome, User!</span>
