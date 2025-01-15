@@ -3,6 +3,9 @@ import { Link } from "react-router-dom";
 import { FaUserCircle, FaSignOutAlt } from "react-icons/fa";
 import AccountOverviewChart from "../components/AccountOverviewChart"; // Import the chart
 import styles from "../styles/DashboardPage.module.css"; // Import the styles
+import logoImage from '../assets/images/dash_logo.png'
+import nfcImage from '../assets/images/contactless (1).png';
+
 
 const DashboardPage = () => {
   const handleLogout = () => {
@@ -14,13 +17,17 @@ const DashboardPage = () => {
     <div className={styles.dashboardPage}>
       {/* Header */}
       <header className={styles.dashboardHeader}>
-        <div className={styles.headerLogo}>ByteBank</div>
+        <div className={styles.headerLogo}>
+          {/* Replace "ByteBank" with the logo */}
+          <img src={logoImage} alt="ByteBank Logo" className={styles.logoImage} />
+        </div>
         <div className={styles.headerUser}>
           <FaUserCircle size={24} />
           <span>Welcome, User!</span>
           <button onClick={handleLogout} className={styles.logoutBtn}>
             <FaSignOutAlt size={20} /> Logout
           </button>
+
         </div>
       </header>
 
@@ -66,12 +73,19 @@ const DashboardPage = () => {
             <div className={styles.card}>
               <div className={`${styles.face} ${styles.front}`}>
                 <h1 className={styles.debit}>Savings Account</h1>
+                <br></br>
                 <h1 className={styles.bank}>ByteBank</h1>
+                <br></br>
                 <img
                   src="https://i.postimg.cc/P5cFc3yj/Chip.jpg"
                   className={styles.Chip}
                   alt="Chip"
                 />
+                 <img 
+                src={nfcImage} 
+                alt="contactless icon"
+                 className={styles.nfcImg} />
+                <br></br>
                 <h1 className={styles.number}>1234 5678 9876 5432</h1>
                 <h2 className={styles.Valid}>
                   <span>
@@ -82,7 +96,7 @@ const DashboardPage = () => {
                   <span>05/25</span>
                 </h2>
                 <br></br>
-                <h2 className={styles.cardholder}>John Doe</h2>
+                <h2 className={styles.cardholder}>MISS LL JELE-MASEMOLA</h2>
               </div>
               <div className={styles.cardCircles}>
                 <div className={`${styles.circle}`}></div>
@@ -96,8 +110,12 @@ const DashboardPage = () => {
                   <div className={styles.ccv}>432</div>
                 </div>
                 <p className={styles.text}>
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                  Numquam quisquam quas, facere voluptatum.
+                  Branch Code
+                    : 123456<br></br>
+                  24hr Client Care Centre: South Africa 0800 000 000
+                   International +27 11 123 4567
+                  <br></br>
+                  This card is the property of ByteBank and must be returned
                 </p>
               </div>
             </div>
@@ -105,12 +123,18 @@ const DashboardPage = () => {
             <div className={styles.card}>
               <div className={`${styles.face} ${styles.fronts}`}>
                 <h1 className={styles.credit}>Premium Account</h1>
+                <br></br>
                 <h1 className={styles.bank}>ByteBank</h1>
                 <img
                   src="https://i.postimg.cc/P5cFc3yj/Chip.jpg"
                   className={styles.Chip}
                   alt="Chip"
                 />
+                <img 
+                src={nfcImage} 
+                alt="contactless icon"
+                 className={styles.nfcImg} />
+                <br></br>
                 <h1 className={styles.number}>2345 6789 1234 8765</h1>
                 <h2 className={styles.Valid}>
                   <span>
@@ -120,7 +144,8 @@ const DashboardPage = () => {
                   </span>
                   <span>06/26</span>
                 </h2>
-                <h2 className={styles.cardholder}>Jane Smith</h2>
+                <br></br>
+                <h2 className={styles.cardholder}>MR ST SHABANGU</h2>
               </div>
               <div className={styles.cardCircles}>
                 <div className={`${styles.circle}`}></div>
@@ -134,8 +159,12 @@ const DashboardPage = () => {
                   <div className={styles.ccv}>123</div>
                 </div>
                 <p className={styles.text}>
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                  Numquam quisquam quas, facere voluptatum.
+                Branch Code
+                    : 123456<br></br>
+                  24hr Client Care Centre: South Africa 0800 000 000
+                   International +27 11 123 4567
+                  <br></br>
+                  This card is the property of ByteBank and must be returned
                 </p>
               </div>
             </div>

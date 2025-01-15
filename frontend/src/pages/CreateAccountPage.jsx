@@ -1,22 +1,25 @@
-import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
-import '../styles/CreateAccountPage.css'; 
+import React, { useState, useContext } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { AuthContext } from '../contexts/AuthContext';
+import { createAccount } from '../services/api';
+import '../styles/CreateAccountPage.css';
 
 const CreateAccountPage = () => {
+  const { setUser } = useContext(AuthContext); // Access AuthContext
   const [email, setEmail] = useState('');
-  const [username, setUsername] = useState('');
+  const [fullname, setFullname] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState('');
   const [agreedToTerms, setAgreedToTerms] = useState(false);
+  const navigate = useNavigate();
 
-  const handleCreateAccount = (e) => {
+  const handleCreateAccount = async (e) => {
     e.preventDefault();
     setIsLoading(true);
     setError('');
-    
-    // Validation
+
     if (password !== confirmPassword) {
       setError('Passwords do not match!');
       setIsLoading(false);
@@ -29,11 +32,16 @@ const CreateAccountPage = () => {
       return;
     }
 
-    // Simulate account creation API call
-    setTimeout(() => {
+    try {
+      await createAccount({ email, fullname, password });
+      setUser({fullname, email}); // Save user to context if needed
       alert('Account created successfully!');
+      navigate('/dasboard');
+    } catch (err) {
+      setError(err.response?.data?.message || 'Failed to create account!');
+    } finally {
       setIsLoading(false);
-    }, 1500);
+    }
   };
 
   return (
@@ -43,79 +51,67 @@ const CreateAccountPage = () => {
         <form onSubmit={handleCreateAccount}>
           <div>
             <label htmlFor="email">Email</label>
-            <input 
+            <input
               id="email"
-              type="email" 
-              value={email} 
-              onChange={(e) => setEmail(e.target.value)} 
-              required 
+              type="email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              required
               className="input-field"
             />
           </div>
           <div>
-            <label htmlFor="username">Username</label>
-            <input 
+            <label htmlFor="fullname">Fullname</label>
+            <input
               id="username"
-              type="text" 
-              value={username} 
-              onChange={(e) => setUsername(e.target.value)} 
-              required 
+              type="text"
+              value={fullname}
+              onChange={(e) => setFullname(e.target.value)}
+              required
               className="input-field"
             />
           </div>
           <div>
             <label htmlFor="password">Password</label>
-            <input 
+            <input
               id="password"
-              type="password" 
-              value={password} 
-              onChange={(e) => setPassword(e.target.value)} 
-              required 
+              type="password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              required
               className="input-field"
             />
           </div>
           <div>
             <label htmlFor="confirmPassword">Confirm Password</label>
-            <input 
+            <input
               id="confirmPassword"
-              type="password" 
-              value={confirmPassword} 
-              onChange={(e) => setConfirmPassword(e.target.value)} 
-              required 
+              type="password"
+              value={confirmPassword}
+              onChange={(e) => setConfirmPassword(e.target.value)}
+              required
               className="input-field"
             />
           </div>
-
-          {/* Error Message */}
           {error && <div className="error-message">{error}</div>}
-
-          {/* Terms and Conditions */}
           <div className="terms-container">
-            <input 
-              type="checkbox" 
-              id="agree-terms" 
-              checked={agreedToTerms} 
-              onChange={() => setAgreedToTerms(!agreedToTerms)} 
+            <input
+              type="checkbox"
+              id="agree-terms"
+              checked={agreedToTerms}
+              onChange={() => setAgreedToTerms(!agreedToTerms)}
             />
-            <label htmlFor="agree-terms">I agree to the <a href="#">Terms & Conditions</a></label>
+            <label htmlFor="agree-terms">
+              I agree to the <a href="/terms-and-conditions">Terms & Conditions</a>
+            </label>
           </div>
-
-          {/* Submit Button */}
           <button type="submit" className="btn" disabled={isLoading}>
             {isLoading ? 'Creating Account...' : 'Create Account'}
           </button>
         </form>
-
-        {/* Sign Up Link */}
         <p className="login-link">
-          Already have an account? <Link to="/login">Login</Link>
+          Already have an account? <a href="/login">Login</a>
         </p>
-
-        {/* Social Media Buttons */}
-        <div className="social-signup">
-          <button className="social-btn google-btn">Sign Up with Google</button>
-          <button className="social-btn facebook-btn">Sign Up with Facebook</button>
-        </div>
       </div>
     </div>
   );

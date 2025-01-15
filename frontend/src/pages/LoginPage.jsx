@@ -1,74 +1,93 @@
-import React, { useState } from 'react';
-import { FaFingerprint, FaRegEye, FaRegEyeSlash, FaCreditCard, FaExchangeAlt, FaMoneyBillAlt, FaCamera } from 'react-icons/fa'; // Icons
+import React, { useState, useContext } from 'react';
+import { useNavigate } from 'react-router-dom';
+import {
+  FaFingerprint,
+  FaRegEye,
+  FaRegEyeSlash,
+  FaCreditCard,
+  FaExchangeAlt,
+  FaMoneyBillAlt,
+  FaCamera,
+} from 'react-icons/fa';
+import { AuthContext } from '../contexts/AuthContext';
+import { login } from '../services/api';
 import '../styles/LoginPage.css';
 
 const LoginPage = () => {
-  const [username, setUsername] = useState('');
+  const { setUser } = useContext(AuthContext);
+  const [fullname, setFullname] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
   const [showPassword, setShowPassword] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
+  const navigate = useNavigate();
 
-  const handleLogin = (e) => {
+  const handleLogin = async (e) => {
     e.preventDefault();
     setIsLoading(true);
 
-    setTimeout(() => {
-      if (username === '' || password === '') {
-        setError('Please enter both username and password');
-        setIsLoading(false);
-        return;
-      }
-
-      alert('Logged in successfully!');
+    if (!fullname|| !password) {
+      setError('Please enter both fullname and password');
       setIsLoading(false);
-    }, 2000);
+      return;
+    }
+
+    try {
+      const response = await login({ fullname, password });
+      setUser(response.data.user);
+      localStorage.setItem('token', response.data.token);
+      alert('Logged in successfully!');
+      navigate('/dashboard');
+    } catch (err) {
+      setError(err.response?.data?.message || 'Login failed!');
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   return (
     <div className="login-page">
       <div className="login-container">
-        {/* Left Section: Login Form */}
         <div className="left-section">
-          <h1>ByteBank</h1> {/* I think we should replace this with a logo */}
+          <h1>ByteBank</h1>
           <p className="subheading">Your Trusted Financial Partner</p>
 
           <form onSubmit={handleLogin}>
             <div>
-              <input 
-                type="text" 
-                placeholder="Username" 
-                value={username} 
-                onChange={(e) => setUsername(e.target.value)} 
+              <input
+                type="text"
+                placeholder="Fullname"
+                value={fullname}
+                onChange={(e) => setFullname(e.target.value)}
                 className="input-field"
                 required
               />
             </div>
             <div className="password-wrapper">
-              <input 
-                type={showPassword ? 'text' : 'password'} 
-                placeholder="Password" 
-                value={password} 
-                onChange={(e) => setPassword(e.target.value)} 
+              <input
+                type={showPassword ? 'text' : 'password'}
+                placeholder="Password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
                 className="input-field"
                 required
               />
-              <button 
-                type="button" 
-                className="show-password-btn" 
+              <button
+                type="button"
+                className="show-password-btn"
                 onClick={() => setShowPassword(!showPassword)}
               >
                 {showPassword ? <FaRegEyeSlash /> : <FaRegEye />}
               </button>
             </div>
-
+            {error && <div className="error">{error}</div>}
             {isLoading ? (
               <div className="loading-spinner">Processing...</div>
             ) : (
-              <button type="submit" className="btn">Login</button>
+              <button type="submit" className="btn">
+                Login
+              </button>
             )}
-
-            {error && <div className="error">{error}</div>}
           </form>
 
           <div className="biometric-options">
@@ -76,21 +95,30 @@ const LoginPage = () => {
               <FaFingerprint size={24} /> Fingerprint
             </div>
             <div className="biometric-btn">
-              <img src="https://img.icons8.com/ios/50/000000/face-recognition.png" alt="Face Recognition" width="24" />
+              <img
+                src="https://img.icons8.com/ios/50/000000/face-recognition.png"
+                alt="Face Recognition"
+                width="24"
+              />
               Face Recognition
             </div>
           </div>
 
-          <p className="sign-up-text">Don't have an account? <a href="/signup">Create an account</a></p>
+          <p className="sign-up-text">
+            Don&apos;t have an account? <a href="/signup">Create an account</a>
+          </p>
+
           <div className="links">
             <a href="/forgot-password">Forgot Password?</a>
           </div>
           <footer>
-            <p>By signing in, you agree to our <a href="#">Terms & Conditions</a> and <a href="#">Privacy Policy</a>.</p>
+            <p>
+              By signing in, you agree to our <a href="#">Terms & Conditions</a>{' '}
+              and <a href="#">Privacy Policy</a>.
+            </p>
           </footer>
         </div>
 
-        {/* Right Section: User Options Preview */}
         <div className="right-section">
           <h2>Available Services</h2>
           <p>Access these features once you log in:</p>
