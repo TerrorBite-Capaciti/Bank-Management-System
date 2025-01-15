@@ -33,10 +33,10 @@ const CreateAccountPage = () => {
     }
 
     try {
-      const response = await createAccount({ email, username, password });
-      setUser(response.data.user); // Save user to context if needed
+      await createAccount({ email, username, password });
+      setUser({username, email}); // Save user to context if needed
       alert('Account created successfully!');
-      navigate('/login');
+      navigate('/dasboard');
     } catch (err) {
       setError(err.response?.data?.message || 'Failed to create account!');
     } finally {
@@ -102,7 +102,7 @@ const CreateAccountPage = () => {
               onChange={() => setAgreedToTerms(!agreedToTerms)}
             />
             <label htmlFor="agree-terms">
-              I agree to the <a href="#">Terms & Conditions</a>
+              I agree to the <a href="/terms-and-conditions">Terms & Conditions</a>
             </label>
           </div>
           <button type="submit" className="btn" disabled={isLoading}>
