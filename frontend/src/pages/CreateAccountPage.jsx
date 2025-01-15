@@ -7,7 +7,7 @@ import '../styles/CreateAccountPage.css';
 const CreateAccountPage = () => {
   const { setUser } = useContext(AuthContext); // Access AuthContext
   const [email, setEmail] = useState('');
-  const [username, setUsername] = useState('');
+  const [fullname, setFullname] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
   const [isLoading, setIsLoading] = useState(false);
@@ -33,10 +33,10 @@ const CreateAccountPage = () => {
     }
 
     try {
-      const response = await createAccount({ email, username, password });
-      setUser(response.data.user); // Save user to context if needed
+      await createAccount({ email, fullname, password });
+      setUser({fullname, email}); // Save user to context if needed
       alert('Account created successfully!');
-      navigate('/login');
+      navigate('/dasboard');
     } catch (err) {
       setError(err.response?.data?.message || 'Failed to create account!');
     } finally {
@@ -61,12 +61,12 @@ const CreateAccountPage = () => {
             />
           </div>
           <div>
-            <label htmlFor="username">Username</label>
+            <label htmlFor="fullname">Fullname</label>
             <input
               id="username"
               type="text"
-              value={username}
-              onChange={(e) => setUsername(e.target.value)}
+              value={fullname}
+              onChange={(e) => setFullname(e.target.value)}
               required
               className="input-field"
             />
@@ -102,7 +102,7 @@ const CreateAccountPage = () => {
               onChange={() => setAgreedToTerms(!agreedToTerms)}
             />
             <label htmlFor="agree-terms">
-              I agree to the <a href="#">Terms & Conditions</a>
+              I agree to the <a href="/terms-and-conditions">Terms & Conditions</a>
             </label>
           </div>
           <button type="submit" className="btn" disabled={isLoading}>

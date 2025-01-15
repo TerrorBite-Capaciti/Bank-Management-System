@@ -4,6 +4,9 @@ import { FaUserCircle, FaSignOutAlt } from "react-icons/fa";
 import AccountOverviewChart from "../components/AccountOverviewChart"; // Import the chart
 import styles from "../styles/DashboardPage.module.css"; // Import the styles
 import logoImage from '../assets/images/black_logo.png'
+import nfcImage from '../assets/images/contactless (1).png';
+import Bytelogo from "../assets/images/byte's_logo.png";
+
 
 const DashboardPage = () => {
   const handleLogout = () => {
@@ -15,10 +18,10 @@ const DashboardPage = () => {
     <div className={styles.dashboardPage}>
       {/* Header */}
       <header className={styles.dashboardHeader}>
-        <div className={styles.headerLogo}>
-          {/* Replace "ByteBank" with the logo */}
-          <img src={logoImage} alt="ByteBank Logo" className={styles.logoImage} />
-        </div>
+        <div className={styles.headerLogo}> <img 
+                src={Bytelogo} 
+                alt="byte icon"
+                 className={styles.Bytelogo} /></div>
         <div className={styles.headerUser}>
           <FaUserCircle size={24} />
           <span>Welcome, User!</span>
@@ -79,6 +82,10 @@ const DashboardPage = () => {
                   className={styles.Chip}
                   alt="Chip"
                 />
+                 <img 
+                src={nfcImage} 
+                alt="contactless icon"
+                 className={styles.nfcImg} />
                 <br></br>
                 <h1 className={styles.number}>1234 5678 9876 5432</h1>
                 <h2 className={styles.Valid}>
@@ -128,8 +135,6 @@ const DashboardPage = () => {
                 src={nfcImage} 
                 alt="contactless icon"
                  className={styles.nfcImg} />
-                <br></br>
-                <h1 className={styles.bank}>ByteBank</h1>
                 <br></br>
                 <h1 className={styles.number}>2345 6789 1234 8765</h1>
                 <h2 className={styles.Valid}>
