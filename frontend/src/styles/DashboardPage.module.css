@@ -1,13 +1,6 @@
 @import url('https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@500&display=swap');
 
-
-.nfcImg{
-    width:30px;
-    height: 50px;
-    margin: 0 auto;
-    display: block;
-}
 /* Overall Page Styles */
 .dashboardPage {
     display: flex;
@@ -157,6 +150,7 @@
 }
 .fronts{
     background-color: rgba(156, 10, 10, 0.788);
+    position: relative;
    
 }
 
@@ -303,10 +297,10 @@
 
 .nfcImg{
     width:30px;
-    height: 50px;
+    height: 30px;
     position: absolute;
-   top: 85px;
-    left: 110px;
+   top: 60px;
+    left: 100px;
 }
 /* Card Hover Effects */
 .card:hover .front {
