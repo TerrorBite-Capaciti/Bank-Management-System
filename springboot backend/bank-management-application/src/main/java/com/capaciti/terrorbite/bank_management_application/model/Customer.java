@@ -16,10 +16,7 @@ public class Customer {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @NotNull
     private String fullName;
-
-    @NotNull
     private String password;
     private String matchingPassword;
 
