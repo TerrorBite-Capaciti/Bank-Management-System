@@ -72,4 +72,27 @@ public class TransactionController {
             throw new RuntimeException("Error creating Withdraw request: ", error);
         }
     }
+
+    @PostMapping("{customerId}/transfer/{sourceAccountId}/{targetAccountId}")
+    public ResponseEntity<?> transferTransaction(@PathVariable("customerId") Long customerId, @PathVariable("sourceAccountId") long sourceAccountId, @PathVariable("targetAccountId") long targetAccountId, Transaction transaction) {
+        // TODO: Refactor this into a standalone method to reduce boilerplate
+        if (customerService.getCustomerById(customerId) == null) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("This customer does not exist");
+        } else if (accountService.getAccountById(sourceAccountId) == null || accountService.getAccountById(targetAccountId) == null) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Account does not exist");
+        } else if (transaction.getAmount() < 0) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Amount cannot be R0 or negative");
+        }
+
+        try {
+            transactionService.transfer(sourceAccountId, targetAccountId, transaction.getAmount());
+            return ResponseEntity.status(HttpStatus.CREATED).body(
+                    "Transfer of: " + transaction.getAmount() +
+                    "\nSource Account: " + sourceAccountId +
+                    "\nTarget Account: " + targetAccountId +
+                    " successful.");
+        } catch (Exception e) {
+            throw new RuntimeException("Error creating Transfer request: ", e);
+        }
+    }
 }
