@@ -24,24 +24,24 @@ public class TransactionController {
         this.accountService = accountService;
     }
 
-    @GetMapping("{id}")
-    public ResponseEntity<Transaction> getAllTransactions(@PathVariable("id") long accountId) {
+    @GetMapping("{accountId}")
+    public ResponseEntity<Transaction> getAllTransactions(@PathVariable long accountId) {
         return new ResponseEntity<Transaction>(transactionService.getTransactionById(accountId), HttpStatus.OK);
     }
 
-    @PostMapping("{id}")
-    public ResponseEntity<?> depositTransaction(@PathVariable("id") long customerId, long accountId, @RequestBody Transaction newTransaction) {
+    @PostMapping("/deposit/{accountId}")
+    public ResponseEntity<?> depositTransaction(@PathVariable("id") long customerId, long accountId, @RequestParam Double amount) {
 
         if (customerService.getCustomerById(customerId) == null) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("This customer does not exist");
         } else if (accountService.getAccountById(accountId) == null) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Account: " + accountId + " does not exist");
-        } else if (newTransaction.getAmount() < 0) {
+        } else if (amount < 0) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Amount cannot be R0 or negative");
         }
 
         try {
-            transactionService.createTransaction(accountId, newTransaction);
+            Transaction depositTransaction = transactionService.deposit(accountId, amount);
             return ResponseEntity.status(HttpStatus.CREATED).body("Transaction successfully created");
 
         } catch (Exception e) {
