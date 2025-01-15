@@ -7,7 +7,7 @@ import '../styles/CreateAccountPage.css';
 const CreateAccountPage = () => {
   const { setUser } = useContext(AuthContext); // Access AuthContext
   const [email, setEmail] = useState('');
-  const [username, setUsername] = useState('');
+  const [fullname, setFullname] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
   const [isLoading, setIsLoading] = useState(false);
@@ -33,8 +33,8 @@ const CreateAccountPage = () => {
     }
 
     try {
-      await createAccount({ email, username, password });
-      setUser({username, email}); // Save user to context if needed
+      await createAccount({ email, fullname, password });
+      setUser({fullname, email}); // Save user to context if needed
       alert('Account created successfully!');
       navigate('/dasboard');
     } catch (err) {
@@ -61,12 +61,12 @@ const CreateAccountPage = () => {
             />
           </div>
           <div>
-            <label htmlFor="username">Username</label>
+            <label htmlFor="fullname">Fullname</label>
             <input
               id="username"
               type="text"
-              value={username}
-              onChange={(e) => setUsername(e.target.value)}
+              value={fullname}
+              onChange={(e) => setFullname(e.target.value)}
               required
               className="input-field"
             />
