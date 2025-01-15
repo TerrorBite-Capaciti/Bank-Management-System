@@ -85,8 +85,20 @@ public class TransactionServiceImpl implements TransactionService {
     }
 
     @Override
+    @Transactional
     public Transaction withdraw(Long accountId, Double amount) {
-        return null;
+        Account account = accountRepository.findById(accountId).orElseThrow( () -> new TransactionsException("Account: " + accountId + " not found") );
+
+        account.setBalance(account.getBalance() - amount);
+        accountRepository.save(account);
+
+        Transaction withdrawTransaction = new Transaction();
+        withdrawTransaction.setTransactionType("Withdraw");
+        withdrawTransaction.setAmount(amount);
+        withdrawTransaction.setTransactionDate(LocalDateTime.now());
+        withdrawTransaction.setAccount(account);
+
+        return transactionRepository.save(withdrawTransaction);
     }
 
     @Override
