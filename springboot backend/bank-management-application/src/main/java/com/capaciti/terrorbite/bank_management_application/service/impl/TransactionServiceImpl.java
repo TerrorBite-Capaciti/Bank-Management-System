@@ -102,8 +102,22 @@ public class TransactionServiceImpl implements TransactionService {
     }
 
     @Override
+    @Transactional
     public Transaction transfer(Long fromAccountId, Long targetAccountId, Double amount) {
-        return null;
+        Account sourceAccount = accountRepository.findById(fromAccountId).orElseThrow( () -> new TransactionsException("Account to transfer from: " + fromAccountId + " not found"));
+        Account targetAccount = accountRepository.findById(fromAccountId).orElseThrow( () -> new TransactionsException("Account to transfer to: " + targetAccountId + " not found"));
+
+        sourceAccount.setBalance(sourceAccount.getBalance() - amount);
+        targetAccount.setBalance(targetAccount.getBalance() + amount);
+
+        Transaction transferTransaction = new Transaction();
+        transferTransaction.setTransactionType("Transfer");
+        transferTransaction.setAmount(amount);
+        transferTransaction.setTransactionDate(LocalDateTime.now());
+        transferTransaction.setAccount(sourceAccount);
+        transferTransaction.setTargetAccount(targetAccount);
+
+        return transactionRepository.save(transferTransaction);
     }
 
 
