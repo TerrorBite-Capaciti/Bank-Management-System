@@ -95,7 +95,7 @@ const Transfer = () => {
 
   return (
     <div>
-      <h2>Transfer Funds</h2>
+      <h2>TRANSFER FUNDS</h2>
       <form onSubmit={handleTransfer}>
         <div>
           <label>From Account:</label>

@@ -22,8 +22,8 @@ const WithdrawPage = () => {
       return;
     }
 
-    const savingsBalance = 1000;
-    const premiumBalance = 500;
+    const savingsBalance = 0;
+    const premiumBalance = 0;
 
     if (accountType === 'savings') {
       if (amount <= savingsBalance) {
@@ -42,8 +42,7 @@ const WithdrawPage = () => {
 
   return (
     <div className="container">
-      <h1 className="title">Withdraw Funds</h1>
-      <p className="description">Withdraw funds from your account.</p>
+      <h1 className="title">Withdraw Funds</h1><br></br>
       <div className="form-container">
         <form onSubmit={handleSubmit}>
           <div className="form-group">
