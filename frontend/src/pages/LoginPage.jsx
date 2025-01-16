@@ -15,7 +15,7 @@ import '../styles/LoginPage.css';
 
 const LoginPage = () => {
   const { setUser } = useContext(AuthContext);
-  const [fullname, setFullname] = useState('');
+  const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
   const [showPassword, setShowPassword] = useState(false);
@@ -24,20 +24,22 @@ const LoginPage = () => {
 
   const handleLogin = async (e) => {
     e.preventDefault();
+    setError('');
     setIsLoading(true);
 
-    if (!fullname || !password) {
-      setError('Please enter both fullname and password');
+    if (!email || !password) {
+      setError('Please enter both email and password');
       setIsLoading(false);
       return;
     }
 
     try {
-      console.log({ fullname, password }); // Debugging request data
-      const response = await login({ fullname, password });
-      console.log("\n\n", response, "\n\n");
+      const response = await login({ email, password });
 
       if (response.status === 200) {
+        console.log("\n\n")
+        console.log(response)
+        console.log("\n\n")
         setUser(response.data.user);
         localStorage.setItem('token', response.data.token);
         alert('Logged in successfully!');
@@ -46,8 +48,8 @@ const LoginPage = () => {
         throw new Error('Unexpected response status');
       }
     } catch (err) {
-      console.error(err);
-      setError(err.response?.data?.message || 'Login failed!');
+      console.error('Login error:', err);
+      setError(err.response?.data?.message || 'Login failed. Please try again.');
     } finally {
       setIsLoading(false);
     }
@@ -64,9 +66,9 @@ const LoginPage = () => {
             <div>
               <input
                 type="text"
-                placeholder="Fullname"
-                value={fullname}
-                onChange={(e) => setFullname(e.target.value)}
+                placeholder="email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
                 className="input-field"
                 required
               />
