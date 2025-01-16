@@ -1,10 +1,12 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom'; // Import useNavigate for navigation
 import '../styles/WithdrawPage.css';
 
 const WithdrawPage = () => {
   const [accountType, setAccountType] = useState('');
   const [amount, setAmount] = useState('');
   const [message, setMessage] = useState(null);
+  const navigate = useNavigate(); // Initialize navigate
 
   const handleAccountTypeChange = (event) => {
     setAccountType(event.target.value);
@@ -42,6 +44,13 @@ const WithdrawPage = () => {
 
   return (
     <div className="container">
+      <button
+        className="back-button"
+        name="back-button"
+        onClick={() => navigate('/dashboard')}
+      >
+        Back to Dashboard
+      </button>
       <h1 className="title">Withdraw Funds</h1><br></br>
       <div className="form-container">
         <form onSubmit={handleSubmit}>
