@@ -1,7 +1,7 @@
 import React, { useState, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { AuthContext } from '../contexts/AuthContext';
-import { createAccount } from '../services/api';
+import { createCustomer } from '../services/api';
 import '../styles/CreateAccountPage.css';
 
 const CreateAccountPage = () => {
@@ -15,7 +15,7 @@ const CreateAccountPage = () => {
   const [agreedToTerms, setAgreedToTerms] = useState(false);
   const navigate = useNavigate();
 
-  const handleCreateAccount = async (e) => {
+  const handlecreateCustomer = async (e) => {
     e.preventDefault();
     setIsLoading(true);
     setError('');
@@ -33,7 +33,7 @@ const CreateAccountPage = () => {
     }
 
     try {
-      await createAccount({ email, fullname, password });
+      await createCustomer({ email, fullname, password });
       setUser({fullname, email}); // Save user to context if needed
       alert('Account created successfully!');
       navigate('/dasboard');
@@ -48,7 +48,7 @@ const CreateAccountPage = () => {
     <div className="create-account-page">
       <div className="form-container">
         <h1>Create Account</h1>
-        <form onSubmit={handleCreateAccount}>
+        <form onSubmit={handlecreateCustomer}>
           <div>
             <label htmlFor="email">Email</label>
             <input
