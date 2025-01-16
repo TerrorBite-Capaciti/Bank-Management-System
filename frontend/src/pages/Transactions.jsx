@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { getTransactions } from '../services/api'; // API function to fetch transactions
 import '../styles/Transactions.css';
+import BackButton from "../components/BackButton"; 
+
 
 const Transactions = () => {
   const [transactions, setTransactions] = useState([]);
@@ -22,6 +24,7 @@ const Transactions = () => {
 
   return (
     <div className="transactions-page">
+          <BackButton />
       <h1>Transaction History</h1>
       {error ? (
         <div className="error">{error}</div>

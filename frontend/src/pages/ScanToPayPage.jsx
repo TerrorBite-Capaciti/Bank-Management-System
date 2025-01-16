@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import QrScanner from 'react-qr-scanner';
+import BackButton from "../components/BackButton"; 
+
 
 const ScanToPayPage = () => {
   const [scanResult, setScanResult] = useState('');
@@ -31,6 +33,7 @@ const ScanToPayPage = () => {
 
   return (
     <div style={{ textAlign: 'center', padding: '20px' }}>
+        <BackButton />
       <h1>Scan to Pay</h1>
       <p>Here you can scan QR codes to make payments.</p>
       {isProcessing && <p>Processing...</p>}
