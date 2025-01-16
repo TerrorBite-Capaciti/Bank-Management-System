@@ -26,19 +26,27 @@ const LoginPage = () => {
     e.preventDefault();
     setIsLoading(true);
 
-    if (!fullname|| !password) {
+    if (!fullname || !password) {
       setError('Please enter both fullname and password');
       setIsLoading(false);
       return;
     }
 
     try {
+      console.log({ fullname, password }); // Debugging request data
       const response = await login({ fullname, password });
-      setUser(response.data.user);
-      localStorage.setItem('token', response.data.token);
-      alert('Logged in successfully!');
-      navigate('/dashboard');
+      console.log("\n\n", response, "\n\n");
+
+      if (response.status === 200) {
+        setUser(response.data.user);
+        localStorage.setItem('token', response.data.token);
+        alert('Logged in successfully!');
+        navigate('/dashboard');
+      } else {
+        throw new Error('Unexpected response status');
+      }
     } catch (err) {
+      console.error(err);
       setError(err.response?.data?.message || 'Login failed!');
     } finally {
       setIsLoading(false);
@@ -75,6 +83,7 @@ const LoginPage = () => {
               <span
                 className="password-toggle-icon"
                 onClick={() => setShowPassword(!showPassword)}
+                title={showPassword ? 'Hide Password' : 'Show Password'}
               >
                 {showPassword ? <FaRegEyeSlash /> : <FaRegEye />}
               </span>
@@ -91,17 +100,8 @@ const LoginPage = () => {
           </form>
 
           <div className="biometric-options">
-          <div>
-            <h1></h1>
-            <p className="subheading"></p>
-            </div>
             <div className="biometric-btn">
               <FaFingerprint size={20} /> Fingerprint
-            </div>
-            
-            <div>
-            <h1></h1>
-            <p className="subheading"></p>
             </div>
             <div className="biometric-btn">
               <img
