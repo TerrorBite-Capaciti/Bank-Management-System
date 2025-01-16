@@ -22,8 +22,8 @@ const WithdrawPage = () => {
       return;
     }
 
-    const savingsBalance = 1000;
-    const premiumBalance = 500;
+    const savingsBalance = 0;
+    const premiumBalance = 0;
 
     if (accountType === 'savings') {
       if (amount <= savingsBalance) {
