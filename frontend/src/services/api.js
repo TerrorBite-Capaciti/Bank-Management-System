@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const API = axios.create({
-  baseURL: 'http://localhost:8080', // Backend base URL
+  baseURL: process.env.REACT_APP_BACKEND_URL || 'http://localhost:8080', // Backend base URL from environment variables
 });
 
 // Add auth token to headers
@@ -18,20 +18,20 @@ API.interceptors.response.use(
   (response) => response,
   (error) => {
     console.error('API Error:', error);
-    alert(error.response?.data?.message || 'An error occurred. Please try again.');
     return Promise.reject(error);
   }
 );
 
 // API Endpoints
-export const login = (data) => API.post('/api/auth/login', data);
-export const createAccount = (data) => API.post('/api/users/register', data);
-export const getAccounts = () => API.get('/api/accounts');
-export const transferFunds = (data) => API.post('/api/transactions/transfer', data);
-export const deposit = (data) => API.post('/api/transactions/deposit', data);
-export const withdraw = (data) => API.post('/api/transactions/withdraw', data);
-
-// Transaction-specific endpoints
+export const login = (data) => API.post('/api/customers/login', data);
+export const createCustomer = (data) => API.post('/api/customers/createCustomer', data);
+export const getAccounts = (customerId) => API.get(`/api/accounts/customer/${customerId}`);
+export const transferFunds = (customerId, sourceAccountId, targetAccountId, data) =>
+  API.post(`/api/transactions/${customerId}/transfer/${sourceAccountId}/${targetAccountId}`, data);
+export const deposit = (customerId, accountId, data) =>
+  API.post(`/api/transactions/${customerId}/deposit/${accountId}`, data);
+export const withdraw = (customerId, accountId, data) =>
+  API.post(`/api/transactions/${customerId}/withdraw/${accountId}`, data);
 export const saveTransaction = (transaction) => API.post('/api/transactions', transaction);
 export const getTransactions = () => API.get('/api/transactions');
 
