@@ -8,6 +8,8 @@ public class CustomerWithAccountDataTransferObject {
 
     private String fullName;
     private String address;
+    private String password;
+    private String matchingPassword;
     private String phoneNumber;
     private String email;
 
@@ -21,6 +23,14 @@ public class CustomerWithAccountDataTransferObject {
 
     public String getAddress() {
         return address;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public String getMatchingPassword() {
+        return matchingPassword;
     }
 
     public String getPhoneNumber() {

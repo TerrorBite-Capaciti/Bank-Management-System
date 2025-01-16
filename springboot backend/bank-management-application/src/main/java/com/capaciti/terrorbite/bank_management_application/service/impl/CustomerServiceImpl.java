@@ -25,13 +25,20 @@ public class CustomerServiceImpl implements CustomerService {
 
     @Override
     public Customer getCustomerById(Long id) {
-        return customerRepository.findById(id).orElseThrow( () -> new RuntimeException() );
+//        Customer existingCustomer = customerRepository.findById(id).orElseThrow( () -> new RuntimeException() );
+//
+//        if (existingCustomer == null) {
+//            throw new RuntimeException("No customer found")
+//        }
+        return customerRepository.findById(id).orElseThrow( () -> new RuntimeException("That customer does not exist") );
     }
 
     @Override
     public Customer createNewCustomer(CustomerWithAccountDataTransferObject newCustomerDto) {
         Customer customer = new Customer();
         customer.setFullName(newCustomerDto.getFullName());
+        customer.setPassword(newCustomerDto.getPassword());
+        customer.setMatchingPassword(newCustomerDto.getMatchingPassword());
         customer.setAddress(newCustomerDto.getAddress());
         customer.setPhoneNumber(newCustomerDto.getPhoneNumber());
         customer.setEmail(newCustomerDto.getEmail());
@@ -66,6 +73,10 @@ public class CustomerServiceImpl implements CustomerService {
         return savedCustomer;
     }
 
+    @Override
+    public Customer customerLogin(String userName) {
+        return customerRepository.findByUsername(userName).orElseThrow( () -> new RuntimeException("No customer found with that username") );
+    }
 
     @Override
     public Customer updateCustomerDetails(long id, Customer customer) {
