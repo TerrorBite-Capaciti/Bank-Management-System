@@ -145,7 +145,7 @@ const DashboardPage = () => {
                   <span>06/26</span>
                 </h2>
                 <br></br>
-                <h2 className={styles.cardholder}>MR ST SHABANGU</h2>
+                <h2 className={styles.cardholder}>MISS LL JELE-MASEMOLA</h2>
               </div>
               <div className={styles.cardCircles}>
                 <div className={`${styles.circle}`}></div>
