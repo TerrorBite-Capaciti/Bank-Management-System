@@ -1,16 +1,17 @@
-# Use OpenJDK 21 as the base image
-FROM openjdk:21-jdk-slim
+FROM maven:3.8.6-eclipse-temurin-17 as build
 
-# Set the working directory
 WORKDIR /app
 
-# Copy the JAR file to the container
-COPY target/bank-management-application.jar app.jar
+COPY ./ /app
 
-# Expose the application port
+RUN mvn clean package -DskipTests
+
+FROM eclipse-temurin:17-jre
+
+WORKDIR /app
+
+COPY --from=build /app/target/bank-management-application.jar /app/app.jar
+
 EXPOSE 8080
 
-LABEL author="nizaam"
-
-# Run the application
-ENTRYPOINT ["java", "-jar", "app.jar"]
+CMD ["java", "-jar", "/app/app.jar"]
