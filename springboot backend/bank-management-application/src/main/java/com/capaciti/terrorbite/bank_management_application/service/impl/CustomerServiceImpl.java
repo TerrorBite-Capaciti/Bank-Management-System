@@ -74,8 +74,8 @@ public class CustomerServiceImpl implements CustomerService {
     }
 
     @Override
-    public Customer customerLogin(String userName) {
-        return customerRepository.findByUsername(userName).orElseThrow( () -> new RuntimeException("No customer found with that username") );
+    public Customer customerLogin(String fullName) {
+        return customerRepository.findByFullName(fullName).orElseThrow( () -> new RuntimeException("No customer found with that username") );
     }
 
     @Override

@@ -25,8 +25,8 @@ public class CustomerController {
     }
 
     @PostMapping("/login")
-    public ResponseEntity<?> customerLogin(@RequestBody String userName, @RequestBody String password) {
-        Customer customer = customerService.customerLogin(userName);
+    public ResponseEntity<?> customerLogin(@RequestBody String fullName, @RequestBody String password) {
+        Customer customer = customerService.customerLogin(fullName);
 
         if (customer == null) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("User does not exist");

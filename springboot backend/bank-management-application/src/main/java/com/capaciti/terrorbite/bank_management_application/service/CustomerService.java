@@ -2,7 +2,6 @@ package com.capaciti.terrorbite.bank_management_application.service;
 
 import com.capaciti.terrorbite.bank_management_application.data_transfer_object.CustomerWithAccountDataTransferObject;
 import com.capaciti.terrorbite.bank_management_application.model.Customer;
-import java.util.List;
 
 public interface CustomerService {
 
@@ -10,7 +9,7 @@ public interface CustomerService {
 
     Customer createNewCustomer(CustomerWithAccountDataTransferObject newCustomerDto);
 
-    Customer customerLogin(String userName);
+    Customer customerLogin(String fullName);
 
     Customer updateCustomerDetails(long id, Customer customer);
 }
