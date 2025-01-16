@@ -4,7 +4,8 @@ import { FaUserCircle, FaSignOutAlt } from "react-icons/fa";
 import AccountOverviewChart from "../components/AccountOverviewChart"; // Import the chart
 import styles from "../styles/DashboardPage.module.css"; // Import the styles
 import logoImage from '../assets/images/dash_logo.png'
-import nfcImage from '../assets/images/contactless (1).png';
+import nfcImage from '../assets/images/contactless-1-svgrepo-com (1).svg';
+import nfcImages from '../assets/images/contactless-1-svgrepo-com (2).svg';
 
 
 const DashboardPage = () => {
@@ -132,7 +133,7 @@ const DashboardPage = () => {
                   alt="Chip"
                 />
                 <img 
-                src={nfcImage} 
+                src={nfcImages} 
                 alt="contactless icon"
                  className={styles.nfcImg} />
                 <br></br>
