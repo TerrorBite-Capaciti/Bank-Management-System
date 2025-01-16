@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { getAccounts } from '../services/api'; // Replace with the correct function
+import { getTransactions } from '../services/api'; // API function to fetch transactions
 import '../styles/Transactions.css';
 
 const Transactions = () => {
@@ -9,8 +9,8 @@ const Transactions = () => {
   useEffect(() => {
     const fetchTransactions = async () => {
       try {
-        const { data } = await getAccounts(); // Ensure this is the correct API function
-        setTransactions(data.transactions || []); // Adjust to the actual response structure
+        const { data } = await getTransactions(); // Fetch transactions from backend
+        setTransactions(data || []);
       } catch (err) {
         setError('Failed to fetch transactions.');
         console.error(err);
@@ -25,8 +25,10 @@ const Transactions = () => {
       <h1>Transaction History</h1>
       {error ? (
         <div className="error">{error}</div>
+      ) : transactions.length === 0 ? (
+        <p>No transactions recorded yet.</p>
       ) : (
-        <table>
+        <table className="transactions-table">
           <thead>
             <tr>
               <th>ID</th>

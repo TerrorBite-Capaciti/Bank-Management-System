@@ -1,0 +1,47 @@
+.transactions-page {
+    font-family: Arial, sans-serif;
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #1c1c1c; /* Black background */
+    color: #fff;
+    border: 1px solid #8b0000; /* Dark red border */
+    border-radius: 8px;
+  }
+  
+  h1 {
+    text-align: center;
+    color: #ff4d4d; /* Bright red */
+  }
+  
+  .transactions-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+  }
+  
+  .transactions-table th,
+  .transactions-table td {
+    border: 1px solid #8b0000; /* Dark red */
+    padding: 10px;
+    text-align: left;
+  }
+  
+  .transactions-table th {
+    background-color: #8b0000; /* Dark red */
+    color: #fff;
+  }
+  
+  .transactions-table tr:nth-child(even) {
+    background-color: #2e2e2e; /* Dark gray */
+  }
+  
+  .transactions-table tr:hover {
+    background-color: #4d4d4d; /* Slightly lighter gray */
+  }
+  
+  .error {
+    color: #ff4d4d; /* Bright red */
+    text-align: center;
+  }
+  

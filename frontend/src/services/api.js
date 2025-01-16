@@ -31,4 +31,8 @@ export const transferFunds = (data) => API.post('/api/transactions/transfer', da
 export const deposit = (data) => API.post('/api/transactions/deposit', data);
 export const withdraw = (data) => API.post('/api/transactions/withdraw', data);
 
+// Transaction-specific endpoints
+export const saveTransaction = (transaction) => API.post('/api/transactions', transaction);
+export const getTransactions = () => API.get('/api/transactions');
+
 export default API;

@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import styles from '../styles/DepositPage.module.css';
+import { saveTransaction } from '../services/api'; // API function to save transactions
 
 const DepositPage = () => {
   const [depositAmount, setDepositAmount] = useState('');
@@ -10,32 +11,46 @@ const DepositPage = () => {
   const [errorMessage, setErrorMessage] = useState('');
 
   const handleDepositChange = (e) => {
-    const value = e.target.value;
-    if (value.includes('.') && value.split('.')[1].length > 2) return; // Restrict to two decimals
-    setDepositAmount(value);
+    setDepositAmount(e.target.value);
   };
 
   const handleAccountChange = (e) => {
     setSelectedAccount(e.target.value);
   };
 
-  const handleDepositSubmit = (e) => {
+  const handleDepositSubmit = async (e) => {
     e.preventDefault();
 
     if (depositAmount && !isNaN(depositAmount) && Number(depositAmount) > 0) {
       const amount = Number(depositAmount);
 
+      // Update account balance
       if (selectedAccount === 'Savings') {
         setSavingsBalance((prevBalance) => prevBalance + amount);
       } else if (selectedAccount === 'Premium') {
         setPremiumBalance((prevBalance) => prevBalance + amount);
       }
 
-      setSuccessMessage(`Successfully deposited R${amount} into ${selectedAccount} account.`);
-      setErrorMessage('');
+      // Create transaction object
+      const newTransaction = {
+        id: Date.now(), // Use timestamp for unique ID
+        date: new Date().toLocaleString(),
+        amount: `R${amount.toFixed(2)}`,
+        description: `Deposit to ${selectedAccount} account`,
+      };
+
+      try {
+        await saveTransaction(newTransaction); // Save transaction to backend
+        setSuccessMessage(`Successfully deposited R${amount} into ${selectedAccount} account.`);
+        setErrorMessage('');
+      } catch (error) {
+        setErrorMessage('Failed to save transaction.');
+        console.error(error);
+      }
+
       setDepositAmount('');
     } else {
-      setErrorMessage('Please enter a valid amount greater than zero.');
+      setErrorMessage('Please enter a valid amount.');
       setSuccessMessage('');
     }
   };
@@ -49,7 +64,6 @@ const DepositPage = () => {
           value={selectedAccount}
           onChange={handleAccountChange}
           className={styles.accountDropdown}
-          aria-label="Select account type"
         >
           <option value="Savings">Savings</option>
           <option value="Premium">Premium</option>
@@ -61,7 +75,6 @@ const DepositPage = () => {
           onChange={handleDepositChange}
           placeholder="Enter amount"
           className={styles.depositInput}
-          aria-label="Deposit amount"
           required
         />
         <button type="submit" className={styles.depositButton}>
