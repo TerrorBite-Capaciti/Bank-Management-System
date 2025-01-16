@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import styles from '../styles/DepositPage.module.css';
 import { saveTransaction } from '../services/api'; // API function to save transactions
+import BackButton from "../components/BackButton"; // Adjust path based on your structure
 
 const DepositPage = () => {
   const [depositAmount, setDepositAmount] = useState('');
@@ -57,6 +58,8 @@ const DepositPage = () => {
 
   return (
     <div className={styles.depositPage}>
+      <BackButton />
+
       <h1>Deposit Funds</h1>
 
       <form onSubmit={handleDepositSubmit} className={styles.depositForm}>

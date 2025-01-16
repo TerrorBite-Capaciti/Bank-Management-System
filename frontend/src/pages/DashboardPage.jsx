@@ -13,6 +13,7 @@ const DashboardPage = () => {
     alert("Logged out successfully!");
     window.location.href = "/login";
   };
+  
 
   return (
     <div className={styles.dashboardPage}>

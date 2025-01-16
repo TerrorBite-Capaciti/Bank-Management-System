@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import '../styles/TransferPage.css';
+import BackButton from "../components/BackButton";
 
 const Transfer = () => {
   const [fromAccount, setFromAccount] = useState('');
@@ -95,6 +96,7 @@ const Transfer = () => {
 
   return (
     <div>
+       <BackButton />
       <h2>TRANSFER FUNDS</h2>
       <form onSubmit={handleTransfer}>
         <div>
