@@ -21,7 +21,6 @@ public class AccountController {
         this.accountService = accountService;
     }
 
-    // Renamed the method to better reflect its function
     @GetMapping("/customer/{id}")
     public List<Account> getAccountsByCustomerId(@PathVariable("id") long customerId) {
         return accountService.getAllAccounts(customerId);
