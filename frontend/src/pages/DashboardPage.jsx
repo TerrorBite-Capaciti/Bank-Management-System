@@ -97,11 +97,12 @@ const DashboardPage = () => {
                 </h2>
                 <br></br>
                 <h2 className={styles.cardholder}>MISS LL JELE-MASEMOLA</h2>
-              </div>
-              <div className={styles.cardCircles}>
+                <div className={styles.cardCircles}>
                 <div className={`${styles.circle}`}></div>
                 <div className={`${styles.circle} ${styles.second}`}></div>
               </div>
+              </div>
+             
               <div className={`${styles.face} ${styles.back}`}>
                 <div className={styles.blackbar}></div>
                 <div className={styles.ccvtext}>
@@ -146,11 +147,12 @@ const DashboardPage = () => {
                 </h2>
                 <br></br>
                 <h2 className={styles.cardholder}>MISS LL JELE-MASEMOLA</h2>
-              </div>
-              <div className={styles.cardCircles}>
+                <div className={styles.cardCircles}>
                 <div className={`${styles.circle}`}></div>
                 <div className={`${styles.circle} ${styles.second}`}></div>
               </div>
+              </div>
+              
               <div className={`${styles.face} ${styles.back}`}>
                 <div className={styles.blackbar}></div>
                 <div className={styles.ccvtext}>
