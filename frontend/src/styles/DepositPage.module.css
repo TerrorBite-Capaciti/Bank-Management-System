@@ -1,0 +1,120 @@
+/* DepositPage.module.css */
+
+.depositPage {
+    font-family: 'Arial', sans-serif;
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #1c1c1c; /* Black background */
+    border: 1px solid #8b0000; /* Dark red border */
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+    color: #fff; /* White text */
+  }
+  
+  h1 {
+    font-size: 2rem;
+    color: #ff4d4d; /* Vibrant red for the heading */
+    text-align: center;
+    margin-bottom: 20px;
+    text-transform: uppercase;
+  }
+  
+  .depositForm {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+  }
+  
+  .accountDropdown {
+    padding: 10px;
+    font-size: 1rem;
+    border: 1px solid #8b0000; /* Dark red border */
+    border-radius: 4px;
+    background-color: #2e2e2e; /* Dark gray for dropdown */
+    color: #fff;
+  }
+  
+  .accountDropdown:focus {
+    outline: none;
+    border-color: #ff4d4d; /* Red focus */
+  }
+  
+  .depositInput {
+    padding: 10px;
+    font-size: 1rem;
+    border: 1px solid #8b0000; /* Dark red border */
+    border-radius: 4px;
+    background-color: #2e2e2e; /* Dark gray for input */
+    color: #fff;
+  }
+  
+  .depositInput::placeholder {
+    color: #ccc; /* Light gray placeholder */
+  }
+  
+  .depositInput:focus {
+    outline: none;
+    border-color: #ff4d4d; /* Red focus */
+  }
+  
+  .depositButton {
+    padding: 10px;
+    font-size: 1rem;
+    background-color: #8b0000; /* Dark red button */
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    text-transform: uppercase;
+    transition: background-color 0.3s ease;
+  }
+  
+  .depositButton:hover {
+    background-color: #ff4d4d; /* Brighter red on hover */
+  }
+  
+  .successMessage {
+    color: #32cd32; /* Bright green for success */
+    font-size: 1rem;
+    text-align: center;
+    margin-top: 10px;
+  }
+  
+  .errorMessage {
+    color: #ff4d4d; /* Vibrant red for error */
+    font-size: 1rem;
+    text-align: center;
+    margin-top: 10px;
+  }
+  
+  .balances {
+    margin-top: 20px;
+    font-size: 1rem;
+    color: #fff; /* White text for balances */
+  }
+  
+  .balances p {
+    margin: 5px 0;
+  }
+  
+  /* Responsive Design */
+  @media (max-width: 480px) {
+    .depositPage {
+      padding: 15px;
+    }
+  
+    h1 {
+      font-size: 1.6rem;
+    }
+  
+    .depositButton {
+      font-size: 0.9rem;
+      padding: 8px;
+    }
+  
+    .balances {
+      font-size: 0.9rem;
+    }
+  }
+  

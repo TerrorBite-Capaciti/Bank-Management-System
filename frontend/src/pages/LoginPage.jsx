@@ -69,17 +69,17 @@ const LoginPage = () => {
                 placeholder="Password"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
-                className="input-field"
+                className="input-field password-input"
                 required
               />
-              <button
-                type="button"
-                className="show-password-btn"
+              <span
+                className="password-toggle-icon"
                 onClick={() => setShowPassword(!showPassword)}
               >
                 {showPassword ? <FaRegEyeSlash /> : <FaRegEye />}
-              </button>
+              </span>
             </div>
+
             {error && <div className="error">{error}</div>}
             {isLoading ? (
               <div className="loading-spinner">Processing...</div>
@@ -91,12 +91,21 @@ const LoginPage = () => {
           </form>
 
           <div className="biometric-options">
+          <div>
+            <h1></h1>
+            <p className="subheading"></p>
+            </div>
             <div className="biometric-btn">
-              <FaFingerprint size={24} /> Fingerprint
+              <FaFingerprint size={20} /> Fingerprint
+            </div>
+            
+            <div>
+            <h1></h1>
+            <p className="subheading"></p>
             </div>
             <div className="biometric-btn">
               <img
-                src="https://img.icons8.com/ios/50/000000/face-recognition.png"
+                src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSNpsL6V3TqAUOA6Zh7HePJLplP_3aQvkbTnA&s"
                 alt="Face Recognition"
                 width="24"
               />

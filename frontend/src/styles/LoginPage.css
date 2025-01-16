@@ -66,6 +66,30 @@ h1 {
   color: #fff;
 }
 
+.password-wrapper {
+  position: relative;
+  width: 100%;
+}
+
+.password-input {
+  width: 100%;
+  padding-right: 40px; /* Add space for the eye icon */
+}
+
+.password-toggle-icon {
+  position: absolute;
+  right: 10px; /* Position near the right edge of the input */
+  top: 40%;
+  transform: translateY(-50%);
+  cursor: pointer;
+  color: #f71111; /* Optional: adjust icon color */
+}
+
+.password-toggle-icon:hover {
+  color: #ca0c0c; /* Optional: icon hover effect */
+}
+
+
 /* Right Section Styles */
 .right-section {
   display: flex;

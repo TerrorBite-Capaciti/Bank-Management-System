@@ -10,7 +10,9 @@ const DepositPage = () => {
   const [errorMessage, setErrorMessage] = useState('');
 
   const handleDepositChange = (e) => {
-    setDepositAmount(e.target.value);
+    const value = e.target.value;
+    if (value.includes('.') && value.split('.')[1].length > 2) return; // Restrict to two decimals
+    setDepositAmount(value);
   };
 
   const handleAccountChange = (e) => {
@@ -33,7 +35,7 @@ const DepositPage = () => {
       setErrorMessage('');
       setDepositAmount('');
     } else {
-      setErrorMessage('Please enter a valid amount.');
+      setErrorMessage('Please enter a valid amount greater than zero.');
       setSuccessMessage('');
     }
   };
@@ -47,6 +49,7 @@ const DepositPage = () => {
           value={selectedAccount}
           onChange={handleAccountChange}
           className={styles.accountDropdown}
+          aria-label="Select account type"
         >
           <option value="Savings">Savings</option>
           <option value="Premium">Premium</option>
@@ -58,6 +61,7 @@ const DepositPage = () => {
           onChange={handleDepositChange}
           placeholder="Enter amount"
           className={styles.depositInput}
+          aria-label="Deposit amount"
           required
         />
         <button type="submit" className={styles.depositButton}>
@@ -69,8 +73,8 @@ const DepositPage = () => {
       {errorMessage && <p className={styles.errorMessage}>{errorMessage}</p>}
 
       <div className={styles.balances}>
-        <p>Savings Balance: R{savingsBalance}</p>
-        <p>Premium Balance: R{premiumBalance}</p>
+        <p>Savings Balance: R{savingsBalance.toFixed(2)}</p>
+        <p>Premium Balance: R{premiumBalance.toFixed(2)}</p>
       </div>
     </div>
   );
