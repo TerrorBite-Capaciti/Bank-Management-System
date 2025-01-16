@@ -1,0 +1,48 @@
+/* App.css */
+body {
+    background-color: #121212; /* Dark background */
+    color: #fff; /* White text */
+    font-family: 'Arial', sans-serif;
+  }
+  
+  .App {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+  }
+  
+  .content {
+    flex-grow: 1;
+    padding: 20px;
+  }
+  
+  h1, h2 {
+    color: darkred; /* Dark red text for headings */
+  }
+  
+  footer {
+    background-color: #1a1a1a;
+    padding: 20px;
+    text-align: center;
+    color: #aaa;
+  }
+  
+  .navbar {
+    background-color: #1a1a1a;
+    padding: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .navbar a {
+    color: #fff;
+    text-decoration: none;
+    margin: 0 15px;
+    font-size: 16px;
+  }
+  
+  .navbar a:hover {
+    color: darkred; /* Hover effect for navbar links */
+  }
+  
