@@ -1,11 +1,13 @@
 package com.capaciti.terrorbite.bank_management_application.controller;
 
 import com.capaciti.terrorbite.bank_management_application.data_transfer_object.CustomerWithAccountDataTransferObject;
+import com.capaciti.terrorbite.bank_management_application.data_transfer_object.LoginRequest;
 import com.capaciti.terrorbite.bank_management_application.model.Account;
 import com.capaciti.terrorbite.bank_management_application.model.Customer;
 import com.capaciti.terrorbite.bank_management_application.service.impl.AccountServiceImpl;
 import com.capaciti.terrorbite.bank_management_application.service.impl.CustomerServiceImpl;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -16,7 +18,10 @@ import java.util.List;
 @RequestMapping("/api/customers")
 public class CustomerController {
 
+    @Autowired
     private final CustomerServiceImpl customerService;
+
+    @Autowired
     private final AccountServiceImpl accountService;
 
     public CustomerController(CustomerServiceImpl customerService, AccountServiceImpl accountService) {
@@ -25,8 +30,18 @@ public class CustomerController {
     }
 
     @PostMapping("/login")
-    public ResponseEntity<?> customerLogin(@RequestBody String fullName, @RequestBody String password) {
-        Customer customer = customerService.customerLogin(fullName);
+    public ResponseEntity<?> customerLogin(@RequestBody LoginRequest loginRequest) {
+        System.out.printf("\n\n\n\n");
+        String email = loginRequest.getEmail();
+        String password = loginRequest.getPassword();
+
+        System.out.println();
+        System.out.printf("Email: %s", email);
+        System.out.println();
+        System.out.printf("Password: %s", password);
+        System.out.println(password);
+        Customer customer = customerService.customerLogin(email);
+
 
         if (customer == null) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("User does not exist");
