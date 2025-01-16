@@ -37,7 +37,7 @@
 }
 
 .logoutBtn {
-    background: #ff5e57;
+    background: #c20a00;
     color: white;
     border: none;
     padding: 8px 12px;
@@ -90,7 +90,7 @@
 }
 
 .sidebar a:hover {
-    background-color: #ff5e57;
+    background-color: #c20a00;
 }
 
 .dashboardMain {
