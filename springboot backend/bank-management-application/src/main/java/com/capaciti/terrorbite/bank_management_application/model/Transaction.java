@@ -16,22 +16,19 @@ public class Transaction {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long transactionId;
 
-//    @Column(name = "transaction_type", nullable = false)
     private String transactionType;
-
-//    @Column(name = "amount", nullable = false)
     private double amount;
-
-//    @Column(name = "date", nullable = false)
     private LocalDateTime transactionDate;
 
     @ManyToOne
     @JoinColumn(name = "account_id", nullable = false)
-//    @Embedded
     private Account account;
 
-    //  Getters and Setters for service to use
+    @ManyToOne
+    @JoinColumn(name = "target_account_id", nullable = true)
+    private Account targetAccount;
 
+    //  Getters and Setters for service to use
     public Long getTransactionId() {
         return transactionId;
     }
@@ -70,5 +67,13 @@ public class Transaction {
 
     public void setAccount(Account account) {
         this.account = account;
+    }
+
+    public Account getTargetAccount() {
+        return targetAccount;
+    }
+
+    public void setTargetAccount(Account targetAccount) {
+        this.targetAccount = targetAccount;
     }
 }

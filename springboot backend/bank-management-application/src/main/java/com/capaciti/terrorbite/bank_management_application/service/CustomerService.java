@@ -10,5 +10,7 @@ public interface CustomerService {
 
     Customer createNewCustomer(CustomerWithAccountDataTransferObject newCustomerDto);
 
+    Customer customerLogin(String userName);
+
     Customer updateCustomerDetails(long id, Customer customer);
 }
