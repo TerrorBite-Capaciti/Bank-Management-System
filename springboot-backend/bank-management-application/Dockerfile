@@ -1,16 +1,14 @@
-# Use the OpenJDK 21 base image
+# Use a minimal JDK image
 FROM openjdk:21-jdk-slim
 
-# Set the working directory in the container
+# Set working directory
 WORKDIR /app
 
-#RUN ls -la target/
-
-# Copy the specific JAR file into the container
-COPY target/*.jar app.jar
+# Copy the JAR file into the container
+COPY springboot-backendbank-management-application/target/bank-management-application-0.0.1-SNAPSHOT.jar app.jar
 
 # Expose the application port
 EXPOSE 8080
 
-# Run the application
-CMD ["java", "-jar", "app.jar"]
+# Run the JAR file
+CMD ["java", "-jar", "/app/app.jar"]
