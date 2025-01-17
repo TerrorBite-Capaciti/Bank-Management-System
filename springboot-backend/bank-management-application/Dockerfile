@@ -4,6 +4,8 @@ FROM openjdk:21-jdk-slim
 # Set the working directory in the container
 WORKDIR /app
 
+#RUN ls -la target/
+
 # Copy the specific JAR file into the container
 COPY target/bank-management-application-0.0.1-SNAPSHOT.jar app.jar
 
@@ -11,4 +13,4 @@ COPY target/bank-management-application-0.0.1-SNAPSHOT.jar app.jar
 EXPOSE 8080
 
 # Run the application
-CMD ["java", "-jar", "/app/app.jar"]
+CMD ["java", "-jar", "app.jar"]
