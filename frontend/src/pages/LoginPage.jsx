@@ -1,4 +1,4 @@
-import React, { useState, useContext } from 'react';
+import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import {
   FaFingerprint,
@@ -9,12 +9,9 @@ import {
   FaMoneyBillAlt,
   FaCamera,
 } from 'react-icons/fa';
-import { AuthContext } from '../contexts/AuthContext';
-import { login } from '../services/api';
 import '../styles/LoginPage.css';
 
 const LoginPage = () => {
-  const { setUser } = useContext(AuthContext);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
@@ -22,37 +19,22 @@ const LoginPage = () => {
   const [isLoading, setIsLoading] = useState(false);
   const navigate = useNavigate();
 
-  const handleLogin = async (e) => {
+  const handleLogin = (e) => {
     e.preventDefault();
     setError('');
     setIsLoading(true);
 
     if (!email || !password) {
-      setError('Please enter both email and password');
+      setError('Please enter both email and password.');
       setIsLoading(false);
       return;
     }
 
-    try {
-      const response = await login({ email, password });
-
-      if (response.status === 200) {
-        console.log("\n\n")
-        console.log(response)
-        console.log("\n\n")
-        setUser(response.data.user);
-        localStorage.setItem('token', response.data.token);
-        alert('Logged in successfully!');
-        navigate('/dashboard');
-      } else {
-        throw new Error('Unexpected response status');
-      }
-    } catch (err) {
-      console.error('Login error:', err);
-      setError(err.response?.data?.message || 'Login failed. Please try again.');
-    } finally {
-      setIsLoading(false);
-    }
+    // Hardcoded successful login logic
+    setTimeout(() => {
+      alert('Logged in successfully!');
+      navigate('/dashboard');
+    }, 1000); // Simulate a brief delay
   };
 
   return (
@@ -66,7 +48,7 @@ const LoginPage = () => {
             <div>
               <input
                 type="text"
-                placeholder="email"
+                placeholder="Email"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 className="input-field"

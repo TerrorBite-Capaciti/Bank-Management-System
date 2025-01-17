@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import '../styles/TransferPage.css';
 import BackButton from "../components/BackButton";
 
@@ -8,11 +8,25 @@ const Transfer = () => {
   const [amount, setAmount] = useState('');
   const [error, setError] = useState('');
   const [success, setSuccess] = useState('');
-  const [balance, setBalance] = useState(1000); // Example balance for From Account
-  const [reason, setReason] = useState(''); // Transfer reason
-  const [transferType, setTransferType] = useState('one-time'); // Transfer type dropdown
-  const [scheduledDate, setScheduledDate] = useState(''); // Scheduled transfer date
-  const [transactions, setTransactions] = useState([]); // Transaction history
+  const [balance, setBalance] = useState({ savings: 0, premium: 0 }); // Store both account balances
+  const [reason, setReason] = useState('');
+  const [transferType, setTransferType] = useState('one-time');
+  const [scheduledDate, setScheduledDate] = useState('');
+  const [transactions, setTransactions] = useState([]);
+
+  // Load balances from localStorage on component mount
+  useEffect(() => {
+    const savedSavingsBalance = localStorage.getItem('savingsBalance');
+    const savedPremiumBalance = localStorage.getItem('premiumBalance');
+    
+    if (savedSavingsBalance) {
+      setBalance((prev) => ({ ...prev, savings: parseFloat(savedSavingsBalance) }));
+    }
+
+    if (savedPremiumBalance) {
+      setBalance((prev) => ({ ...prev, premium: parseFloat(savedPremiumBalance) }));
+    }
+  }, []);
 
   const handleTransfer = async (e) => {
     e.preventDefault();
@@ -37,9 +51,12 @@ const Transfer = () => {
       return;
     }
 
-    // Validation: Check balance
-    if (Number(amount) > balance) {
-      setError('Insufficient balance in From Account.');
+    // Validation: Check balance for the "from" account
+    if (fromAccount === 'Savings Account' && Number(amount) > balance.savings) {
+      setError('Insufficient balance in Savings Account.');
+      return;
+    } else if (fromAccount === 'Premium Account' && Number(amount) > balance.premium) {
+      setError('Insufficient balance in Premium Account.');
       return;
     }
 
@@ -49,7 +66,7 @@ const Transfer = () => {
       return;
     }
 
-    // Simulating an API call
+    // Simulating an API call for transfer
     try {
       const response = await fakeApiTransfer(fromAccount, toAccount, amount);
 
@@ -67,7 +84,19 @@ const Transfer = () => {
           },
         ]);
         setSuccess(`Transfer successful! Transaction ID: ${response.transactionId}`);
-        // Clear all fields
+
+        // Update balance after transfer
+        if (fromAccount === 'Savings Account') {
+          const newBalance = balance.savings - Number(amount);
+          setBalance((prev) => ({ ...prev, savings: newBalance }));
+          localStorage.setItem('savingsBalance', newBalance.toString());
+        } else if (fromAccount === 'Premium Account') {
+          const newBalance = balance.premium - Number(amount);
+          setBalance((prev) => ({ ...prev, premium: newBalance }));
+          localStorage.setItem('premiumBalance', newBalance.toString());
+        }
+
+        // Clear fields after successful transfer
         setFromAccount('');
         setToAccount('');
         setAmount('');
@@ -82,7 +111,7 @@ const Transfer = () => {
     }
   };
 
-  // Simulating API function
+  // Simulating API function for transfer
   const fakeApiTransfer = (from, to, amount) => {
     return new Promise((resolve) => {
       setTimeout(() => {
@@ -96,7 +125,7 @@ const Transfer = () => {
 
   return (
     <div>
-       <BackButton />
+      <BackButton />
       <h2>TRANSFER FUNDS</h2>
       <form onSubmit={handleTransfer}>
         <div>
@@ -165,6 +194,10 @@ const Transfer = () => {
       </form>
       {error && <p style={{ color: 'red' }}>{error}</p>}
       {success && <p style={{ color: 'green' }}>{success}</p>}
+      <div>
+        <p>Savings Balance: R{balance.savings.toFixed(2)}</p>
+        <p>Premium Balance: R{balance.premium.toFixed(2)}</p>
+      </div>
     </div>
   );
 };

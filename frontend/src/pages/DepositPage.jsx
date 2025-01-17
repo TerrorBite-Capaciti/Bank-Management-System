@@ -1,6 +1,5 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import styles from '../styles/DepositPage.module.css';
-import { saveTransaction } from '../services/api'; // API function to save transactions
 import BackButton from "../components/BackButton"; // Adjust path based on your structure
 
 const DepositPage = () => {
@@ -11,6 +10,20 @@ const DepositPage = () => {
   const [successMessage, setSuccessMessage] = useState('');
   const [errorMessage, setErrorMessage] = useState('');
 
+  // Load balances from localStorage on component mount
+  useEffect(() => {
+    const savedSavingsBalance = localStorage.getItem('savingsBalance');
+    const savedPremiumBalance = localStorage.getItem('premiumBalance');
+
+    if (savedSavingsBalance) {
+      setSavingsBalance(parseFloat(savedSavingsBalance));
+    }
+
+    if (savedPremiumBalance) {
+      setPremiumBalance(parseFloat(savedPremiumBalance));
+    }
+  }, []);
+
   const handleDepositChange = (e) => {
     setDepositAmount(e.target.value);
   };
@@ -19,36 +32,24 @@ const DepositPage = () => {
     setSelectedAccount(e.target.value);
   };
 
-  const handleDepositSubmit = async (e) => {
+  const handleDepositSubmit = (e) => {
     e.preventDefault();
 
     if (depositAmount && !isNaN(depositAmount) && Number(depositAmount) > 0) {
       const amount = Number(depositAmount);
 
-      // Update account balance
       if (selectedAccount === 'Savings') {
-        setSavingsBalance((prevBalance) => prevBalance + amount);
+        const newBalance = savingsBalance + amount;
+        setSavingsBalance(newBalance);
+        localStorage.setItem('savingsBalance', newBalance.toString());
       } else if (selectedAccount === 'Premium') {
-        setPremiumBalance((prevBalance) => prevBalance + amount);
+        const newBalance = premiumBalance + amount;
+        setPremiumBalance(newBalance);
+        localStorage.setItem('premiumBalance', newBalance.toString());
       }
 
-      // Create transaction object
-      const newTransaction = {
-        id: Date.now(), // Use timestamp for unique ID
-        date: new Date().toLocaleString(),
-        amount: `R${amount.toFixed(2)}`,
-        description: `Deposit to ${selectedAccount} account`,
-      };
-
-      try {
-        await saveTransaction(newTransaction); // Save transaction to backend
-        setSuccessMessage(`Successfully deposited R${amount} into ${selectedAccount} account.`);
-        setErrorMessage('');
-      } catch (error) {
-        setErrorMessage('Failed to save transaction.');
-        console.error(error);
-      }
-
+      setSuccessMessage(`Successfully deposited R${amount} into ${selectedAccount} account.`);
+      setErrorMessage('');
       setDepositAmount('');
     } else {
       setErrorMessage('Please enter a valid amount.');

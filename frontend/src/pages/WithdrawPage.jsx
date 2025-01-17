@@ -1,12 +1,28 @@
-import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom'; // Import useNavigate for navigation
+import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import '../styles/WithdrawPage.css';
 
 const WithdrawPage = () => {
   const [accountType, setAccountType] = useState('');
   const [amount, setAmount] = useState('');
   const [message, setMessage] = useState(null);
-  const navigate = useNavigate(); // Initialize navigate
+  const [savingsBalance, setSavingsBalance] = useState(0);
+  const [premiumBalance, setPremiumBalance] = useState(0);
+  const navigate = useNavigate();
+
+  // Load balances from localStorage on component mount
+  useEffect(() => {
+    const savedSavingsBalance = localStorage.getItem('savingsBalance');
+    const savedPremiumBalance = localStorage.getItem('premiumBalance');
+
+    if (savedSavingsBalance) {
+      setSavingsBalance(parseFloat(savedSavingsBalance));
+    }
+
+    if (savedPremiumBalance) {
+      setPremiumBalance(parseFloat(savedPremiumBalance));
+    }
+  }, []);
 
   const handleAccountTypeChange = (event) => {
     setAccountType(event.target.value);
@@ -24,22 +40,29 @@ const WithdrawPage = () => {
       return;
     }
 
-    const savingsBalance = 0;
-    const premiumBalance = 0;
+    const withdrawalAmount = parseFloat(amount);
 
     if (accountType === 'savings') {
-      if (amount <= savingsBalance) {
-        setMessage(`Withdrawal successful. New savings balance: R${savingsBalance - amount}`);
+      if (withdrawalAmount <= savingsBalance) {
+        const newBalance = savingsBalance - withdrawalAmount;
+        setSavingsBalance(newBalance);
+        localStorage.setItem('savingsBalance', newBalance.toString());
+        setMessage(`Withdrawal successful. New savings balance: R${newBalance.toFixed(2)}`);
       } else {
         setMessage('Insufficient savings balance.');
       }
     } else if (accountType === 'premium') {
-      if (amount <= premiumBalance) {
-        setMessage(`Withdrawal successful. New premium balance: R${premiumBalance - amount}`);
+      if (withdrawalAmount <= premiumBalance) {
+        const newBalance = premiumBalance - withdrawalAmount;
+        setPremiumBalance(newBalance);
+        localStorage.setItem('premiumBalance', newBalance.toString());
+        setMessage(`Withdrawal successful. New premium balance: R${newBalance.toFixed(2)}`);
       } else {
         setMessage('Insufficient premium balance.');
       }
     }
+
+    setAmount(''); // Clear the amount input after processing
   };
 
   return (
@@ -51,7 +74,12 @@ const WithdrawPage = () => {
       >
         Back to Dashboard
       </button>
-      <h1 className="title">Withdraw Funds</h1><br></br>
+      <h1 className="title">Withdraw Funds</h1>
+      <br />
+      <div className="balances">
+        <p>Savings Balance: R{savingsBalance.toFixed(2)}</p>
+        <p>Premium Balance: R{premiumBalance.toFixed(2)}</p>
+      </div>
       <div className="form-container">
         <form onSubmit={handleSubmit}>
           <div className="form-group">
@@ -73,6 +101,7 @@ const WithdrawPage = () => {
               type="number"
               value={amount}
               onChange={handleAmountChange}
+              min="0"
             />
           </div>
           <button className="button" type="submit">

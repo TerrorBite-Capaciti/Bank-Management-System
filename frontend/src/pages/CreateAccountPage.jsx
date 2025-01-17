@@ -1,54 +1,40 @@
-import React, { useState, useContext } from 'react';
+import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { AuthContext } from '../contexts/AuthContext';
-import { createCustomer } from '../services/api';
 import '../styles/CreateAccountPage.css';
 
 const CreateAccountPage = () => {
-  const { setUser } = useContext(AuthContext); // Access AuthContext
   const [email, setEmail] = useState('');
   const [fullname, setFullname] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
-  const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState('');
   const [agreedToTerms, setAgreedToTerms] = useState(false);
   const navigate = useNavigate();
 
-  const handlecreateCustomer = async (e) => {
+  const handleCreateAccount = (e) => {
     e.preventDefault();
-    setIsLoading(true);
     setError('');
 
     if (password !== confirmPassword) {
       setError('Passwords do not match!');
-      setIsLoading(false);
       return;
     }
 
     if (!agreedToTerms) {
       setError('You must agree to the terms and conditions.');
-      setIsLoading(false);
       return;
     }
 
-    try {
-      await createCustomer({ email, fullname, password });
-      setUser({fullname, email}); // Save user to context if needed
-      alert('Account created successfully!');
-      navigate('/dasboard');
-    } catch (err) {
-      setError(err.response?.data?.message || 'Failed to create account!');
-    } finally {
-      setIsLoading(false);
-    }
+    // Hardcoded success logic
+    alert('Account created successfully!');
+    navigate('/login');
   };
 
   return (
     <div className="create-account-page">
       <div className="form-container">
         <h1>Create Account</h1>
-        <form onSubmit={handlecreateCustomer}>
+        <form onSubmit={handleCreateAccount}>
           <div>
             <label htmlFor="email">Email</label>
             <input
@@ -63,7 +49,7 @@ const CreateAccountPage = () => {
           <div>
             <label htmlFor="fullname">Fullname</label>
             <input
-              id="username"
+              id="fullname"
               type="text"
               value={fullname}
               onChange={(e) => setFullname(e.target.value)}
@@ -105,8 +91,8 @@ const CreateAccountPage = () => {
               I agree to the <a href="/terms-and-conditions">Terms & Conditions</a>
             </label>
           </div>
-          <button type="submit" className="btn" disabled={isLoading}>
-            {isLoading ? 'Creating Account...' : 'Create Account'}
+          <button type="submit" className="btn">
+            Create Account
           </button>
         </form>
         <p className="login-link">
