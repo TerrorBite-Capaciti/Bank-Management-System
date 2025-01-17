@@ -1,12 +1,14 @@
+# Use the OpenJDK 21 base image
 FROM openjdk:21-jdk-slim
 
-#WORKDIR /target
+# Set the working directory in the container
+WORKDIR /app
 
-COPY target/bank-management-application-0.0.1-SNAPSHOT.jar app.jar
+# Copy the application JAR file into the container
+COPY target/*.jar app.jar
 
-ENTRYPOINT ["java", "-jar", "/app/bank-management-application-0.0.1-SNAPSHOT.jar"]
+# Expose the application port
+EXPOSE 8080
 
-#CMD ["java", "-jar", "/app/bank-management-application-0.0.1-SNAPSHOT.jar"]
-
-
-LABEL author="nizaam"
+# Run the application
+CMD ["java", "-jar", "/app/app.jar"]
