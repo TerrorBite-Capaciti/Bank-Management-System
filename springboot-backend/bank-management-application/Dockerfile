@@ -10,6 +10,6 @@ EXPOSE 8080
 
 #ADD target/bank-management-application-0.0.1-SNAPSHOT.jar bank-management-application-0.0.1-SNAPSHOT.jar
 
-CMD ["java", "-jar", "app.jar"]
+CMD ["java", "-jar", "/app.jar"]
 
 LABEL author="nizaam"
