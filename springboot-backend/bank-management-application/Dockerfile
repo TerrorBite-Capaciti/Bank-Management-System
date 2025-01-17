@@ -7,7 +7,7 @@ WORKDIR /app
 #RUN ls -la target/
 
 # Copy the specific JAR file into the container
-COPY target/bank-management-application-0.0.1-SNAPSHOT.jar app.jar
+COPY target/*.jar app.jar
 
 # Expose the application port
 EXPOSE 8080
