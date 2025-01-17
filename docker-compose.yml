@@ -1,0 +1,31 @@
+version: "3.9"
+
+services:
+  database:
+    image: postgres:15
+    container_name: bytebank_db
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: terrorbite
+      POSTGRES_DB: bytebank_db
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+  backend:
+    build:
+      context: ./springboot-backend/bank-management-application
+      dockerfile: Dockerfile
+    container_name: bank-management-application
+    ports:
+      - "8080:8080"
+    environment:
+      SPRING_DATASOURCE_URL: "jdbc:postgresql://database:5432/bytebank_db"
+      SPRING_DATASOURCE_USERNAME: "postgres"
+      SPRING_DATASOURCE_PASSWORD: "terrorbite"
+    depends_on:
+      - database
+
+volumes:
+  postgres_data:

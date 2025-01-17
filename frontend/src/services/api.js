@@ -1,38 +1,34 @@
 import axios from 'axios';
 
 const API = axios.create({
-  baseURL: 'http://localhost:8080', // Backend base URL
+  baseURL: process.env.REACT_APP_BACKEND_URL || 'http://localhost:8080',
 });
 
-// Add auth token to headers
 API.interceptors.request.use((config) => {
-  const token = localStorage.getItem('token'); // Retrieve token from localStorage
+  const token = localStorage.getItem('token');
   if (token) {
     config.headers.Authorization = `Bearer ${token}`;
   }
   return config;
 });
 
-// Centralized error handling
 API.interceptors.response.use(
   (response) => response,
   (error) => {
     console.error('API Error:', error);
-    alert(error.response?.data?.message || 'An error occurred. Please try again.');
     return Promise.reject(error);
   }
 );
 
-// API Endpoints
-export const login = (data) => API.post('/api/auth/login', data);
-export const createAccount = (data) => API.post('/api/users/register', data);
-export const getAccounts = () => API.get('/api/accounts');
-export const transferFunds = (data) => API.post('/api/transactions/transfer', data);
-export const deposit = (data) => API.post('/api/transactions/deposit', data);
-export const withdraw = (data) => API.post('/api/transactions/withdraw', data);
+// API functions
 
-// Transaction-specific endpoints
-export const saveTransaction = (transaction) => API.post('/api/transactions', transaction);
+export const login = (data) => {
+  console.log(data)
+  return API.post('/api/customers/login', data);
+};
+
+export const createCustomer = (data) => API.post('/api/customers/createCustomer', data);
 export const getTransactions = () => API.get('/api/transactions');
+export const saveTransaction = (transaction) => API.post('/api/transactions', transaction);
 
 export default API;

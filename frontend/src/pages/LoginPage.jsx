@@ -1,4 +1,4 @@
-import React, { useState, useContext } from 'react';
+import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import {
   FaFingerprint,
@@ -9,40 +9,32 @@ import {
   FaMoneyBillAlt,
   FaCamera,
 } from 'react-icons/fa';
-import { AuthContext } from '../contexts/AuthContext';
-import { login } from '../services/api';
 import '../styles/LoginPage.css';
 
 const LoginPage = () => {
-  const { setUser } = useContext(AuthContext);
-  const [fullname, setFullname] = useState('');
+  const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
   const [showPassword, setShowPassword] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const navigate = useNavigate();
 
-  const handleLogin = async (e) => {
+  const handleLogin = (e) => {
     e.preventDefault();
+    setError('');
     setIsLoading(true);
 
-    if (!fullname|| !password) {
-      setError('Please enter both fullname and password');
+    if (!email || !password) {
+      setError('Please enter both email and password.');
       setIsLoading(false);
       return;
     }
 
-    try {
-      const response = await login({ fullname, password });
-      setUser(response.data.user);
-      localStorage.setItem('token', response.data.token);
+    // Hardcoded successful login logic
+    setTimeout(() => {
       alert('Logged in successfully!');
       navigate('/dashboard');
-    } catch (err) {
-      setError(err.response?.data?.message || 'Login failed!');
-    } finally {
-      setIsLoading(false);
-    }
+    }, 1000); // Simulate a brief delay
   };
 
   return (
@@ -56,9 +48,9 @@ const LoginPage = () => {
             <div>
               <input
                 type="text"
-                placeholder="Fullname"
-                value={fullname}
-                onChange={(e) => setFullname(e.target.value)}
+                placeholder="Email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
                 className="input-field"
                 required
               />
@@ -75,6 +67,7 @@ const LoginPage = () => {
               <span
                 className="password-toggle-icon"
                 onClick={() => setShowPassword(!showPassword)}
+                title={showPassword ? 'Hide Password' : 'Show Password'}
               >
                 {showPassword ? <FaRegEyeSlash /> : <FaRegEye />}
               </span>
@@ -91,17 +84,8 @@ const LoginPage = () => {
           </form>
 
           <div className="biometric-options">
-          <div>
-            <h1></h1>
-            <p className="subheading"></p>
-            </div>
             <div className="biometric-btn">
               <FaFingerprint size={20} /> Fingerprint
-            </div>
-            
-            <div>
-            <h1></h1>
-            <p className="subheading"></p>
             </div>
             <div className="biometric-btn">
               <img
