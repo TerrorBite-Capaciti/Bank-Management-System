@@ -87,7 +87,7 @@ Prerequisites:
 Installation
 
   1.Clone the repository:
-  - git clone https://github.com/your-username/bank-management-system.git  
+  - git clone https://github.com/TerrorBite-Capaciti/Bank-Management-System.git
 cd bank-management-system  
 
   2.Set the Backend
